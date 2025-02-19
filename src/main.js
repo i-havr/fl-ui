@@ -1,11 +1,13 @@
 import "./styles/style.scss";
 
-import { setupCounter } from "./counter.js";
+import Layout from "./components/layout.js";
 
-document.querySelector("#app").innerHTML = `
-  <div class="bg-bodyLight">
-    Content
-  </div>
-`;
+import { initRouter } from "./router/index.js";
+import { setupTheme } from "./helpers/setupTheme.js";
 
-setupCounter(document.querySelector("#counter"));
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("app").innerHTML = Layout();
+  setupTheme();
+
+  initRouter();
+});
