@@ -31,14 +31,24 @@ export default function BalanceSection() {
                     <span class="text-[26px] md:text-4xl font-bold leading-[1.38]">${mockup.home.balance.amount.toLocaleString()}</span>
                 </div>
 
-                <button type="button" class="flex items-center gap-x-1 bg-gray-bgButton px-[10px] py-[10px] md:px-[14px] rounded-lg text-xs md:text-xs transition-opacity hover:opacity-85 active:bg-opacity-75">
+                ${
+                  mockup.home.balance.isCreditAvailable
+                    ? `<button type="button" class="flex items-center gap-x-1 bg-gray-bgButton px-[10px] py-[10px] md:px-[14px] rounded-lg text-xs md:text-xs transition-opacity hover:opacity-85 active:bg-opacity-75">
                 <span>${mockup.home.balance.takeLoan}</span>
                 <span class="size-[14px]">${chevronIcon}</span>                
-                </button>
+                </button>`
+                    : `
+                    `
+                }
             </div>
 
-            <div class="flex flex-col pr-4 md:pr-[26px] xl:pr-8 gap-y-[10px] md:max-w-72 mb-4 md:mb-[30px]">
-                <div class="flex justify-between items-center">
+            ${
+              mockup.home.balance.creditAmount > 0 ||
+              mockup.home.balance.bonusesAmount > 0
+                ? `<div class="flex flex-col pr-4 md:pr-[26px] xl:pr-8 gap-y-[10px] md:max-w-72 mb-4 md:mb-[30px]">
+                ${
+                  mockup.home.balance.creditAmount > 0
+                    ? `<div class="flex justify-between items-center">
                     <span class="pr-[10px] text-gray text-sm">${mockup.home.balance.credit}</span>
                     <span class="block flex-1 h-[1px] bg-gray-linePrimary"></span>
                     <span class="pl-[10px] font-medium md:text-lg">$${mockup.home.balance.creditAmount.toLocaleString(
@@ -48,9 +58,14 @@ export default function BalanceSection() {
                         maximumFractionDigits: 2
                       }
                     )}</span>
-                </div>
+                </div>`
+                    : `
+                `
+                }
 
-                <div class="flex justify-between items-center">
+                ${
+                  mockup.home.balance.bonusesAmount > 0
+                    ? `<div class="flex justify-between items-center">
                     <span class="pr-[10px] text-gray text-sm">${mockup.home.balance.bonuses}</span>
                     <span class="block flex-1 h-[1px] bg-gray-linePrimary"></span>
                     <span class="pl-[10px] font-medium">$${mockup.home.balance.bonusesAmount.toLocaleString(
@@ -60,21 +75,38 @@ export default function BalanceSection() {
                         maximumFractionDigits: 2
                       }
                     )}</span>
-                </div>
-            </div>
+                </div>`
+                    : `
+                `
+                }
+                
+            </div>`
+                : `
+            `
+            }
 
                 <div class="mb-3 md:mb-1">${AccountsContainer()}</div>
                 
-                <div class="flex gap-x-[10px] md:gap-x-5 h-10 md:h-16 text-sm md:text-xl">
-                  <button type="button" class="bg-blue-gradient shrink-0 w-[150px] md:w-[444px] h-full flex justify-center items-center gap-x-3 rounded-[100px] hover:opacity-85 active:opacity-75 transition-opacity">
+                <div class="flex flex-col gap-y-4 md:gap-y-5">
+                  <div class="flex gap-x-[10px] md:gap-x-5 h-10 md:h-16 text-sm md:text-xl">
+                    <button type="button" class="bg-blue-gradient shrink-0 w-[150px] md:w-[444px] h-full flex justify-center items-center gap-x-3 rounded-[100px] hover:opacity-85 active:opacity-75 transition-opacity">
 
-                  <span class="block size-6">${depositIcon}</span>
-                  ${mockup.home.balance.buttons.deposit}</button>
+                    <span class="hidden md:block size-6">${depositIcon}</span>
+                    ${mockup.home.balance.buttons.deposit}</button>
 
-                  <button type="button" class="shrink-0 w-[150px] md:w-[444px] h-full flex justify-center items-center gap-x-3 rounded-[100px] border border-blue-100 hover:opacity-85 active:opacity-75 transition-opacity">
-                  
-                  <span class="block size-6">${withdrawalIcon}</span>
-                  ${mockup.home.balance.buttons.withdrawal}</button>
+                    <button type="button" class="shrink-0 w-[150px] md:w-[444px] h-full flex justify-center items-center gap-x-3 rounded-[100px] border border-blue-100 hover:opacity-85 active:opacity-75 transition-opacity">
+                    
+                    <span class="hidden md:block size-6">${withdrawalIcon}</span>
+                    ${mockup.home.balance.buttons.withdrawal}</button>
+                  </div>
+
+                  ${
+                    mockup.home.balance.accountsMockup.length > 1
+                      ? `<button type="button" class="shrink-0 w-[311px] md:w-[444px] h-10 md:h-16 flex justify-center items-center gap-x-3 rounded-[100px] border border-blue-100 hover:opacity-85 active:opacity-75 transition-opacity text-sm md:text-xl">
+                    ${mockup.home.balance.buttons.transfer}</button>`
+                      : `
+                      `
+                  }
                 </div>
             </div>
 
