@@ -48,12 +48,15 @@ export default {
           100: "#f7f8f8"
         },
         gray: {
-          DEFAULT: "#8A8A8A",
+          DEFAULT: "var(--text-gray)",
           primary: "var(--text-primary-gray)",
           secondary: "var(--text-secondary-gray)",
+          bgButton: "var(--background-button-gray-color)",
+          linePrimary: "var(--line-primary-gray)",
           100: "#bfbfbf",
-          200: "#828282"
-          // 300: "#828282"
+          200: "#828282",
+          300: "#3F4046",
+          400: "#3C3D45"
         },
         green: {
           100: "#00B69B",
@@ -66,7 +69,8 @@ export default {
           primary: "#F08F00"
         },
         blue: {
-          primary: "#00229B"
+          primary: "#00229B",
+          100: "#1492FF"
         },
         red: { primary: "var(--accent-primary-red)" },
         notify: {
@@ -84,7 +88,9 @@ export default {
         }
       },
       backgroundImage: {
-        bg404: "url('/images/bg404.webp')"
+        "blue-gradient":
+          "linear-gradient(265.56deg, #246CF9 -0.27%, #1E68F6 -0.26%, #0047D0 98.59%)"
+        // bg404: "url('/images/bg404.webp')"
       }
     }
   },

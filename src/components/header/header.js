@@ -1,4 +1,4 @@
-import { text } from "../../constants/text";
+import { mockup } from "../../constants/mockup";
 import { languages } from "../../constants/languages";
 
 import { Nav } from "./nav";
@@ -7,10 +7,12 @@ import { LanguageSelector } from "./language-selector";
 import { HeaderTitle } from "./header-title";
 import { MobileMenu } from "./mobile-menu";
 
-import { FinlabLogoIcon, VerificationStarIcon } from "../icons";
+import finlabLogoIcon from "../../assets/icons/finlab-logo-icon.svg?raw";
 
 import { navigateTo } from "../../router";
 import { ToggleIconTheme } from "../toggle-icon-theme";
+
+import verificationStarIcon from "../../assets/icons/verification-start-icon.svg?raw";
 
 const userName = "Diana S.";
 
@@ -20,20 +22,20 @@ const getPageName = () => {
   const route = window.location.pathname;
 
   switch (route) {
-    case text.market.route:
-      return text.market.pageName;
+    case mockup.market.route:
+      return mockup.market.pageName;
 
-    case text.profile.route:
-      return text.profile.pageName;
+    case mockup.profile.route:
+      return mockup.profile.pageName;
 
     default:
-      return text.home.pageName;
+      return mockup.home.pageName;
   }
 };
 
 export function Header() {
   return `
-    <header class="flex justify-between items-center text-white py-[7px] h-10">
+    <header class="container flex justify-between items-center text-white py-[7px] h-10">
 
     <div class="flex items-center md:hidden">
     ${MenuBtn()}
@@ -41,7 +43,7 @@ export function Header() {
     </div>
 
     <div class="hidden items-center md:flex md:gap-x-16">
-    ${FinlabLogoIcon()}
+    ${finlabLogoIcon}
     ${Nav()}
     </div>
 
@@ -51,8 +53,8 @@ export function Header() {
     ${LanguageSelector(languages[currentLanguage])}
 
     <button id="go-to-profile" type="button" class="bg-bgElementPrimary rounded-[6px] flex justify-center items-center gap-x-[6px] h-7 px-2 md:h-10">    
-    ${VerificationStarIcon()}
-    <span class="text-sm leading-[1.71]">${userName}</span>
+    <span class="w-[18px] h-[19px] md:w-6 md:h-6">${verificationStarIcon}</span>
+    <span class="text-sm">${userName}</span>
     </button>
     </div>
 

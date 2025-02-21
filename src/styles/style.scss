@@ -5,14 +5,20 @@
 :root {
   --background-primary-color: #000000;
   --background-secondary-color: #191919;
+  --background-button-gray-color: #333333;
+  --background-element-primary-color: #242424;
+
   --text-primary-color: #f7f8f8;
   --text-secondary-color: #ffffff;
+  --text-gray: #8a8a8a;
   --text-primary-gray: #979797;
   --text-secondary-gray: #4c4c4c;
-  --background-element-primary-color: #242424;
+
   --accent-primary-color: #0057ff;
   --accent-secondary-color: #191919;
   --accent-primary-red: #ae3c58;
+
+  --line-primary-gray: rgba(255, 255, 255, 0.1);
 
   color: var(--text-primary-color);
   background-color: var(--background-primary-color);
@@ -32,14 +38,20 @@
 .light-mode {
   --background-primary-color: #f7f8f8;
   --background-secondary-color: gray;
+  --background-button-gray-color: #333333;
+  --background-element-primary-color: gray;
+
   --text-primary-color: #000000;
   --text-secondary-color: #000000;
+  --text-gray: #8a8a8a;
   --text-primary-gray: #979797;
   --text-secondary-gray: #4c4c4c;
-  --background-element-primary-color: gray;
+
   --accent-primary-color: #0057ff;
   --accent-secondary-color: #6c6c6c;
   --accent-primary-red: #ae3c58;
+
+  --line-primary-gray: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -59,4 +71,32 @@ body {
   margin: 0 auto;
   display: flex;
   text-align: center;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: unset;
+  /* Firefox */
+}
+
+.swiper-pagination-bullet {
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+  background-color: #3c3d45 !important;
+  opacity: 1 !important;
+  transition: all 200ms ease-in-out !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 27px !important;
+  height: 8px !important;
+  border-radius: 20px !important;
+  background-color: #3c3d45 !important;
 }

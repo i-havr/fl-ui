@@ -1,8 +1,10 @@
 import cn from "classnames";
 
-import { text } from "../../constants/text";
+import { mockup } from "../../constants/mockup";
 
-import { HomeLinkIcon, MarketLinkIcon, ProfileLinkIcon } from "../icons";
+import homeLinkIcon from "../../assets/icons/home-link-icon.svg?raw";
+import marketLinkIcon from "../../assets/icons/market-link-icon.svg?raw";
+import profileLinkIcon from "../../assets/icons/profile-link-icon.svg?raw";
 
 export function Nav() {
   const currentPath = window.location.pathname;
@@ -19,18 +21,18 @@ export function Nav() {
 
   return `<nav class="flex flex-col md:flex-row gap-y-2 md:gap-y-0 md:gap-x-[30px] mb-7 md:mb-0">
         <a href="/" data-link class="${linkStyle("/")}">
-        <div class="md:hidden">${HomeLinkIcon()}</div>
-        ${text.home.pageName}
+        <div class="md:hidden">${homeLinkIcon}</div>
+        ${mockup.home.pageName}
         </a>
 
         <a href="/market" data-link class="${linkStyle("/market")}">
-        <div class="md:hidden">${MarketLinkIcon()}</div>
-        ${text.market.pageName}
+        <div class="md:hidden">${marketLinkIcon}</div>
+        ${mockup.market.pageName}
         </a>
 
         <a href="/profile" data-link class="${linkStyle("/profile")}">
-        <div class="md:hidden">${ProfileLinkIcon()}</div>
-        ${text.profile.pageName}
+        <div class="md:hidden">${profileLinkIcon}</div>
+        ${mockup.profile.pageName}
         </a>
       </nav>`;
 }

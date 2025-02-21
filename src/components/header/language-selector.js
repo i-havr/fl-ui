@@ -1,12 +1,11 @@
 import { languages } from "../../constants/languages";
-import { ChevronIcon } from "../icons";
+import chevronIcon from "../../assets/icons/chevron-icon.svg?raw";
 
 export function LanguageSelector(currentLanguage) {
   return `<div class="relative text-textPrimary">
             <button id="language-selector" type="button" class="bg-bgElementPrimary rounded-md flex items-center justify-center gap-x-[6px] text-textPrimary font-manrope w-14 h-7 md:w-[59px] md:h-10">
               <span id="current-language">${currentLanguage}</span>
-
-              ${ChevronIcon()}
+              <span class="chevron-icon-wrapper block rotate-180 transition-transform duration-200 ease-out">${chevronIcon}</span>
             </button>
   
             <div id="language-dropdown" class="overflow-hidden w-full absolute right-0 mt-3 bg-bgElementPrimary shadow-md rounded-md hidden py-1">
@@ -24,14 +23,16 @@ document.addEventListener("click", (e) => {
   const languageSelector = document.getElementById("language-selector");
   const dropdown = document.getElementById("language-dropdown");
   const buttons = document.querySelectorAll(".lang-btn");
-  const chevronIcon = languageSelector.querySelector("svg");
+  const chevronIconWrapper = languageSelector.querySelector(
+    ".chevron-icon-wrapper"
+  );
   const currentLang = localStorage.getItem("language") || "ru";
 
   if (!dropdown || !languageSelector) return;
 
   if (e.target.closest("#language-selector")) {
     dropdown.classList.toggle("hidden");
-    chevronIcon.classList.toggle("rotate-180");
+    chevronIconWrapper.classList.toggle("rotate-180");
 
     buttons.forEach((btn) => {
       if (btn.dataset.lang === currentLang) {
@@ -45,7 +46,7 @@ document.addEventListener("click", (e) => {
 
   if (!dropdown.contains(e.target) && !languageSelector.contains(e.target)) {
     dropdown.classList.add("hidden");
-    chevronIcon.classList.add("rotate-180");
+    chevronIconWrapper.classList.add("rotate-180");
   }
 
   if (e.target.dataset.lang) {
