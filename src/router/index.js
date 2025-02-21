@@ -4,6 +4,7 @@ import Profile from "../pages/profile/profile";
 
 import { Header } from "../components/header/header";
 import { MobileMenu } from "../components/header/mobile-menu";
+import { updateAccounts } from "../pages/home/accounts-container";
 
 const routes = {
   "/": { pageName: "Home", element: Home, path: "/" },
@@ -28,6 +29,11 @@ function navigate() {
   const mobileMenuContainer = document.getElementById("menu-container");
   if (mobileMenuContainer) {
     mobileMenuContainer.innerHTML = MobileMenu();
+    mobileMenuContainer.classList.add("pointer-events-none");
+  }
+
+  if (path === "/") {
+    updateAccounts();
   }
 }
 

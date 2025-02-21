@@ -58,15 +58,26 @@ export function Header() {
     </button>
     </div>
 
-    <div id="menu-container" class="fixed"></div>
     </header>
   `;
 }
+
+document.body.insertAdjacentHTML(
+  "beforeend",
+  `
+  <div id="menu-container" class="fixed inset-0 z-[50] pointer-events-none"></div>
+  `
+);
+
+const menuContainer = document.getElementById("menu-container");
 
 const closeMobileMenu = () => {
   const menu = document.getElementById("mobile-menu");
   if (menu && !menu.classList.contains("translate-x-full")) {
     menu.classList.add("translate-x-full");
+
+    menuContainer.classList.add("pointer-events-none");
+
     setTimeout(() => {
       document.getElementById("menu-container").innerHTML = "";
     }, 300);
@@ -87,10 +98,10 @@ document.addEventListener("click", (e) => {
   if (e.target.closest("#menu-btn")) {
     document.getElementById("menu-container").innerHTML = MobileMenu();
     setTimeout(() => {
-      document
-        .getElementById("mobile-menu")
-        .classList.remove("translate-x-full");
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.remove("translate-x-full");
     }, 10);
+    menuContainer.classList.remove("pointer-events-none");
   }
 
   if (e.target.closest("#close-menu")) {
