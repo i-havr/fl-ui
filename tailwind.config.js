@@ -5,17 +5,8 @@ export default {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     screens: {
-      // sm: "768px",
       md: "1024px",
-      xl: "1440px",
-      xxl: "2160px"
-
-      // onlyMobile: { max: "767.98px" },
-      // onlyDesktop: { min: "1280px" },
-      // mdOnly: { min: "768px", max: "1279.98px" },
-      // xlOnly: { min: "1280px", max: "1727.98px" },
-      // notXl: { max: "1279.98px" },
-      // notXxl: { max: "1727.98px" },
+      xl: "1440px"
     },
     extend: {
       fontFamily: {
@@ -27,6 +18,7 @@ export default {
         bgPrimary: "var(--background-primary-color)",
         bgSecondary: "var(--background-secondary-color)",
         bgElementPrimary: "var(--background-element-primary-color)",
+        bgBlock: "var(--background-block-color)",
 
         // MAIN TEXT
         textPrimary: "var(--text-primary-color)",
@@ -37,11 +29,7 @@ export default {
         accentSecondary: "var(--accent-secondary-color)", // dark #191919
 
         black: {
-          DEFAULT: "#000000",
-          main: "#252525",
-          dark: "#292929",
-          medium: "#B2B2B2",
-          light: "#7B7B7B"
+          DEFAULT: "#000000"
         },
         white: {
           DEFAULT: "#FFFFFF",
@@ -72,7 +60,10 @@ export default {
           primary: "#00229B",
           100: "#1492FF"
         },
-        red: { primary: "var(--accent-primary-red)" },
+        red: {
+          primary: "var(--accent-primary-red)",
+          secondary: "var(--accent-secondary-red)"
+        },
         notify: {
           error: "#EB001B"
         }
@@ -83,8 +74,8 @@ export default {
           DEFAULT: "1rem",
           sm: "1rem",
           md: "2rem",
-          xl: "3rem",
-          xxl: "4rem"
+          xl: "2.5rem",
+          xxl: "2.5rem"
         }
       },
       backgroundImage: {

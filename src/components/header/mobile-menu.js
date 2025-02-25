@@ -1,4 +1,4 @@
-import { mockup } from "../../constants/mockup";
+import { mockup } from "../../constants";
 
 import closeIcon from "../../assets/icons/close-icon.svg?raw";
 import finlabLogoIcon from "../../assets/icons/finlab-logo-icon.svg";

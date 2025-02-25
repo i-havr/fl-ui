@@ -1,4 +1,4 @@
-import { mockup } from "../../constants/mockup";
+import { mockup } from "../../constants";
 
 export const HeaderNav = () => {
   return `

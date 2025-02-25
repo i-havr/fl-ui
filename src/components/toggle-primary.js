@@ -1,6 +1,6 @@
 import cn from "classnames";
 
-import { toggleTheme } from "../helpers/toggleTheme";
+import { toggleTheme } from "../helpers";
 
 const isCurrentThemeLight = () => localStorage.getItem("theme") === "light";
 

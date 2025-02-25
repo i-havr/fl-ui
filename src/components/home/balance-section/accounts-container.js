@@ -1,4 +1,4 @@
-import { mockup } from "../../constants/mockup";
+import { mockup } from "../../../constants";
 
 import Swiper from "swiper";
 import "swiper/css";
@@ -8,7 +8,7 @@ import { Pagination } from "swiper/modules";
 import { OpenNewAccountBtn } from "./open-new-account-btn";
 
 function initSwiper() {
-  new Swiper(".swiper", {
+  new Swiper("#accounts-container", {
     slidesPerView: "auto",
     spaceBetween: 30,
     modules: [Pagination],
@@ -65,7 +65,7 @@ function renderCards(accounts) {
 
 export function AccountsContainer() {
   return `  
-    <div class="swiper w-full !pb-[26px] overflow-hidden ">
+    <div id="accounts-container" class="swiper w-full !pb-[26px] overflow-hidden">
       <div id="accounts-slider-wrapper" class="swiper-wrapper flex !w-fit"></div>
 
       <div class="swiper-pagination w-full"></div>

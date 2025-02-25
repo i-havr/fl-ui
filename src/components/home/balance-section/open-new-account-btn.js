@@ -1,6 +1,6 @@
-import { mockup } from "../../constants/mockup";
+import { mockup } from "../../../constants";
 
-import plusIcon from "../../assets/icons/plus-icon.svg?raw";
+import plusIcon from "../../../assets/icons/plus-icon.svg?raw";
 
 export function OpenNewAccountBtn() {
   return `
