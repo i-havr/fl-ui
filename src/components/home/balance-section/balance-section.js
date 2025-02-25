@@ -1,17 +1,18 @@
-import { mockup } from "../../constants/mockup";
+import { mockup } from "../../../constants";
 
-import depositIcon from "../../assets/icons/deposit-icon.svg?raw";
-import withdrawalIcon from "../../assets/icons/withdrawal-icon.svg?raw";
+import depositIcon from "../../../assets/icons/deposit-icon.svg?raw";
+import withdrawalIcon from "../../../assets/icons/withdrawal-icon.svg?raw";
 
 import { AccountsContainer } from "./accounts-container";
 
-import verificationStarIcon from "../../assets/icons/verification-start-icon.svg?raw";
-import usdRoundedIcon from "../../assets/icons/usd-rounded.svg?raw";
-import chevronIcon from "../../assets/icons/chevron-icon-right.svg?raw";
+import verificationStarIcon from "../../../assets/icons/verification-start-icon.svg?raw";
+import usdRoundedIcon from "../../../assets/icons/usd-rounded.svg?raw";
+import chevronIcon from "../../../assets/icons/chevron-icon-right.svg?raw";
+import { ButtonPrimary } from "../../buttons/button-primary";
 
 export default function BalanceSection() {
   return `
-    <section class="mx-auto text-center">
+    <section class="w-full mx-auto text-center">
         <div class="container">
 
             <div class="flex flex-col bg-bgSecondary pt-4 pb-4 md:pt-5 md:pb-6 xl:pt-6 xl:pb-[30px] pl-4 md:pl-[26px] xl:pl-8 rounded-xl">
@@ -89,15 +90,19 @@ export default function BalanceSection() {
                 
                 <div class="flex flex-col gap-y-4 md:gap-y-5">
                   <div class="flex gap-x-[10px] md:gap-x-5 h-10 md:h-16 text-sm md:text-xl">
-                    <button type="button" class="bg-blue-gradient shrink-0 w-[150px] md:w-[444px] h-full flex justify-center items-center gap-x-3 rounded-[100px] hover:opacity-85 active:opacity-75 transition-opacity">
-
-                    <span class="hidden md:block size-6">${depositIcon}</span>
-                    ${mockup.home.balance.buttons.deposit}</button>
-
-                    <button type="button" class="shrink-0 w-[150px] md:w-[444px] h-full flex justify-center items-center gap-x-3 rounded-[100px] border border-blue-100 hover:opacity-85 active:opacity-75 transition-opacity">
-                    
-                    <span class="hidden md:block size-6">${withdrawalIcon}</span>
-                    ${mockup.home.balance.buttons.withdrawal}</button>
+                    ${ButtonPrimary(
+                      `<span class="hidden md:block size-6">${depositIcon}</span>
+                    ${mockup.home.balance.buttons.deposit}
+                      `,
+                      "bg-blue-gradient w-[150px] md:w-[444px] rounded-[100px] gap-x-3"
+                    )}
+                   
+                  ${ButtonPrimary(
+                    `<span class="hidden md:block size-6">${withdrawalIcon}</span>
+                    ${mockup.home.balance.buttons.withdrawal}
+                    `,
+                    "w-[150px] md:w-[444px] rounded-[100px] gap-x-3 border border-blue-100"
+                  )}
                   </div>
 
                   ${

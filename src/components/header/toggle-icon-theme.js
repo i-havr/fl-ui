@@ -1,9 +1,9 @@
 import cn from "classnames";
 
-import { toggleTheme } from "../helpers/toggleTheme";
+import { toggleTheme } from "../../helpers";
 
-import sunIcon from "../assets/icons/sun-icon.svg?raw";
-import moonIcon from "../assets/icons/moon-icon.svg?raw";
+import sunIcon from "../../assets/icons/sun-icon.svg?raw";
+import moonIcon from "../../assets/icons/moon-icon.svg?raw";
 
 const isCurrentThemeLight = () => localStorage.getItem("theme") === "light";
 

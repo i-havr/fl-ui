@@ -1,4 +1,4 @@
-import { languages } from "../../constants/languages";
+import { languages } from "../../constants";
 import chevronIcon from "../../assets/icons/chevron-icon.svg?raw";
 
 export function LanguageSelector(currentLanguage) {

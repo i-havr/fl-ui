@@ -1,3 +1,5 @@
+import { deals1, deals2, history1, history2 } from "./mockData";
+
 export const mockup = {
   home: {
     pageName: "Главная",
@@ -14,11 +16,43 @@ export const mockup = {
       bonuses: "Бонусы",
       bonusesAmount: 100.24,
       accountsMockup: [
-        { title: "Основной счет", amount: 100 },
-        { title: "Инвестиционный счет", amount: 123 }
+        {
+          accountId: "1",
+          title: "Основной счет",
+          amount: 12700.33,
+          amountLastPeriod: 12600,
+          history: history1,
+          deals: deals1
+        },
+        {
+          accountId: "2",
+          title: "Инвестиционный счет",
+          amount: 100,
+          amountLastPeriod: 105.2,
+          history: history2,
+          deals: deals2
+        }
       ],
+      noHistoryState: "Данных пока нет",
       openNewAccount: "Открыть новый счет",
-      buttons: { deposit: "Ввод", withdrawal: "Вывод", transfer: "Перевод" }
+      buttons: {
+        deposit: "Ввод",
+        withdrawal: "Вывод",
+        transfer: "Перевод",
+        openMarket: "Открыть маркет"
+      },
+      PnL: "PnL за сегодня",
+
+      dealsText: {
+        openDeals: "Открытые сделки",
+        position: "Позиция",
+        asset: "Актив",
+        result: "Прибыль / Убыток",
+        noDealsState: "У Вас нет открытых сделок"
+      }
+    },
+    transactions: {
+      lastTransactions: "Последние транзакции"
     }
   },
   market: { pageName: "Торговля", route: "/market" },

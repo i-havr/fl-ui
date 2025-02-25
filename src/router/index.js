@@ -1,10 +1,16 @@
-import Home from "../pages/home/home";
-import Market from "../pages/market/market";
-import Profile from "../pages/profile/profile";
+import { mockup } from "../constants";
+
+import Home from "../pages/home";
+import Market from "../pages/market";
+import Profile from "../pages/profile";
 
 import { Header } from "../components/header/header";
 import { MobileMenu } from "../components/header/mobile-menu";
-import { updateAccounts } from "../pages/home/accounts-container";
+import { updateAccounts } from "../components/home/balance-section/accounts-container";
+import {
+  setActiveTab,
+  updateContent
+} from "../components/home/account-section/accounts-header";
 
 const routes = {
   "/": { pageName: "Home", element: Home, path: "/" },
@@ -34,6 +40,14 @@ function navigate() {
 
   if (path === "/") {
     updateAccounts();
+
+    const firstAccountId = mockup.home.balance.accountsMockup[0]?.accountId;
+
+    if (firstAccountId) {
+      setActiveTab(firstAccountId);
+      updateContent(firstAccountId);
+    }
+    updateContent();
   }
 }
 

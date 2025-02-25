@@ -1,5 +1,4 @@
-import { mockup } from "../../constants/mockup";
-import { languages } from "../../constants/languages";
+import { mockup, languages } from "../../constants";
 
 import { Nav } from "./nav";
 import { MenuBtn } from "./menu-btn";
@@ -10,7 +9,7 @@ import { MobileMenu } from "./mobile-menu";
 import finlabLogoIcon from "../../assets/icons/finlab-logo-icon.svg?raw";
 
 import { navigateTo } from "../../router";
-import { ToggleIconTheme } from "../toggle-icon-theme";
+import { ToggleIconTheme } from "./toggle-icon-theme";
 
 import verificationStarIcon from "../../assets/icons/verification-start-icon.svg?raw";
 

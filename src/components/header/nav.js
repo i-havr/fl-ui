@@ -1,6 +1,6 @@
 import cn from "classnames";
 
-import { mockup } from "../../constants/mockup";
+import { mockup } from "../../constants";
 
 import homeLinkIcon from "../../assets/icons/home-link-icon.svg?raw";
 import marketLinkIcon from "../../assets/icons/market-link-icon.svg?raw";
