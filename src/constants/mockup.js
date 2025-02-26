@@ -1,4 +1,4 @@
-import { deals1, deals2, history1, history2 } from "./mockData";
+import { deals1, deals2, history1, history2, transactions } from "./mockData";
 
 export const mockup = {
   home: {
@@ -18,7 +18,7 @@ export const mockup = {
       accountsMockup: [
         {
           accountId: "1",
-          title: "Основной счет",
+          title: "Торговый счет",
           amount: 12700.33,
           amountLastPeriod: 12600,
           history: history1,
@@ -52,7 +52,15 @@ export const mockup = {
       }
     },
     transactions: {
-      lastTransactions: "Последние транзакции"
+      lastTransactions: "Последние транзакции",
+      id: "ID",
+      date: "Дата",
+      type: "Тип",
+      amount: "Сумма",
+      status: "Статус",
+      data: transactions,
+      of: "из", // для пагинации внизу списка транзакций, например "2 из 52"
+      buttons: { prev: "Назад", next: "Вперед" }
     }
   },
   market: { pageName: "Торговля", route: "/market" },

@@ -15,8 +15,8 @@
   --text-primary-gray: #979797;
   --text-secondary-gray: #4c4c4c;
 
-  --accent-primary-color: #0057ff;
-  --accent-secondary-color: #191919;
+  --accent-primary-blue: #0057ff;
+  --accent-primary-black: #191919;
   --accent-primary-red: #ae3c58;
   --accent-secondary-red: #ff678c;
 
@@ -50,8 +50,8 @@
   --text-primary-gray: #979797;
   --text-secondary-gray: #4c4c4c;
 
-  --accent-primary-color: #0057ff;
-  --accent-secondary-color: #6c6c6c;
+  --accent-primary-blue: #0057ff;
+  --accent-primary-black: #191919;
   --accent-primary-red: #ae3c58;
   --accent-secondary-red: #ff678c;
 
@@ -75,6 +75,10 @@ body {
   margin: 0 auto;
   display: flex;
   text-align: center;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -113,4 +117,52 @@ body {
 .faded-bottom-container {
   -webkit-mask-image: linear-gradient(to top, transparent, black 40px);
   mask-image: linear-gradient(to top, transparent, black 40px);
+}
+
+/* Home page => Last transactions list */
+.transactions-table-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.transactions-table-row.transactions-list-row {
+  height: 62px;
+  font-size: 13px;
+}
+
+.transactions-table-row.transactions-list-row:last-child {
+  border-bottom: none;
+}
+
+.transactions-table-cell {
+  width: 100px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+  .transactions-table-cell {
+    width: 120px;
+  }
+
+  .transactions-table-row.transactions-list-row {
+    height: 80px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--line-primary-gray);
+  }
+}
+
+@media (min-width: 1440px) {
+  .transactions-table-cell {
+    width: 150px;
+  }
+
+  .transactions-table-row.transactions-list-row {
+    height: 91px;
+    font-size: 16px;
+  }
 }
