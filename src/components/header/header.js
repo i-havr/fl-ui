@@ -77,6 +77,8 @@ const closeMobileMenu = () => {
 
     menuContainer.classList.add("pointer-events-none");
 
+    document.body.classList.remove("no-scroll");
+
     setTimeout(() => {
       document.getElementById("menu-container").innerHTML = "";
     }, 300);
@@ -96,6 +98,8 @@ document.addEventListener("click", (e) => {
 
   if (e.target.closest("#menu-btn")) {
     document.getElementById("menu-container").innerHTML = MobileMenu();
+    document.body.classList.add("no-scroll");
+
     setTimeout(() => {
       const menu = document.getElementById("mobile-menu");
       menu.classList.remove("translate-x-full");

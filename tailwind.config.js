@@ -25,11 +25,10 @@ export default {
         textSecondary: "var(--text-secondary-color)",
 
         // OTHER COLORS
-        accentPrimary: "var(--accent-primary-color)", // blue #0057FF
-        accentSecondary: "var(--accent-secondary-color)", // dark #191919
 
         black: {
-          DEFAULT: "#000000"
+          DEFAULT: "#000000",
+          primary: "var(--accent-primary-black)"
         },
         white: {
           DEFAULT: "#FFFFFF",
@@ -44,11 +43,13 @@ export default {
           100: "#bfbfbf",
           200: "#828282",
           300: "#3F4046",
-          400: "#3C3D45"
+          400: "#3C3D45",
+          500: "#595959"
         },
         green: {
           100: "#00B69B",
-          200: "#3ECF09"
+          200: "#3ECF09",
+          300: "#08ab92"
         },
         pink: {
           100: "#D21788"
@@ -57,12 +58,14 @@ export default {
           primary: "#F08F00"
         },
         blue: {
-          primary: "#00229B",
-          100: "#1492FF"
+          primary: "var(--accent-primary-blue)",
+          100: "#1492FF",
+          200: "#2871FF"
         },
         red: {
           primary: "var(--accent-primary-red)",
-          secondary: "var(--accent-secondary-red)"
+          secondary: "var(--accent-secondary-red)",
+          100: "#FF5981"
         },
         notify: {
           error: "#EB001B"

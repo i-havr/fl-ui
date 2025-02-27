@@ -309,4 +309,590 @@ export const deals2 = [
   }
 ];
 
-export const transactions = [{}];
+export const transactions = [
+  {
+    id: "1thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "2thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "3thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "4thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "5thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "6thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "7thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "8thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "9thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "10thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "11thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "12thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "13thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "14thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "15thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "16thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "17thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "18thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "19thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "20thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "21thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "22thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "23thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "24thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "25thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "26thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "27thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "28thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "29thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "30thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "31thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "32thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "33thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "34thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "35thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "36thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "37thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "38thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "39thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "40thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "41thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "42thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "43thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "44thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "45thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "46thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "47thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "48thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "49thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "50thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "51thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "52thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "53thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "54thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "55thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "56thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "57thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "58thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "59thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "60thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "created",
+    statusTitle: "Создано"
+  },
+  {
+    id: "61thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "62thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "63thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "done",
+    statusTitle: "Завершено"
+  },
+  {
+    id: "64thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  },
+  {
+    id: "65thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
+  }
+];

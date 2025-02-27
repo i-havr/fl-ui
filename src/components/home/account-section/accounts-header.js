@@ -24,7 +24,7 @@ export function AccountsHeader() {
             ${mockup.home.balance.accountsMockup
               .map(
                 (account) =>
-                  `<div class="swiper-slide account-tab !w-fit !mr-2 md:!mr-4 py-[6px] px-[10px]" data-account-id="${account.accountId}">
+                  `<div class="swiper-slide account-tab !w-fit !mr-2 md:!mr-4 py-[6px] px-[10px] rounded-lg" data-account-id="${account.accountId}">
                         <div class="cursor-pointer text-sm transition-colors">
                         ${account.title}
                         </div>
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 export function setActiveTab(accountId) {
   document.querySelectorAll(".account-tab").forEach((tab) => {
-    tab.classList.remove("text-textPrimary", "text-gray-primary");
+    tab.classList.remove("text-textPrimary", "text-gray-primary", "bg-bgBlock");
     tab.classList.add("text-gray-primary");
   });
 
@@ -86,7 +86,7 @@ export function setActiveTab(accountId) {
     `.account-tab[data-account-id="${accountId}"]`
   );
   if (activeTab) {
-    activeTab.classList.add("text-textPrimary");
+    activeTab.classList.add("text-textPrimary", "bg-bgBlock");
     activeTab.classList.remove("text-gray-primary");
   }
 

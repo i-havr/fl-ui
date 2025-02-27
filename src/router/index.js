@@ -11,6 +11,7 @@ import {
   setActiveTab,
   updateContent
 } from "../components/home/account-section/accounts-header";
+import { getTransactionsData } from "../components/home/last-transactions-section/last-transactions";
 
 const routes = {
   "/": { pageName: "Home", element: Home, path: "/" },
@@ -27,6 +28,8 @@ function navigate() {
     ? routes[path].element()
     : "<h1>404 Not Found</h1>";
 
+  document.body.classList.remove("no-scroll");
+
   const headerContainer = document.getElementById("header-wrapper");
   if (headerContainer) {
     headerContainer.innerHTML = Header();
@@ -39,6 +42,7 @@ function navigate() {
   }
 
   if (path === "/") {
+    getTransactionsData();
     updateAccounts();
 
     const firstAccountId = mockup.home.balance.accountsMockup[0]?.accountId;
