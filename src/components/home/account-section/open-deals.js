@@ -7,7 +7,7 @@ import { formatAmount } from "../../../helpers";
 export function OpenDeals(deals) {
   return `
     <div class="md:shrink-0 w-full h-[277px] min-[768px]:h-auto md:w-[326px] xl:w-[432px] md:h-[480px] p-3 md:p-0 md:py-5 md:pl-5 bg-bgBlock rounded-lg text-left">
-      <div class="faded-bottom-container">
+      <div class="${deals.length ? "faded-bottom-container" : ""}">
         <h2 class="font-semibold md:text-lg">${mockup.home.balance.dealsText.openDeals}</h2>
 
         ${

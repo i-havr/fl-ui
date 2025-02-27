@@ -60,7 +60,8 @@ export const mockup = {
       status: "Статус",
       data: transactions,
       of: "из", // для пагинации внизу списка транзакций, например "2 из 52"
-      buttons: { prev: "Назад", next: "Вперед" }
+      buttons: { prev: "Назад", next: "Вперед" },
+      noTransactionsState: "История транзакций будет отображаться здесь"
     }
   },
   market: { pageName: "Торговля", route: "/market" },

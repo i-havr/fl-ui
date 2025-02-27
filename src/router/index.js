@@ -11,7 +11,7 @@ import {
   setActiveTab,
   updateContent
 } from "../components/home/account-section/accounts-header";
-import { getTransactionsData } from "../components/home/transactions-section/last-transactions";
+import { getTransactionsData } from "../components/home/last-transactions-section/last-transactions";
 
 const routes = {
   "/": { pageName: "Home", element: Home, path: "/" },

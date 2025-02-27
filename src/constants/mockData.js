@@ -885,5 +885,14 @@ export const transactions = [
     amount: 3000.67,
     status: "rejected",
     statusTitle: "Отклонено"
+  },
+  {
+    id: "65thkjdlasdJSFdag182dashjd",
+    date: "01 октября 2024",
+    time: "11:28:29",
+    type: "Пополнение",
+    amount: 3000.67,
+    status: "rejected",
+    statusTitle: "Отклонено"
   }
 ];

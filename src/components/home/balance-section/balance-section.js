@@ -2,6 +2,7 @@ import { mockup } from "../../../constants";
 
 import depositIcon from "../../../assets/icons/deposit-icon.svg?raw";
 import withdrawalIcon from "../../../assets/icons/withdrawal-icon.svg?raw";
+import transferIcon from "../../../assets/icons/transfer-icon.svg?raw";
 
 import { AccountsContainer } from "./accounts-container";
 
@@ -88,31 +89,39 @@ export default function BalanceSection() {
 
                 <div class="mb-3 md:mb-1">${AccountsContainer()}</div>
                 
-                <div class="flex flex-col gap-y-4 md:gap-y-5">
-                  <div class="flex gap-x-[10px] md:gap-x-5 h-10 md:h-16 text-sm md:text-xl">
+                <div class="flex flex-wrap gap-[10px] md:gap-5 text-sm md:text-xl pr-4 md:pr-6 xl:pr-8 ${
+                  mockup.home.balance.accountsMockup.length > 1
+                    ? ""
+                    : "max-w-[526px] md:max-w-[908px] xl:max-w-[908px]"
+                }">
+                                      
                     ${ButtonPrimary(
                       `<span class="hidden md:block size-6">${depositIcon}</span>
                     ${mockup.home.balance.buttons.deposit}
                       `,
-                      "bg-blue-gradient w-[150px] md:w-[444px] rounded-[100px] gap-x-3"
+                      "bg-blue-gradient grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 h-10 md:h-16"
                     )}
                    
-                  ${ButtonPrimary(
-                    `<span class="hidden md:block size-6">${withdrawalIcon}</span>
+                    ${ButtonPrimary(
+                      `<span class="hidden md:block size-6">${withdrawalIcon}</span>
                     ${mockup.home.balance.buttons.withdrawal}
                     `,
-                    "w-[150px] md:w-[444px] rounded-[100px] gap-x-3 border border-blue-100"
-                  )}
-                  </div>
+                      "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-16"
+                    )}
+                  
 
-                  ${
-                    mockup.home.balance.accountsMockup.length > 1
-                      ? `<button type="button" class="shrink-0 w-[311px] md:w-[444px] h-10 md:h-16 flex justify-center items-center gap-x-3 rounded-[100px] border border-blue-100 hover:opacity-85 active:opacity-75 transition-opacity text-sm md:text-xl">
-                    ${mockup.home.balance.buttons.transfer}</button>`
-                      : `
+                    ${
+                      mockup.home.balance.accountsMockup.length > 1
+                        ? ButtonPrimary(
+                            `<span class="hidden md:block size-6">${transferIcon}</span>
+                          ${mockup.home.balance.buttons.transfer}
+                          `,
+                            "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-16"
+                          )
+                        : `
                       `
-                  }
-                </div>
+                    }
+                  </div>
             </div>
 
         </div>
