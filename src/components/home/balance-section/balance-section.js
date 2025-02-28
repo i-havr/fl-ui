@@ -16,13 +16,13 @@ export default function BalanceSection() {
     <section class="w-full mx-auto text-center">
         <div class="container">
 
-            <div class="flex flex-col bg-bgSecondary pt-4 pb-4 md:pt-5 md:pb-6 xl:pt-6 xl:pb-[30px] pl-4 md:pl-[26px] xl:pl-8 rounded-xl">
+            <div class="flex flex-col bg-bg-secondary pt-4 pb-4 md:pt-5 md:pb-6 xl:pt-6 xl:pb-[30px] pl-4 md:pl-[26px] xl:pl-8 rounded-xl">
 
                 <div class="mb-4 md:mb-[30px] pr-4 md:pr-[26px] xl:pr-8 w-full h-[26px] md:h-[29px] flex justify-between items-center">
                     <span class="font-semibold md:text-lg">${mockup.home.balance.balance}</span>
 
                     <div class="flex items-center gap-x-2 text-sm md:text-base">
-                        <span class="text-gray">${mockup.home.balance.accNumberTitle} <span class="text-textPrimary">${mockup.home.balance.accNumber}</span></span>
+                        <span class="text-gray">${mockup.home.balance.accNumberTitle} <span class="text-text-primary">${mockup.home.balance.accNumber}</span></span>
                         <span class="w-[18px] h-[19px] md:w-[22px] md:h-[22px]">${verificationStarIcon}</span>
                     </div>                
                 </div> 
@@ -35,7 +35,7 @@ export default function BalanceSection() {
 
                 ${
                   mockup.home.balance.isCreditAvailable
-                    ? `<button type="button" class="flex items-center gap-x-1 bg-gray-bgButton px-[10px] py-[10px] md:px-[14px] rounded-lg text-xs md:text-xs transition-opacity hover:opacity-85 active:bg-opacity-75">
+                    ? `<button type="button" class="flex items-center gap-x-1 bg-bg-button-gray px-[10px] py-[10px] md:px-[14px] rounded-lg text-xs md:text-xs transition-opacity hover:opacity-85 active:bg-opacity-75">
                 <span>${mockup.home.balance.takeLoan}</span>
                 <span class="size-[14px]">${chevronIcon}</span>                
                 </button>`
@@ -52,7 +52,7 @@ export default function BalanceSection() {
                   mockup.home.balance.creditAmount > 0
                     ? `<div class="flex justify-between items-center">
                     <span class="pr-[10px] text-gray text-sm">${mockup.home.balance.credit}</span>
-                    <span class="block flex-1 h-[1px] bg-gray-linePrimary"></span>
+                    <span class="block flex-1 h-[1px] bg-gray-line-primary"></span>
                     <span class="pl-[10px] font-medium md:text-lg">$${mockup.home.balance.creditAmount.toLocaleString(
                       undefined,
                       {
@@ -69,7 +69,7 @@ export default function BalanceSection() {
                   mockup.home.balance.bonusesAmount > 0
                     ? `<div class="flex justify-between items-center">
                     <span class="pr-[10px] text-gray text-sm">${mockup.home.balance.bonuses}</span>
-                    <span class="block flex-1 h-[1px] bg-gray-linePrimary"></span>
+                    <span class="block flex-1 h-[1px] bg-gray-line-primary"></span>
                     <span class="pl-[10px] font-medium">$${mockup.home.balance.bonusesAmount.toLocaleString(
                       undefined,
                       {
@@ -99,7 +99,7 @@ export default function BalanceSection() {
                       `<span class="hidden md:block size-6">${depositIcon}</span>
                     ${mockup.home.balance.buttons.deposit}
                       `,
-                      "bg-blue-gradient grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 h-10 md:h-16"
+                      "blue-gradient grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 h-10 md:h-16"
                     )}
                    
                     ${ButtonPrimary(

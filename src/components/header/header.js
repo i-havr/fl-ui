@@ -51,7 +51,7 @@ export function Header() {
 
     ${LanguageSelector(languages[currentLanguage])}
 
-    <button id="go-to-profile" type="button" class="bg-bgElementPrimary rounded-[6px] flex justify-center items-center gap-x-[6px] h-7 px-2 md:h-10">    
+    <button id="go-to-profile" type="button" class="bg-bg-element-primary rounded-[6px] flex justify-center items-center gap-x-[6px] h-7 px-2 md:h-10">    
     <span class="w-[18px] h-[19px] md:w-6 md:h-6">${verificationStarIcon}</span>
     <span class="text-sm">${userName}</span>
     </button>
