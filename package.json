@@ -21,6 +21,7 @@
     "chart.js": "^4.4.8",
     "classnames": "^2.5.1",
     "eslint-config-prettier": "^10.0.2",
+    "postcss": "^8.5.3",
     "swiper": "^11.2.4"
   }
 }

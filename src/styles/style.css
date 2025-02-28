@@ -1,27 +1,74 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --breakpoint-sm: initial;
+  --breakpoint-md: 64rem;
+  --breakpoint-lg: initial;
+  --breakpoint-xl: 90rem;
+  --breakpoint-2xl: initial;
+  --breakpoint-xxl: initial;
+
+  --container-md: 64rem;
+  --container-xl: 90rem;
+
+  --font-montserrat: "Montserrat", system-ui, sans-serif;
+  --font-manrope: "Manrope", system-ui, sans-serif;
+
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #191919;
+  --color-bg-button-gray: #333333;
+  --color-bg-element-primary: #242424;
+  --color-bg-block-primary: #141518;
+
+  --color-text-primary: #f7f8f8;
+  --color-text-secondary: #ffffff;
+
+  --color-black: #000000;
+  --color-black-primary: #191919;
+
+  --color-white: #ffffff;
+  --color-white-100: #f7f8f8;
+
+  --color-gray: #8a8a8a;
+  --color-gray-primary: #979797;
+  --color-gray-secondary: #4c4c4c;
+  --color-gray-line-primary: rgba(255, 255, 255, 0.1);
+  --color-gray-100: #bfbfbf;
+  --color-gray-200: #828282;
+  --color-gray-300: #3f4046;
+  --color-gray-400: #3c3d45;
+  --color-gray-500: #595959;
+
+  --color-green-100: #00b69b;
+  --color-green-200: #3ecf09;
+  --color-green-300: #08ab92;
+
+  --color-blue-100: #1492ff;
+  --color-blue-200: #2871ff;
+
+  --color-red-primary: #ae3c58;
+  --color-red-secondary: #ff678c;
+  --color-red-100: #ff5981;
+}
+
+@utility container {
+  padding-inline: 1rem;
+  margin-inline: auto;
+
+  @variant md {
+    padding-inline: 2rem;
+  }
+
+  @variant xl {
+    padding-inline: 2.5rem;
+  }
+}
+
 :root {
-  --background-primary-color: #000000;
-  --background-secondary-color: #191919;
-  --background-block-color: #141518;
-  --background-button-gray-color: #333333;
-  --background-element-primary-color: #242424;
-
-  --text-primary-color: #f7f8f8;
-  --text-secondary-color: #ffffff;
-  --text-gray: #8a8a8a;
-  --text-primary-gray: #979797;
-  --text-secondary-gray: #4c4c4c;
-
-  --accent-primary-blue: #0057ff;
-  --accent-primary-black: #191919;
-  --accent-primary-red: #ae3c58;
-  --accent-secondary-red: #ff678c;
-
-  --line-primary-gray: rgba(255, 255, 255, 0.1);
-
-  color: var(--text-primary-color);
-  background-color: var(--background-primary-color);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
 
   font-family:
     "Montserrat", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -35,36 +82,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.light-mode {
-  --background-primary-color: #f7f8f8;
-  --background-secondary-color: gray;
-  --background-block-color: #141518;
-  --background-button-gray-color: #333333;
-  --background-element-primary-color: gray;
+.light {
+  --color-bg-primary: #f7f8f8;
+  --color-bg-secondary: gray;
+  --color-bg-button-gray: #333333;
+  --color-bg-element-primary: gray;
+  --color-bg-block-primary: #141518;
 
-  --text-primary-color: #000000;
-  --text-secondary-color: #000000;
-  --text-gray: #8a8a8a;
-  --text-primary-gray: #979797;
-  --text-secondary-gray: #4c4c4c;
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
 
-  --accent-primary-blue: #0057ff;
-  --accent-primary-black: #191919;
-  --accent-primary-red: #ae3c58;
-  --accent-secondary-red: #ff678c;
-
-  --line-primary-gray: rgba(255, 255, 255, 0.1);
+  --color-gray-line-primary: rgba(255, 255, 255, 0.1);
 }
 
 body {
   min-height: 100vh;
   margin: 0;
-  color: var(--text-primary-color);
-  background-color: var(--background-primary-color);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
 
   transition:
-    background-color 0.4s ease-in-out,
-    color 0.4s ease-in-out;
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 }
 
 #app {
@@ -77,6 +116,10 @@ body {
 
 body.no-scroll {
   overflow: hidden;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -92,6 +135,26 @@ body.no-scroll {
   /* Firefox */
 }
 
+.faded-right-container {
+  -webkit-mask-image: linear-gradient(to left, transparent, black 80px);
+  mask-image: linear-gradient(to left, transparent, black 80px);
+}
+
+.faded-bottom-container {
+  -webkit-mask-image: linear-gradient(to top, transparent, black 40px);
+  mask-image: linear-gradient(to top, transparent, black 40px);
+}
+
+.blue-gradient {
+  background: linear-gradient(
+    265.56deg,
+    #246cf9 -0.27%,
+    #1e68f6 -0.26%,
+    #0047d0 98.59%
+  );
+}
+
+/* Home page => Balance section => Accounts Cards Slider */
 #accounts-container .swiper-pagination-bullet {
   margin-left: 2px !important;
   margin-right: 2px !important;
@@ -107,17 +170,7 @@ body.no-scroll {
   background-color: #3c3d45 !important;
 }
 
-.faded-right-container {
-  -webkit-mask-image: linear-gradient(to left, transparent, black 80px);
-  mask-image: linear-gradient(to left, transparent, black 80px);
-}
-
-.faded-bottom-container {
-  -webkit-mask-image: linear-gradient(to top, transparent, black 40px);
-  mask-image: linear-gradient(to top, transparent, black 40px);
-}
-
-/* Home page => Last transactions list & pagination */
+/* Home page => Last transactions list & Pagination */
 .transactions-table-row {
   display: flex;
   justify-content: space-between;
@@ -148,11 +201,11 @@ body.no-scroll {
   border-radius: 10px;
 }
 
-.pagination-number-btn:hover {
+.pagination-number-btn:hover:not(:disabled) {
   opacity: 0.85;
 }
 
-.pagination-number-btn:active {
+.pagination-number-btn:active:not(:disabled) {
   opacity: 0.75;
 }
 

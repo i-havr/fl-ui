@@ -24,10 +24,10 @@ export function Balance(account) {
     }
   };
 
-  return `<div class="w-full p-3 md:p-0 md:py-5 md:pl-8 bg-bgBlock rounded-lg text-left">
+  return `<div class="w-full p-3 md:p-0 md:py-5 md:pl-8 bg-bg-block-primary rounded-lg text-left">
             <p class="text-xl font-semibold mb-2 md:mb-[10px]">${mockup.home.balance.balance}: $${account.amount.toLocaleString()}</p>
 
-            <p class="text-textSecondary text-sm mb-5 md:mb-8 xl:mb-9">
+            <p class="text-text-secondary text-sm mb-5 md:mb-8 xl:mb-9">
                 ${mockup.home.balance.PnL}
 
                 ${
@@ -51,7 +51,7 @@ export function Balance(account) {
               
               ${arrowRightIcon}
               `,
-              "bg-blue-gradient h-[34px] px-[10px] rounded-lg text-xs gap-x-1 w-fit",
+              "blue-gradient h-[34px] px-[10px] rounded-lg text-xs gap-x-1 w-fit",
               "/market"
             )}
             </div>

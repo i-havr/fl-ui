@@ -45,7 +45,7 @@ export function AccountsHeader() {
                       
           ${arrowRightIcon}
           `,
-        "bg-blue-gradient h-9 px-[10px] rounded-lg text-xs gap-x-1",
+        "blue-gradient h-9 px-[10px] rounded-lg text-xs gap-x-1",
         "/market"
       )}
     </div>
@@ -78,7 +78,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 export function setActiveTab(accountId) {
   document.querySelectorAll(".account-tab").forEach((tab) => {
-    tab.classList.remove("text-textPrimary", "text-gray-primary", "bg-bgBlock");
+    tab.classList.remove(
+      "text-text-primary",
+      "text-gray-primary",
+      "bg-bg-block-primary",
+      "pointer-events-none"
+    );
     tab.classList.add("text-gray-primary");
   });
 
@@ -86,7 +91,12 @@ export function setActiveTab(accountId) {
     `.account-tab[data-account-id="${accountId}"]`
   );
   if (activeTab) {
-    activeTab.classList.add("text-textPrimary", "bg-bgBlock");
+    activeTab.classList.add(
+      "text-text-primary",
+      "bg-bg-block-primary",
+      "pointer-events-none"
+    );
+
     activeTab.classList.remove("text-gray-primary");
   }
 

@@ -17,8 +17,9 @@ export function LastTransactionsPagination({ page, of, total, perPage }) {
       for (let i = 1; i <= totalPages; i++) {
         buttons += `
           <button 
-            class="pagination-number-btn ${i === page ? "bg-bgElementPrimary" : "bg-transparent"}" 
-            data-page="${i}"
+            class="pagination-number-btn ${i === page ? "bg-bg-element-primary pointer-events-none" : "bg-transparent"}" 
+            data-page="${i}" 
+            ${i === page ? "disabled" : ""}
           >${i}</button>
         `;
       }
@@ -45,8 +46,8 @@ export function LastTransactionsPagination({ page, of, total, perPage }) {
       for (let i = startPage; i <= endPage; i++) {
         buttons += `
           <button
-            class="pagination-number-btn ${i === page ? "bg-bgElementPrimary" : "bg-transparent"}" 
-            data-page="${i}">
+            class="pagination-number-btn ${i === page ? "bg-bg-element-primary pointer-events-none" : "bg-transparent"}" 
+            data-page="${i}" ${i === page ? "disabled" : ""}>
             ${i}
           </button>
         `;
@@ -95,13 +96,13 @@ export function LastTransactionsPagination({ page, of, total, perPage }) {
           ${renderPageButtons()}
         </div>
 
-    <div class="flex justify-center items-center gap-x-px rounded-lg overflow-hidden border border-gray-linePrimary bg-gray-linePrimary">
-      <button class="prev-btn bg-bgElementPrimary w-[43px] h-[30px] flex justify-center items-center hover:opacity-85 active:opacity-75 disabled:pointer-events-none disabled:opacity-50 pb-[2px]"
+    <div class="flex justify-center items-center gap-x-px rounded-lg overflow-hidden border border-gray-line-primary bg-gray-line-primary">
+      <button class="prev-btn bg-bg-element-primary w-[43px] h-[30px] flex justify-center items-center hover:opacity-85 active:opacity-75 disabled:pointer-events-none disabled:opacity-50 pb-[2px]"
       ${page === 1 ? "disabled" : ""}>
       <div class="size-[18px] -scale-x-100">${chevronIconRight}</div>
       </button>
 
-      <button class="next-btn bg-bgElementPrimary w-[43px] h-[30px] flex justify-center items-center hover:opacity-85 active:opacity-75 disabled:pointer-events-none disabled:opacity-50 pb-[2px]"
+      <button class="next-btn bg-bg-element-primary w-[43px] h-[30px] flex justify-center items-center hover:opacity-85 active:opacity-75 disabled:pointer-events-none disabled:opacity-50 pb-[2px]"
       ${page === totalPages ? "disabled" : ""}>      
       <div class="size-[18px]">${chevronIconRight}</div>
       </button>

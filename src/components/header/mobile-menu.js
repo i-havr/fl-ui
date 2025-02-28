@@ -10,7 +10,7 @@ import { Nav } from "./nav";
 
 export function MobileMenu() {
   return `
-  <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-bgPrimary flex flex-col items-center justify-between text-textPrimary transform translate-x-full transition-all px-4 pt-3 pb-16">
+  <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-bg-primary flex flex-col items-center justify-between text-text-primary transform translate-x-full transition-all px-4 pt-3 pb-16">
   <div class="w-full">
       <div class="w-full h-[43px] flex justify-between items-center mb-[31px]">
       

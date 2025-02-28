@@ -13,7 +13,7 @@ export function Nav() {
     return cn(
       "flex items-center md:text-gray-primary gap-x-3 h-10 px-3 py-2 text-left opacity-75 md:opacity-100 md:text-[17px]",
       {
-        "bg-black-primary opacity-100 font-medium rounded-lg md:text-textPrimary md:font-normal":
+        "bg-black-primary opacity-100 font-medium rounded-lg md:text-text-primary md:font-normal pointer-events-none":
           currentPath === route
       }
     );
