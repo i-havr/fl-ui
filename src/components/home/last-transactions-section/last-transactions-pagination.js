@@ -68,7 +68,7 @@ export function LastTransactionsPagination({ page, of, total, perPage }) {
     return buttons;
   };
 
-  if (window.innerWidth < 1024) {
+  if (window.innerWidth < 768) {
     return `
   <div class="flex justify-between items-center mx-auto max-w-[500px] text-gray-primary">
     <button class="prev-btn min-w-[84px] flex justify-center items-center gap-x-1 active:opacity-75 disabled:pointer-events-none disabled:opacity-0 disabled:appearance-none"

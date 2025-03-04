@@ -18,7 +18,7 @@ function initSwiper() {
 export function AccountsHeader() {
   return `
   <div class="flex justify-between items-center">
-    <div id="swiper-accounts-header" class="faded-right-container swiper w-full min-[768px]:w-auto min-[768px]:flex-1 overflow-hidden !pr-10">
+    <div id="swiper-accounts-header" class="faded-right-container swiper w-full md:w-auto md:flex-1 overflow-hidden !pr-10">
         <div class="swiper-wrapper flex !w-fit">
 
             ${mockup.home.balance.accountsMockup
@@ -36,7 +36,7 @@ export function AccountsHeader() {
         
     </div>
 
-    <div class="hidden min-[768px]:flex">
+    <div class="hidden md:flex">
       ${ButtonPrimary(
         `
           <span>

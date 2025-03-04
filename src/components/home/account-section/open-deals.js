@@ -6,13 +6,13 @@ import { formatAmount } from "../../../helpers";
 
 export function OpenDeals(deals) {
   return `
-    <div class="md:shrink-0 w-full h-[277px] min-[768px]:h-auto md:w-[326px] xl:w-[432px] md:h-[480px] p-3 md:p-0 md:py-5 md:pl-5 bg-bg-block-primary rounded-lg text-left">
+    <div class="w-full h-[277px] md:max-w-[350px] lg:max-w-[432px] xl:min-w-[463px] md:h-[480px] p-3 md:p-0 md:py-5 md:pl-5 md:pr-1 bg-bg-block-primary rounded-lg text-left">
       <div class="${deals.length ? "faded-bottom-container" : ""}">
         <h2 class="font-semibold md:text-lg">${mockup.home.balance.dealsText.openDeals}</h2>
 
         ${
           deals.length
-            ? `<div id="openDealsTable" class="no-scrollbar w-full overflow-y-auto max-h-[220px] min-[768px]:max-h-[248px] md:max-h-[396px] mt-4 md:mt-5 pb-5">
+            ? `<div id="openDealsTable" class="no-scrollbar w-full overflow-y-auto max-h-[220px] md:max-h-[396px] mt-4 md:mt-5 pb-5">
                   ${renderDealsTable(deals)}                  
               </div>`
             : EmptyDealsState()

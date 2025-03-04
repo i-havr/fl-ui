@@ -42,7 +42,7 @@ export function Balance(account) {
 
             <div class="w-full h-[215px] md:h-[346px] xl:h-[342px]">${account.history.length ? AccountChart(account) : EmptyHistoryState()}</div>
 
-            <div class="mt-5 min-[768px]:hidden">
+            <div class="mt-5 md:hidden">
             ${ButtonPrimary(
               `
               <span>

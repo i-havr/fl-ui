@@ -30,7 +30,7 @@ export function LastTransactionsList(transactions) {
               <span class="inline-flex justify-center items-center text-[11px] h-6 px-[6px] py-[2px] rounded-md ${getStatusStyle(transaction.status)}">${transaction.statusTitle}</span>
             </div>
   
-            <div class="transactions-table-cell flex flex-col text-[11px] md:text-sm xl:text-base !w-[120px] md:!w-[160px] xl:!w-[190px] md:pt-[18px] xl:pt-[23px]">
+            <div class="transactions-table-cell flex flex-col text-[11px] md:text-sm xl:text-base !w-[120px] md:!w-[140px] xl:!w-[190px] md:pt-[18px] xl:pt-[23px]">
                 <div>${transaction.date}</div>
                 <div class="text-gray-500">${transaction.time}</div>
             </div>

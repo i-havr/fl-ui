@@ -7,8 +7,8 @@ import { LastTransactionsList } from "./last-transactions-list";
 
 const transactionsService = new TransactionsService();
 
-let isMobileDevice = window.innerWidth < 1024;
-let isTabletDevice = window.innerWidth < 1440;
+let isMobileDevice = window.innerWidth < 768;
+let isTabletDevice = window.innerWidth < 1440 && window.innerWidth >= 768;
 
 const renderTransactions = (
   transactions,
@@ -24,14 +24,10 @@ const renderTransactions = (
   );
 
   if (!transactionsListContainer) {
-    console.error("Element .last-transactions-list-container was not found");
     return;
   }
 
   if (!transactionsPaginationContainer) {
-    console.error(
-      "Element .last-transactions-pagination-container was not found"
-    );
     return;
   }
 
@@ -114,7 +110,7 @@ export function LastTransactions() {
 }
 
 window.addEventListener("resize", () => {
-  if (isMobileDevice && window.innerWidth >= 1024 && window.innerWidth < 1440) {
+  if (isMobileDevice && window.innerWidth >= 768 && window.innerWidth < 1440) {
     isMobileDevice = false;
     isTabletDevice = true;
     getTransactionsData();
@@ -126,7 +122,7 @@ window.addEventListener("resize", () => {
     getTransactionsData();
   }
 
-  if (!isMobileDevice && window.innerWidth < 1024) {
+  if (!isMobileDevice && window.innerWidth < 768) {
     isMobileDevice = true;
     isTabletDevice = false;
     getTransactionsData();
@@ -138,11 +134,7 @@ window.addEventListener("resize", () => {
     getTransactionsData();
   }
 
-  if (
-    !isTabletDevice &&
-    window.innerWidth >= 1024 &&
-    window.innerWidth < 1440
-  ) {
+  if (!isTabletDevice && window.innerWidth >= 768 && window.innerWidth < 1440) {
     isTabletDevice = true;
     getTransactionsData();
   }

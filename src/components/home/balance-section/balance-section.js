@@ -14,7 +14,7 @@ import { ButtonPrimary } from "../../buttons/button-primary";
 export default function BalanceSection() {
   return `
     <section class="w-full mx-auto text-center">
-        <div class="container">
+        <div class="custom-container">
 
             <div class="flex flex-col bg-bg-secondary pt-4 pb-4 md:pt-5 md:pb-6 xl:pt-6 xl:pb-[30px] pl-4 md:pl-[26px] xl:pl-8 rounded-xl">
 
