@@ -10,7 +10,7 @@ export default class TransactionsService {
   _setPerPageBasedOnScreenWidth() {
     if (window === undefined) return 6;
 
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 768) {
       return 6;
     }
 

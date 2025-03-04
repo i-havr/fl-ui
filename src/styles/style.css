@@ -4,14 +4,11 @@
 
 @theme {
   --breakpoint-sm: initial;
-  --breakpoint-md: 64rem;
-  --breakpoint-lg: initial;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
   --breakpoint-xl: 90rem;
   --breakpoint-2xl: initial;
   --breakpoint-xxl: initial;
-
-  --container-md: 64rem;
-  --container-xl: 90rem;
 
   --font-montserrat: "Montserrat", system-ui, sans-serif;
   --font-manrope: "Manrope", system-ui, sans-serif;
@@ -51,19 +48,6 @@
   --color-red-primary: #ae3c58;
   --color-red-secondary: #ff678c;
   --color-red-100: #ff5981;
-}
-
-@utility container {
-  padding-inline: 1rem;
-  margin-inline: auto;
-
-  @variant md {
-    padding-inline: 2rem;
-  }
-
-  @variant xl {
-    padding-inline: 2.5rem;
-  }
 }
 
 :root {
@@ -116,6 +100,25 @@ body {
 
 body.no-scroll {
   overflow: hidden;
+}
+
+.custom-container {
+  width: 100%;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .custom-container {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .custom-container {
+    padding-inline: 2.5rem;
+    max-width: 90rem;
+  }
 }
 
 button {
@@ -209,9 +212,9 @@ button {
   opacity: 0.75;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .transactions-table-cell {
-    width: 120px;
+    width: 100px;
   }
 
   .transactions-table-row.transactions-list-row {

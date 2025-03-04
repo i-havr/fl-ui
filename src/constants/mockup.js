@@ -64,7 +64,19 @@ export const mockup = {
       noTransactionsState: "История транзакций будет отображаться здесь"
     }
   },
-  market: { pageName: "Торговля", route: "/market" },
+  market: {
+    pageName: "Торговля",
+    route: "/market",
+    headerSection: {
+      asset: "DJCI",
+      currencyName: "CAD",
+      secondBlock: {
+        balanceUSD: 600.46,
+        balanceCurrency: 721.23
+      },
+      thirdBlock: { change: -6.33, hight: 0.523, low: 0.321 }
+    }
+  },
   profile: { pageName: "Профиль", route: "/profile" },
   common: { darkThemeName: "Темная тема", exit: "Выйти" }
 };

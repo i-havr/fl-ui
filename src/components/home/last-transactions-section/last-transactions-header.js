@@ -6,7 +6,7 @@ export function LastTransactionsHeader() {
               <h3 class="transactions-table-cell">${mockup.home.transactions.id}</h3>
               <h3 class="md:hidden transactions-table-cell">${mockup.home.transactions.amount}</h3>
               <h3 class="md:hidden transactions-table-cell">${mockup.home.transactions.status}</h3>
-              <h3 class="transactions-table-cell !w-[120px] md:!w-[160px] xl:!w-[190px]">${mockup.home.transactions.date}</h3>
+              <h3 class="transactions-table-cell !w-[120px] md:!w-[140px] xl:!w-[190px]">${mockup.home.transactions.date}</h3>
               <h3 class="transactions-table-cell">${mockup.home.transactions.type}</h3>
               <h3 class="hidden md:block transactions-table-cell">${mockup.home.transactions.amount}</h3>
               <h3 class="hidden md:block transactions-table-cell">${mockup.home.transactions.status}</h3>
