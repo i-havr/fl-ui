@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
-    "alpinejs": "^3.14.8",
     "chart.js": "^4.4.8",
     "classnames": "^2.5.1",
     "eslint-config-prettier": "^10.0.2",
