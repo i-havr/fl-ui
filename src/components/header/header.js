@@ -68,7 +68,7 @@ export function Header() {
 document.body.insertAdjacentHTML(
   "beforeend",
   `
-  <div id="menu-container" class="fixed inset-0 z-[50] pointer-events-none"></div>
+  <div id="menu-container" class="fixed inset-0 z-10 pointer-events-none"></div>
   `
 );
 

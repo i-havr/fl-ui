@@ -6,14 +6,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { AssetsList } from "./assets-list";
 
-function initSwiper() {
-  new Swiper("#swiper-assets-modal", {
-    slidesPerView: "auto"
-  });
-}
+import TooltipManager from "../../../js/tooltip-manager";
 
 const defaultTabQuery = mockup.market.assetsModal.filterParams[0]?.query;
 const allAssetsList = mockup.market.assetsData;
+
+window.initAssetsModalSwiper = function () {
+  new Swiper("#swiper-assets-modal", {
+    slidesPerView: "auto"
+  });
+};
 
 window.updateAssetsFilteredContent = function (tabQuery = defaultTabQuery) {
   const contentContainer = document.getElementById("assets-modal-list");
@@ -55,7 +57,25 @@ window.updateAssetsFilteredContent = function (tabQuery = defaultTabQuery) {
     modal.setAttribute("data-active-tab-query", tabQuery);
   }
 
-  setActiveTab(tabQuery);
+  setAssetsActiveTab(tabQuery);
+
+  TooltipManager.initializeTooltips({
+    tooltipSelector: ".market-state-tooltip",
+    triggersSelector: ".market-state-tooltip-trigger",
+    parentScrollableElementSelector: ".modal-assets-list"
+  });
+
+  document.querySelectorAll(".asset-select-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const assetId = button.getAttribute("data-id");
+      localStorage.setItem("selectedAssetId", assetId);
+
+      const modalElement = button.closest('div[x-data*="activeTabQuery"]');
+      if (modalElement) {
+        modalElement.dispatchEvent(new CustomEvent("closeModal"));
+      }
+    });
+  });
 };
 
 export function AssetsModal() {
@@ -82,10 +102,21 @@ export function AssetsModal() {
           $el.getAttribute('data-active-tab-query', '${defaultTabQuery}');
           $el.closest('body').classList.remove('no-scroll');
           updateAssetsFilteredContent('${defaultTabQuery}');
-        } }"
-      x-init="observeDataAttribute()"
+        }, initializeModal () {
+          initAssetsModalSwiper();
+          setAssetsActiveTab('${defaultTabQuery}');
+          updateAssetsFilteredContent('${defaultTabQuery}');
+          } }"
+      x-init="observeDataAttribute(); initializeModal(); $el.addEventListener('closeModal', () => { isModalOpen = false; resetToDefault(); window.location.reload(); })"
+      x-show="isModalOpen";
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="translate-y-full md:translate-y-0"
+      x-transition:enter-end="translate-y-0"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="translate-y-0"
+      x-transition:leave-end="translate-y-full md:translate-y-0"
       @click.away="isModalOpen = false; resetToDefault()"
-      class="fade-in-opacity-transform-from-bottom w-full pt-5 pb-3 px-5 rounded-t-[20px] bg-bg-secondary"
+      class="w-full md:w-2/3 lg:w-[738px] md:translate-y-[214px] md:translate-x-8 xl:absolute xl:top-0 xl:left-1/2 xl:-translate-x-[680px] pt-5 pb-3 px-5 rounded-t-[20px] bg-bg-secondary"
     >
       <button
         type="button"
@@ -109,7 +140,7 @@ export function AssetsModal() {
             .map(
               (param) => `
                 <div 
-                  class="swiper-slide asset-filter-tab !w-fit !mr-2 py-[6px] px-[14px] rounded-lg text-sm" 
+                  class="cursor-pointer swiper-slide asset-filter-tab !w-fit !mr-2 py-[6px] px-[14px] rounded-lg text-sm" 
                   data-filter-param-query="${param.query}"
                 >
                   <div>${param.title}</div>
@@ -129,26 +160,7 @@ export function AssetsModal() {
   `;
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  requestAnimationFrame(() => {
-    initSwiper();
-
-    setActiveTab(defaultTabQuery);
-    window.updateAssetsFilteredContent(defaultTabQuery);
-  });
-
-  document.addEventListener("click", (e) => {
-    const clickedTab = e.target.closest(".asset-filter-tab");
-
-    if (clickedTab) {
-      const tabQuery = clickedTab.getAttribute("data-filter-param-query");
-      setActiveTab(tabQuery);
-      window.updateAssetsFilteredContent(tabQuery);
-    }
-  });
-});
-
-export function setActiveTab(tabQuery) {
+window.setAssetsActiveTab = function (tabQuery) {
   const modalElement = document.querySelector('div[x-data*="activeTabQuery"]');
   if (modalElement) {
     modalElement.setAttribute("data-active-tab-query", tabQuery);
@@ -176,4 +188,14 @@ export function setActiveTab(tabQuery) {
 
     activeTab.classList.remove("text-gray-primary");
   }
-}
+};
+
+document.addEventListener("click", (e) => {
+  const clickedTab = e.target.closest(".asset-filter-tab");
+
+  if (clickedTab) {
+    const tabQuery = clickedTab.getAttribute("data-filter-param-query");
+    setAssetsActiveTab(tabQuery);
+    window.updateAssetsFilteredContent(tabQuery);
+  }
+});

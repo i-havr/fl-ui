@@ -16,17 +16,24 @@ export function AssetsList(list) {
   };
 
   return `
-  <ul class="no-scrollbar h-full overflow-y-scroll  pb-5">
+  <ul class="modal-assets-list no-scrollbar h-full overflow-y-scroll pb-5">
   ${list
     .map((asset) => {
+      const tooltipText =
+        asset.marketState === "open"
+          ? mockup.market.assetsModal.tooltip.marketOpen
+          : mockup.market.assetsModal.tooltip.marketClosed;
+
       return `
     <li>
-      <button type="button" class="w-full flex justify-between items-center h-[52px] pt-2">
+      <button class="w-full flex justify-between items-center h-[52px] pt-2 asset-select-button" data-id="${asset.id}">
         <div class="h-full flex justify-start items-start">
           <div class="flex justify-between items-center gap-x-1 text-sm">
-            <div class="rounded-full size-2 ${asset.marketState === "open" ? "bg-green-100" : "bg-none border-2 border-red-secondary"}">
-            </div>
-            <span>${asset.name}</span>
+
+            <div
+            class="market-state-tooltip-trigger rounded-full size-2 ${asset.marketState === "open" ? "bg-green-100" : "bg-none border-2 border-red-secondary"}" data-tooltip-text="${tooltipText}"></div>
+
+            <span>${asset.name}</span>          
           </div>
         </div>
 

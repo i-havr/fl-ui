@@ -85,6 +85,10 @@ export const mockup = {
     assetsData: assetsList,
     assetsModal: {
       placeholder: "Введите значение",
+      tooltip: {
+        marketOpen: "Рынок открыт",
+        marketClosed: "Рынок закрыт"
+      },
       filterParams: [
         { title: "Все", query: "all" },
         { title: "Stocks", query: "stocks" },
@@ -97,6 +101,7 @@ export const mockup = {
       assetsList: {
         assets: "Активы",
         lastPrice: "Посл.цена",
+        priceDifference: "Изменения",
         emptyListState: "Нет активов для отображения"
       }
     }

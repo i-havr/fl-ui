@@ -13,7 +13,7 @@ export default function HeaderSection(asset) {
                 <div class="w-[calc((100%-10px)/2)] md:w-auto flex flex-col md:flex-row gap-y-[10px]">
                     <div class="flex-1 shrink-0 md:flex-[0] flex gap-x-2 p-4 md:p-0 bg-bg-secondary bg-none rounded-xl md:bg-none md:rounded-none md:pr-[35px] xl:pr-[49px] md:border-r md:border-r-gray-line-primary">
                         
-                        <span class="size-[26px] md:size-[34px] md:mt-[2px] bg-white rounded-full"></span>
+                        <span class="shrink-0 size-[26px] md:size-[34px] md:mt-[2px] bg-white rounded-full"></span>
 
                         <button class="flex flex-col font-medium text-left gap-y-1 md:gap-y-0" @click="isModalOpen = true; $el.closest('body').classList.add('no-scroll')">
                         
@@ -62,8 +62,14 @@ export default function HeaderSection(asset) {
         </div>
 
         <div 
-        x-show="isModalOpen" 
-        class="fade-in-opacity fixed inset-0 bg-black/80 md:bg-transparent bg-opacity-50 flex items-end justify-center z-50">
+        x-show="isModalOpen"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-black/80 md:bg-transparent bg-opacity-50 flex items-end justify-center z-10 md:justify-start md:items-start">
             ${AssetsModal()}
         </div>
     </section>`;
