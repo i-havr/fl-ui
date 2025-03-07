@@ -4,6 +4,8 @@ import {
   deals2,
   history1,
   history2,
+  openOrdersData,
+  positionsData,
   transactions
 } from "./mockData";
 
@@ -104,6 +106,37 @@ export const mockup = {
         priceDifference: "Изменения",
         emptyListState: "Нет активов для отображения"
       }
+    },
+    ordersSection: {
+      filterParams: [
+        { title: "Позиции", name: "positions" },
+        { title: "Открытые ордера", name: "openOrders" },
+        { title: "История позиций", name: "positionsHistory" },
+        { title: "История ордеров", name: "ordersHistory" }
+      ],
+      positionsTitles: [
+        { title: "Символ", name: "symbol" },
+        { title: "Size", name: "size" },
+        { title: "Entry Price", name: "entryPrice" },
+        { title: "Mark Price", name: "markPrice" },
+        { title: "Liq.Price", name: "liquidPrice" },
+        { title: "Margin", name: "margin" },
+        { title: "PNL (ROI%)", name: "pnl" },
+        { title: "SL/TP", name: "sltp" },
+        { title: "Закрыть позиции", name: "closePositions" }
+      ],
+      positionsData,
+      openOrdersTitles: [
+        { title: "Символ", name: "symbol" },
+        { title: "Тип", name: "type" },
+        { title: "Позиция", name: "position" },
+        { title: "Цена", name: "price" },
+        { title: "Количество", name: "amount" },
+        { title: "Дата открытия", name: "openingDate" },
+        { title: "SL/TP", name: "sltp" },
+        { title: "Отменить все", name: "cancelAll" }
+      ],
+      openOrdersData
     }
   },
   profile: { pageName: "Профиль", route: "/profile" },

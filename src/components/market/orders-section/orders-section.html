@@ -1,0 +1,48 @@
+<section
+  x-data="{
+    ordersTableActiveTab: $el.getAttribute('data-orders-table-active-tab') || '${defaultTabName}',
+  initializeOrderSection() {
+    initOrdersTableTitlesSwiper();
+    setOrdersTableActiveTab('${defaultTabName}');
+    updateOrdersTableContent('${defaultTabName}');
+  }
+}"
+  x-init="initializeOrderSection()"
+  class="mx-auto w-full text-center"
+>
+  <div class="custom-container">
+    <!-- top block -->
+    <div
+      class="flex flex-col items-center justify-start rounded-xl bg-bg-secondary p-4 md:rounded-2xl"
+    >
+      <!-- titles slider -->
+      <div
+        id="swiper-orders-table-titles"
+        class="faded-right-container swiper mb-5 w-full pr-16"
+      >
+        <div class="swiper-wrapper flex">${filterTitlesHeader}</div>
+      </div>
+
+      <!-- positions and orders list -->
+      <div id="positions-orders-list" class="h-auto w-full"></div>
+    </div>
+
+    <!-- buy/sell buttons block -->
+    <div
+      class="fixed bottom-0 left-0 z-[5] flex w-full items-center justify-center gap-x-[6px] bg-bg-primary px-4 pt-3 pb-5 text-sm md:hidden"
+    >
+      <button
+        type="button"
+        class="flex h-10 flex-1 items-center justify-center rounded-lg bg-green-400"
+      >
+        Купить
+      </button>
+      <button
+        type="button"
+        class="flex h-10 flex-1 items-center justify-center rounded-lg bg-red-200"
+      >
+        Продать
+      </button>
+    </div>
+  </div>
+</section>

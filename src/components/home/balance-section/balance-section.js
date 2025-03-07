@@ -7,7 +7,6 @@ import transferIcon from "../../../assets/icons/transfer-icon.svg?raw";
 import { AccountsContainer } from "./accounts-container";
 
 import verificationStarIcon from "../../../assets/icons/verification-start-icon.svg?raw";
-import usdRoundedIcon from "../../../assets/icons/usd-rounded.svg?raw";
 import chevronIcon from "../../../assets/icons/chevron-icon-right.svg?raw";
 import { ButtonPrimary } from "../../buttons/button-primary";
 
@@ -29,8 +28,7 @@ export default function BalanceSection() {
 
             <div class="flex flex-col md:flex-row items-start md:items-center gap-y-[10px] md:gap-y-0 md:gap-x-[55px] mb-4 md:mb-[30px]">
                 <div class="flex items-center gap-x-2">
-                    <span class="size-6 md:size-[30px] xl:size-8">${usdRoundedIcon}</span>
-                    <span class="text-[26px] md:text-4xl font-bold leading-[1.38]">${mockup.home.balance.amount.toLocaleString()}</span>
+                    <span class="text-[26px] md:text-4xl font-bold leading-[1.38]">$${mockup.home.balance.amount.toLocaleString()}</span>
                 </div>
 
                 ${
