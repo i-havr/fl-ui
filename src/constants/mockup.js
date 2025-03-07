@@ -1,4 +1,11 @@
-import { deals1, deals2, history1, history2, transactions } from "./mockData";
+import {
+  assetsList,
+  deals1,
+  deals2,
+  history1,
+  history2,
+  transactions
+} from "./mockData";
 
 export const mockup = {
   home: {
@@ -27,6 +34,14 @@ export const mockup = {
         {
           accountId: "2",
           title: "Инвестиционный счет",
+          amount: 100,
+          amountLastPeriod: 105.2,
+          history: history2,
+          deals: deals2
+        },
+        {
+          accountId: "3",
+          title: "Третий счет",
           amount: 100,
           amountLastPeriod: 105.2,
           history: history2,
@@ -67,14 +82,28 @@ export const mockup = {
   market: {
     pageName: "Торговля",
     route: "/market",
-    headerSection: {
-      asset: "DJCI",
-      currencyName: "CAD",
-      secondBlock: {
-        balanceUSD: 600.46,
-        balanceCurrency: 721.23
+    assetsData: assetsList,
+    assetsModal: {
+      placeholder: "Введите значение",
+      tooltip: {
+        marketOpen: "Рынок открыт",
+        marketClosed: "Рынок закрыт"
       },
-      thirdBlock: { change: -6.33, hight: 0.523, low: 0.321 }
+      filterParams: [
+        { title: "Все", query: "all" },
+        { title: "Stocks", query: "stocks" },
+        { title: "Crypto", query: "crypto" },
+        { title: "Indexes", query: "indexes" },
+        { title: "Forex", query: "forex" },
+        { title: "Etf", query: "etf" },
+        { title: "Index", query: "index" }
+      ],
+      assetsList: {
+        assets: "Активы",
+        lastPrice: "Посл.цена",
+        priceDifference: "Изменения",
+        emptyListState: "Нет активов для отображения"
+      }
     }
   },
   profile: { pageName: "Профиль", route: "/profile" },

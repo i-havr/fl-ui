@@ -1,0 +1,80 @@
+<section
+  x-data="{ isModalOpen: false }"
+  class="mx-auto mb-4 w-full text-center xl:w-[915px]"
+>
+  <div class="mx-auto w-full px-4 md:px-8 xl:px-0">
+    <div
+      class="flex justify-center gap-x-[10px] overflow-hidden md:h-[92px] md:items-center md:justify-start md:gap-x-0 md:rounded-2xl md:bg-bg-secondary md:px-10 xl:w-full"
+    >
+      <div
+        class="flex w-[calc((100%-10px)/2)] flex-col gap-y-[10px] md:w-auto md:flex-row"
+      >
+        <div
+          class="flex flex-1 shrink-0 gap-x-2 rounded-xl bg-bg-secondary bg-none p-4 md:flex-[0] md:rounded-none md:border-r md:border-r-gray-line-primary md:bg-none md:p-0 md:pr-[35px] xl:pr-[49px]"
+        >
+          <span
+            class="size-[26px] shrink-0 rounded-full bg-white md:mt-[2px] md:size-[34px]"
+          ></span>
+
+          <button
+            class="flex flex-col gap-y-1 text-left font-medium md:gap-y-0"
+            @click="isModalOpen = true; $el.closest('body').classList.add('no-scroll')"
+          >
+            <div class="flex gap-x-[7px] text-white md:gap-x-[13px]">
+              <span class="md:text-lg"> ${assetName} </span>
+              <span class="size-[22px] rotate-90">${chevronIconRight}</span>
+            </div>
+
+            <span class="text-xs text-gray-primary md:text-sm"
+              >${assetName} / ${assetCurrency}</span
+            >
+          </button>
+        </div>
+
+        <div
+          class="flex flex-1 shrink-0 flex-col gap-x-2 gap-y-[6px] rounded-xl bg-bg-secondary bg-none p-4 text-left font-medium md:flex-[0] md:gap-y-0 md:rounded-none md:bg-none md:p-0 md:pl-9 xl:pl-[50px]"
+        >
+          <span class="text-red-secondary md:text-lg">
+            ${assetBalanceUSD}
+          </span>
+
+          <span class="text-xs md:text-sm">
+            = ${assetBalanceCurrency} ${assetCurrency}</span
+          >
+        </div>
+      </div>
+
+      <div
+        class="flex w-[calc((100%-10px)/2)] flex-col gap-y-[14px] rounded-xl bg-bg-secondary px-4 py-[18px] text-left text-xs font-medium md:ml-8 md:w-full md:max-w-[294px] md:flex-row md:justify-between md:gap-x-2 md:gap-y-0 md:rounded-none md:bg-none md:px-0 md:py-0 md:text-sm lg:ml-[60px] lg:max-w-[340px] xl:max-w-[500px] xl:justify-start xl:gap-x-[60px]"
+      >
+        <div class="flex flex-col gap-y-[2px] md:gap-y-[5px]">
+          <span class="text-gray-primary">24H Change</span>
+          <span class="${assetChangeClass}">${assetChange}%</span>
+        </div>
+
+        <div class="flex flex-col gap-y-[2px] md:gap-y-[5px]">
+          <span class="text-gray-primary">24H Hight</span>
+          <span>${assetHight}</span>
+        </div>
+
+        <div class="flex flex-col gap-y-[2px] md:gap-y-[5px]">
+          <span class="text-gray-primary">24H Low</span>
+          <span>${assetLow}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    x-show="isModalOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="bg-opacity-50 fixed inset-0 z-10 flex items-end justify-center bg-black/80 md:items-start md:justify-start md:bg-transparent"
+  >
+    ${AssetsModal}
+  </div>
+</section>

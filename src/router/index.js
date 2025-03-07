@@ -62,6 +62,11 @@ export function navigateTo(url) {
   }
 }
 
+export function navigateWithRefresh(url) {
+  window.history.pushState(null, "", url);
+  navigate();
+}
+
 export function initRouter() {
   window.addEventListener("popstate", navigate);
 

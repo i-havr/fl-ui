@@ -16,7 +16,7 @@ export function MobileMenu() {
       
       <img src="${finlabLogoIcon}" alt="Finlab Logo" class="w-[96px] h-[30px] md:w-[128px] md:h-[40px]"/>
 
-      <button id="close-menu" class="flex  items-center justify-center size-6">${closeIcon}
+      <button id="close-menu" class="flex  items-center justify-center size-[18px]">${closeIcon}
       </button>
       </div>   
       
