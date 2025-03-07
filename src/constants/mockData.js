@@ -1067,3 +1067,176 @@ export const assetsList = [
     category: "index"
   }
 ];
+
+export const positionsData = [
+  {
+    id: "1",
+    symbol: "BTCUSDT",
+    size: 238.64,
+    asset: "USDT",
+    leverage: 15, // кредитное плечо
+    entryPrice: 79500.23,
+    markPrice: 79500.23,
+    liquidPrice: 79500.23,
+    margin: 159.89,
+    pnl: 0.11,
+    roi: 0.72,
+    category: "positions"
+  },
+  {
+    id: "2",
+    symbol: "BTCUSDT",
+    size: 238.64,
+    asset: "USDT",
+    leverage: 15, // кредитное плечо
+    entryPrice: 79500.23,
+    markPrice: 79500.23,
+    liquidPrice: 79500.23,
+    margin: 159.89,
+    pnl: 0.11,
+    roi: 0.72,
+    category: "positions"
+  },
+  {
+    id: "3",
+    symbol: "BTCUSDT",
+    size: 238.64,
+    asset: "USDT",
+    leverage: 15, // кредитное плечо
+    entryPrice: 79500.23,
+    markPrice: 79500.23,
+    liquidPrice: 79500.23,
+    margin: 159.89,
+    pnl: 0.11,
+    roi: 0.72,
+    category: "positions"
+  },
+  {
+    id: "4",
+    symbol: "BTCUSDT",
+    size: 238.64,
+    asset: "USDT",
+    leverage: 15, // кредитное плечо
+    entryPrice: 79500.23,
+    markPrice: 79500.23,
+    liquidPrice: 79500.23,
+    margin: 159.89,
+    pnl: 0.11,
+    roi: 0.72,
+    category: "positions"
+  },
+  {
+    id: "5",
+    symbol: "BTCUSDT",
+    size: 238.64,
+    asset: "USDT",
+    leverage: 15, // кредитное плечо
+    entryPrice: 79500.23,
+    markPrice: 79500.23,
+    liquidPrice: 79500.23,
+    margin: 159.89,
+    pnl: 0.11,
+    roi: 0.72,
+    category: "positions"
+  },
+  {
+    id: "6",
+    symbol: "BTCUSDT",
+    size: 238.64,
+    asset: "USDT",
+    leverage: 15, // кредитное плечо
+    entryPrice: 79500.23,
+    markPrice: 79500.23,
+    liquidPrice: 79500.23,
+    margin: 159.89,
+    pnl: 0.11,
+    roi: 0.72,
+    category: "positions"
+  }
+];
+export const openOrdersData = [
+  {
+    id: "1",
+    symbol: "USD / CHF",
+    asset: "USD",
+    exchangeAsset: "CHF",
+    leverage: 15, // кредитное плечо
+    type: "Limit",
+    position: "purchase",
+    price: 159.89,
+    amount: 0.15428,
+    openingDate: "01 октября 2024",
+    openingTime: "11:28:29",
+    category: "openOrders"
+  },
+  {
+    id: "2",
+    symbol: "USD / CHF",
+    asset: "USD",
+    exchangeAsset: "CHF",
+    leverage: 15, // кредитное плечо
+    type: "Limit",
+    position: "purchase",
+    price: 159.89,
+    amount: 0.15428,
+    openingDate: "01 октября 2024",
+    openingTime: "11:28:29",
+    category: "openOrders"
+  },
+  {
+    id: "3",
+    symbol: "USD / CHF",
+    asset: "USD",
+    exchangeAsset: "CHF",
+    leverage: 15, // кредитное плечо
+    type: "Limit",
+    position: "sale",
+    price: 159.89,
+    amount: 0.15428,
+    openingDate: "01 октября 2024",
+    openingTime: "11:28:29",
+    category: "openOrders"
+  },
+  {
+    id: "4",
+    symbol: "USD / CHF",
+    asset: "USD",
+    exchangeAsset: "CHF",
+    leverage: 15, // кредитное плечо
+    type: "Limit",
+    position: "sale",
+    price: 159.89,
+    amount: 0.15428,
+    openingDate: "01 октября 2024",
+    openingTime: "11:28:29",
+    category: "openOrders"
+  },
+  {
+    id: "5",
+    symbol: "USD / CHF",
+    asset: "USD",
+    exchangeAsset: "CHF",
+    leverage: 15, // кредитное плечо
+    type: "Limit",
+    position: "purchase",
+    price: 159.89,
+    amount: 0.15428,
+    openingDate: "01 октября 2024",
+    openingTime: "11:28:29",
+    category: "openOrders"
+  },
+  {
+    id: "6",
+    symbol: "USD / CHF",
+    asset: "USD",
+    exchangeAsset: "CHF",
+    leverage: 15, // кредитное плечо
+    type: "Limit",
+    position: "purchase",
+    price: 159.89,
+    amount: 0.15428,
+    openingDate: "01 октября 2024",
+    openingTime: "11:28:29",
+    category: "openOrders"
+  }
+];

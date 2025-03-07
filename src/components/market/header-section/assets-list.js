@@ -31,7 +31,7 @@ export function AssetsList(list) {
           <div class="flex justify-between items-center gap-x-1 text-sm">
 
             <div
-            class="market-state-tooltip-trigger rounded-full size-2 ${asset.marketState === "open" ? "bg-green-100" : "bg-none border-2 border-red-secondary"}" data-tooltip-text="${tooltipText}"></div>
+            class="market-state-tooltip-trigger rounded-full size-2 ${asset.marketState === "open" ? "bg-green-100" : "bg-none border-2 border-red-secondary"}" data-id="${asset.id}" data-tooltip-text="${tooltipText}"></div>
 
             <span>${asset.name}</span>
           </div>

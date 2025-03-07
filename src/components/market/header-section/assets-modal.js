@@ -1,12 +1,11 @@
 import { mockup } from "../../../constants";
-
 import closeIcon from "../../../assets/icons/close-icon.svg?raw";
 import Swiper from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { AssetsList } from "./assets-list";
-
 import TooltipManager from "../../../js/tooltip-manager";
+import assetsModalHtml from "./assets-modal.html?raw";
 
 const defaultTabQuery = mockup.market.assetsModal.filterParams[0]?.query;
 const allAssetsList = mockup.market.assetsData;
@@ -79,88 +78,42 @@ window.updateAssetsFilteredContent = function (tabQuery = defaultTabQuery) {
 };
 
 export function AssetsModal() {
-  return `
-    <div
-      x-data="{
-      assetsSearchQuery: '',
-      activeTabQuery: $el.getAttribute('data-active-tab-query') || '${defaultTabQuery}', 
-      observeDataAttribute() {
-          const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-              if (mutation.attributeName === 'data-active-tab-query') {
-                this.activeTabQuery = $el.getAttribute('data-active-tab-query') || '${defaultTabQuery}';
-              }
-            });
-          });
-          observer.observe($el, { attributes: true });
-          return observer;
-        }, resetToDefault() {
-          const searchInput = $el.querySelector('.assets-filter-input');
-          if(searchInput) {searchInput.value = ''};
-          this.assetsSearchQuery = '';
-          this.activeTabQuery = '${defaultTabQuery}';
-          $el.getAttribute('data-active-tab-query', '${defaultTabQuery}');
-          $el.closest('body').classList.remove('no-scroll');
-          updateAssetsFilteredContent('${defaultTabQuery}');
-        }, initializeModal () {
-          initAssetsModalSwiper();
-          setAssetsActiveTab('${defaultTabQuery}');
-          updateAssetsFilteredContent('${defaultTabQuery}');
-          } }"
-      x-init="observeDataAttribute(); initializeModal(); $el.addEventListener('closeModal', () => { isModalOpen = false; resetToDefault(); window.location.reload(); })"
-      x-show="isModalOpen";
-      x-transition:enter="transition ease-out duration-300"
-      x-transition:enter-start="translate-y-full md:translate-y-0"
-      x-transition:enter-end="translate-y-0"
-      x-transition:leave="transition ease-in duration-300"
-      x-transition:leave-start="translate-y-0"
-      x-transition:leave-end="translate-y-full md:translate-y-0"
-      @click.away="isModalOpen = false; resetToDefault()"
-      class="w-full md:w-2/3 lg:w-[738px] md:translate-y-[214px] md:translate-x-8 xl:absolute xl:top-0 xl:left-1/2 xl:-translate-x-[680px] pt-5 pb-3 px-5 md:px-[30px] rounded-t-[20px] bg-bg-secondary"
-    >
-      <button
-        type="button"
-        @click="isModalOpen = false; resetToDefault()"
-        class="w-[14px] h-[14px] float-right mb-[17px]"
-      >
-        ${closeIcon}
-      </button>
+  let html = assetsModalHtml;
 
-      <input 
-        type="text" 
-        placeholder="${mockup.market.assetsModal.placeholder}" 
-        class="assets-filter-input outline-none w-full h-10 md:h-12 mb-5 px-5 border border-[#373A43] rounded-[100px] bg-[#232426]/80 text-sm placeholder:text-[#4B4B4B]"
-        x-model="assetsSearchQuery"
-        @input.debounce.300ms="updateAssetsFilteredContent(activeTabQuery)"
-      />
+  const filterParamsHtml = mockup.market.assetsModal.filterParams
+    .map(
+      (param) => `
+        <div 
+          class="cursor-pointer swiper-slide asset-filter-tab !w-fit !mr-2 py-[6px] md:py-[10px] px-[14px] md:px-4 rounded-lg text-sm md:text-base" 
+          data-filter-param-query="${param.query}"
+        >
+          <div>${param.title}</div>
+        </div>`
+    )
+    .join("");
 
-      <div id="swiper-assets-modal" class="faded-right-container swiper w-full pr-6 mb-5">
-        <div class="swiper-wrapper flex">
-          ${mockup.market.assetsModal.filterParams
-            .map(
-              (param) => `
-                <div 
-                  class="cursor-pointer swiper-slide asset-filter-tab !w-fit !mr-2 py-[6px] md:py-[10px] px-[14px] md:px-4 rounded-lg text-sm md:text-base" 
-                  data-filter-param-query="${param.query}"
-                >
-                  <div>${param.title}</div>
-                </div>`
-            )
-            .join("")}
-        </div>
-      </div>
+  html = html
+    .replaceAll("${defaultTabQuery}", defaultTabQuery || "all")
+    .replace("${closeIcon}", closeIcon || "")
+    .replace(
+      "${assetsModalPlaceholder}",
+      mockup.market.assetsModal.placeholder || "Search assets..."
+    )
+    .replace("${assetsModalFilterParams}", filterParamsHtml)
+    .replace(
+      "${assetsModalAssetsListAssets}",
+      mockup.market.assetsModal.assetsList.assets || "Assets"
+    )
+    .replace(
+      "${assetsModalAssetsListLastPrice}",
+      mockup.market.assetsModal.assetsList.lastPrice || "Last Price"
+    )
+    .replace(
+      "${assetsModalAssetsListPriceDifference}",
+      mockup.market.assetsModal.assetsList.priceDifference || "Price Difference"
+    );
 
-      <div class="flex items-center justify-between border-b border-b-gray-line-primary py-[10px] text-sm text-gray-primary font-medium">
-        <span>${mockup.market.assetsModal.assetsList.assets}</span>
-        <div class="flex">
-          <span class="md:w-[155px] md:text-left">${mockup.market.assetsModal.assetsList.lastPrice}</span>
-          <span class="hidden md:block md:w-[120px] md:text-left">${mockup.market.assetsModal.assetsList.priceDifference}</span>
-        </div>
-      </div>
-
-      <div id="assets-modal-list" class="h-[412px] md:h-[260px] faded-bottom-container"></div>
-    </div>
-  `;
+  return html;
 }
 
 window.setAssetsActiveTab = function (tabQuery) {
