@@ -26,19 +26,19 @@ export function AssetsList(list) {
 
       return `
     <li>
-      <button class="w-full flex justify-between items-center h-[52px] pt-2 asset-select-button" data-id="${asset.id}">
-        <div class="h-full flex justify-start items-start">
+      <button class="w-full flex justify-between items-center h-[52px] md:h-[42px] pt-2 md:pt-[10px] asset-select-button" data-id="${asset.id}">
+        <div class="h-full flex justify-start items-start md:items-center">
           <div class="flex justify-between items-center gap-x-1 text-sm">
 
             <div
             class="market-state-tooltip-trigger rounded-full size-2 ${asset.marketState === "open" ? "bg-green-100" : "bg-none border-2 border-red-secondary"}" data-tooltip-text="${tooltipText}"></div>
 
-            <span>${asset.name}</span>          
+            <span>${asset.name}</span>
           </div>
         </div>
 
-        <div class="h-full flex flex-col justify-start items-end gap-y-1 text-right text-sm">
-          <span>
+        <div class="h-full flex flex-col md:flex-row justify-start items-end md:items-center gap-y-1 md:gap-y-0 text-right text-sm">
+          <span class="md:w-[155px] md:text-left">
               ${asset.lastPrice.toLocaleString(undefined, {
                 style: "currency",
                 currency: "USD",
@@ -46,7 +46,7 @@ export function AssetsList(list) {
                 maximumFractionDigits: 2
               })}
           </span>
-          <span class="text-xs ${getPriceDifferenceStyle(asset.priceDifference)}">
+          <span class="text-xs md:text-sm md:w-[120px] md:text-left ${getPriceDifferenceStyle(asset.priceDifference)}">
               ${asset.priceDifference.toLocaleString(undefined, {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 1

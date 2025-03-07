@@ -116,7 +116,7 @@ export function AssetsModal() {
       x-transition:leave-start="translate-y-0"
       x-transition:leave-end="translate-y-full md:translate-y-0"
       @click.away="isModalOpen = false; resetToDefault()"
-      class="w-full md:w-2/3 lg:w-[738px] md:translate-y-[214px] md:translate-x-8 xl:absolute xl:top-0 xl:left-1/2 xl:-translate-x-[680px] pt-5 pb-3 px-5 rounded-t-[20px] bg-bg-secondary"
+      class="w-full md:w-2/3 lg:w-[738px] md:translate-y-[214px] md:translate-x-8 xl:absolute xl:top-0 xl:left-1/2 xl:-translate-x-[680px] pt-5 pb-3 px-5 md:px-[30px] rounded-t-[20px] bg-bg-secondary"
     >
       <button
         type="button"
@@ -129,7 +129,7 @@ export function AssetsModal() {
       <input 
         type="text" 
         placeholder="${mockup.market.assetsModal.placeholder}" 
-        class="assets-filter-input outline-none w-full h-10 mb-5 px-5 border border-[#373A43] rounded-[100px] bg-[#232426]/80 text-sm placeholder:text-[#4B4B4B]"
+        class="assets-filter-input outline-none w-full h-10 md:h-12 mb-5 px-5 border border-[#373A43] rounded-[100px] bg-[#232426]/80 text-sm placeholder:text-[#4B4B4B]"
         x-model="assetsSearchQuery"
         @input.debounce.300ms="updateAssetsFilteredContent(activeTabQuery)"
       />
@@ -140,7 +140,7 @@ export function AssetsModal() {
             .map(
               (param) => `
                 <div 
-                  class="cursor-pointer swiper-slide asset-filter-tab !w-fit !mr-2 py-[6px] px-[14px] rounded-lg text-sm" 
+                  class="cursor-pointer swiper-slide asset-filter-tab !w-fit !mr-2 py-[6px] md:py-[10px] px-[14px] md:px-4 rounded-lg text-sm md:text-base" 
                   data-filter-param-query="${param.query}"
                 >
                   <div>${param.title}</div>
@@ -152,10 +152,13 @@ export function AssetsModal() {
 
       <div class="flex items-center justify-between border-b border-b-gray-line-primary py-[10px] text-sm text-gray-primary font-medium">
         <span>${mockup.market.assetsModal.assetsList.assets}</span>
-        <span>${mockup.market.assetsModal.assetsList.lastPrice}</span>
+        <div class="flex">
+          <span class="md:w-[155px] md:text-left">${mockup.market.assetsModal.assetsList.lastPrice}</span>
+          <span class="hidden md:block md:w-[120px] md:text-left">${mockup.market.assetsModal.assetsList.priceDifference}</span>
+        </div>
       </div>
 
-      <div id="assets-modal-list" class="h-[412px] faded-bottom-container"></div>
+      <div id="assets-modal-list" class="h-[412px] md:h-[260px] faded-bottom-container"></div>
     </div>
   `;
 }

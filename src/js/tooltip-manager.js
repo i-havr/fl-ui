@@ -41,11 +41,12 @@ class TooltipManager {
     tooltipSelector = ".market-state-tooltip",
     triggersSelector = ".market-state-tooltip-trigger",
     parentScrollableElementSelector = ".modal-assets-list",
-    placement = "top",
+    placement = "right",
     offset = [0, 8],
     autoCloseDelay = 2000,
-    tooltipStyles = {},
-    arrowStyles = {}
+    tooltipClasses = "",
+    arrowClasses = "",
+    tooltipStyles = {}
   } = {}) {
     // destroy old tooltips
     this.destroyTooltips();
@@ -63,36 +64,16 @@ class TooltipManager {
 
       // create new tooltip
       let tooltip = document.createElement("div");
-      tooltip.className = `${tooltipSelector} hidden absolute z-50 pointer-events-auto`;
+      tooltip.className = `${tooltipSelector} bg-[#F7F8F8] text-[#484C5C] rounded-lg py-[6px] px-2 text-xs font-medium min-w-[105px] hidden absolute z-50 pointer-events-auto !top-[-28px] !left-[-28px] md:!left-[-27px] ${tooltipClasses}`;
       Object.assign(tooltip.style, {
-        backgroundColor: "#F7F8F8",
-        color: "#484C5C",
-        borderRadius: "8px",
-        paddingTop: "6px",
-        paddingBottom: "6px",
-        paddingLeft: "8px",
-        paddingRight: "8px",
-        fontSize: "12px",
-        fontWeight: 500,
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        minWidth: "105px",
         ...tooltipStyles
       });
       tooltip.setAttribute("data-tooltip-id", id);
 
       // add arrow
       const arrow = document.createElement("div");
-      arrow.className = "tooltip-arrow";
-      Object.assign(arrow.style, {
-        position: "absolute",
-        width: "0",
-        height: "0",
-        top: "calc(100% - 2px)",
-        borderLeft: "8px solid transparent",
-        borderRight: "8px solid transparent",
-        borderTop: "8px solid #F7F8F8",
-        ...arrowStyles
-      });
+      arrow.className = `tooltip-arrow absolute w-0 h-0 top-[calc(100%-2px)] left-2 border-t-8 border-l-8 border-r-8 border-t-[#F7F8F8] border-l-transparent border-r-transparent ${arrowClasses}`;
       tooltip.appendChild(arrow);
 
       tooltip.innerHTML += tooltipText;
