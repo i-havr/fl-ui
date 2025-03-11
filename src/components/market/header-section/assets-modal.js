@@ -4,7 +4,7 @@ import Swiper from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { AssetsList } from "./assets-list";
-import TooltipManager from "../../../js/tooltip-manager";
+import { TooltipManager } from "../../../js/tooltip-manager";
 import assetsModalHtml from "./assets-modal.html?raw";
 
 const defaultTabQuery = mockup.market.assetsModal.filterParams[0]?.query;
@@ -58,10 +58,15 @@ window.updateAssetsFilteredContent = function (tabQuery = defaultTabQuery) {
 
   setAssetsActiveTab(tabQuery);
 
-  TooltipManager.initializeTooltips({
+  const tooltipManagerInstance = new TooltipManager();
+
+  tooltipManagerInstance.initializeTooltips({
     tooltipSelector: ".market-state-tooltip",
     triggersSelector: ".market-state-tooltip-trigger",
-    parentScrollableElementSelector: ".modal-assets-list"
+    parentContainerSelector: 'div[x-data*="activeTabQuery"]',
+    parentScrollableElementSelector: ".modal-assets-list",
+    tooltipClasses: "min-w-[105px] !top-[-28px] !left-[-28px] md:!left-[-27px]",
+    arrowClasses: ""
   });
 
   document.querySelectorAll(".asset-select-button").forEach((button) => {

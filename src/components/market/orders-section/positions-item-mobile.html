@@ -1,0 +1,72 @@
+<li x-data="{ isOpen: false }">
+  <button
+    type="button"
+    class="relative w-full rounded-t-lg bg-bg-block-primary p-[14px] transition-all duration-200"
+    :class="{ 'rounded-b-lg': !isOpen }"
+    @click="isOpen = !isOpen"
+  >
+    <div class="flex h-fit w-full items-start justify-between">
+      <div
+        class="flex flex-col items-start justify-center gap-y-[2px] border-l-2 border-l-green-100 pl-[6px]"
+      >
+        <span class="text-sm font-medium">${symbol}</span>
+        <span class="rounded-[6px] bg-[#232426CC] px-[5px] py-[2px] text-[10px]"
+          >${leverageTitle} ${leverage}x</span
+        >
+      </div>
+
+      <div
+        class="h-6 w-6 transition-all duration-200"
+        :class="{ 'rotate-180': !isOpen }"
+      >
+        ${chevronIcon}
+      </div>
+    </div>
+  </button>
+
+  <div class="orders-section-dropdown-content" :class="{ 'expanded': isOpen }">
+    <div
+      class="flex min-h-0 flex-col gap-y-3 bg-bg-block-primary px-[14px] text-sm"
+      :class="{ 'pb-[14px]': isOpen }"
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-gray">${size}</span>
+        <span class="text-green-100">${sizeValue}</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <span class="text-gray">${entryPrice}</span>
+        <span>${entryPriceValue}</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <span class="text-gray">${markPrice}</span>
+        <span>${markPriceValue}</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <span class="text-gray">${liquidPrice}</span>
+        <span class="text-red-secondary">${liquidPriceValue}</span>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <span class="text-gray">${margin}</span>
+        <span>${marginValue}</span>
+      </div>
+
+      ${pnl}
+
+      <div class="flex items-center justify-between">
+        <span class="text-gray">${tpsl}</span>
+        <button type="button" class="text-yellow-100">View</button>
+      </div>
+
+      <button
+        type="button"
+        class="mt-2 flex h-[34px] items-center justify-center rounded-lg bg-red-200 text-white-100"
+      >
+        ${marketClose}
+      </button>
+    </div>
+  </div>
+</li>

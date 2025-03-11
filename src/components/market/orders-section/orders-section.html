@@ -10,21 +10,25 @@
   x-init="initializeOrderSection()"
   class="mx-auto w-full text-center"
 >
-  <div class="custom-container">
+  <div class="custom-container xl:!px-0">
     <!-- top block -->
     <div
-      class="flex flex-col items-center justify-start rounded-xl bg-bg-secondary p-4 md:rounded-2xl"
+      class="flex flex-col items-center justify-start rounded-xl bg-bg-secondary p-4 md:rounded-2xl md:px-[26px] md:py-5 xl:px-8 xl:py-6"
     >
-      <!-- titles slider -->
       <div
-        id="swiper-orders-table-titles"
-        class="faded-right-container swiper mb-5 w-full pr-16"
+        class="flex w-full flex-col items-center justify-start md:overflow-x-scroll md:overflow-y-hidden xl:overflow-x-hidden"
       >
-        <div class="swiper-wrapper flex">${filterTitlesHeader}</div>
-      </div>
+        <!-- titles slider -->
+        <div
+          id="swiper-orders-table-titles"
+          class="swiper mb-5 w-full pr-16 max-md:faded-right-container md:!overflow-visible"
+        >
+          <div class="swiper-wrapper flex">${filterTitlesHeader}</div>
+        </div>
 
-      <!-- positions and orders list -->
-      <div id="positions-orders-list" class="h-auto w-full"></div>
+        <!-- positions and orders list -->
+        <div id="positions-orders-list-container" class="h-auto w-full"></div>
+      </div>
     </div>
 
     <!-- buy/sell buttons block -->
