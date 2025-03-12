@@ -1,6 +1,6 @@
 import { createPopper } from "@popperjs/core";
 
-class TooltipManager {
+export class TooltipManager {
   constructor() {
     this.popperInstances = new Map();
     this.tooltipContainer = null;
@@ -40,6 +40,7 @@ class TooltipManager {
   initializeTooltips({
     tooltipSelector = ".market-state-tooltip",
     triggersSelector = ".market-state-tooltip-trigger",
+    parentContainerSelector,
     parentScrollableElementSelector = ".modal-assets-list",
     placement = "right",
     offset = [0, 8],
@@ -54,8 +55,9 @@ class TooltipManager {
     this.parentScrollableElementSelector = parentScrollableElementSelector;
 
     const triggers = document.querySelectorAll(triggersSelector);
+
     const tooltipContainer = this.createTooltipContainer(
-      document.querySelector('div[x-data*="activeTabQuery"]')
+      document.querySelector(parentContainerSelector)
     );
 
     triggers.forEach((trigger) => {
@@ -64,7 +66,7 @@ class TooltipManager {
 
       // create new tooltip
       let tooltip = document.createElement("div");
-      tooltip.className = `${tooltipSelector} bg-[#F7F8F8] text-[#484C5C] rounded-lg py-[6px] px-2 text-xs font-medium min-w-[105px] hidden absolute z-50 pointer-events-auto !top-[-28px] !left-[-28px] md:!left-[-27px] ${tooltipClasses}`;
+      tooltip.className = `${tooltipSelector} bg-[#F7F8F8] text-[#484C5C] rounded-lg py-[6px] px-2 text-xs font-medium hidden absolute z-50 pointer-events-auto ${tooltipClasses}`;
       Object.assign(tooltip.style, {
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         ...tooltipStyles
@@ -173,5 +175,3 @@ class TooltipManager {
     }
   }
 }
-
-export default new TooltipManager();

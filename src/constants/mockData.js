@@ -1068,6 +1068,7 @@ export const assetsList = [
   }
 ];
 
+// export const positionsData = [];
 export const positionsData = [
   {
     id: "1",
@@ -1154,6 +1155,7 @@ export const positionsData = [
     category: "positions"
   }
 ];
+// export const openOrdersData = [];
 export const openOrdersData = [
   {
     id: "1",
@@ -1162,10 +1164,12 @@ export const openOrdersData = [
     exchangeAsset: "CHF",
     leverage: 15, // кредитное плечо
     type: "Limit",
-    position: "purchase",
+    positionType: "purchase",
+    positionTitle: "Покупка",
     price: 159.89,
     amount: 0.15428,
     openingDate: "01 октября 2024",
+    openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
     category: "openOrders"
   },
@@ -1176,10 +1180,12 @@ export const openOrdersData = [
     exchangeAsset: "CHF",
     leverage: 15, // кредитное плечо
     type: "Limit",
-    position: "purchase",
+    positionType: "purchase",
+    positionTitle: "Покупка",
     price: 159.89,
     amount: 0.15428,
     openingDate: "01 октября 2024",
+    openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
     category: "openOrders"
   },
@@ -1190,10 +1196,12 @@ export const openOrdersData = [
     exchangeAsset: "CHF",
     leverage: 15, // кредитное плечо
     type: "Limit",
-    position: "sale",
+    positionType: "sale",
+    positionTitle: "Продажа",
     price: 159.89,
     amount: 0.15428,
     openingDate: "01 октября 2024",
+    openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
     category: "openOrders"
   },
@@ -1204,10 +1212,12 @@ export const openOrdersData = [
     exchangeAsset: "CHF",
     leverage: 15, // кредитное плечо
     type: "Limit",
-    position: "sale",
+    positionType: "sale",
+    positionTitle: "Продажа",
     price: 159.89,
     amount: 0.15428,
     openingDate: "01 октября 2024",
+    openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
     category: "openOrders"
   },
@@ -1218,10 +1228,12 @@ export const openOrdersData = [
     exchangeAsset: "CHF",
     leverage: 15, // кредитное плечо
     type: "Limit",
-    position: "purchase",
+    positionType: "purchase",
+    positionTitle: "Покупка",
     price: 159.89,
     amount: 0.15428,
     openingDate: "01 октября 2024",
+    openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
     category: "openOrders"
   },
@@ -1232,10 +1244,12 @@ export const openOrdersData = [
     exchangeAsset: "CHF",
     leverage: 15, // кредитное плечо
     type: "Limit",
-    position: "purchase",
+    positionType: "purchase",
+    positionTitle: "Покупка",
     price: 159.89,
     amount: 0.15428,
     openingDate: "01 октября 2024",
+    openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
     category: "openOrders"
   }

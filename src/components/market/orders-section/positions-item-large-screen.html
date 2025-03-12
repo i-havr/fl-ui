@@ -1,0 +1,46 @@
+<li class="mt-5 w-fit border-b border-b-gray-line-primary">
+  <div
+    class="positions-table-row flex h-[62px] w-full min-w-fit !items-start text-sm xl:h-[71px] xl:text-base"
+  >
+    <div
+      class="flex w-[120px] shrink-0 flex-col items-start justify-center gap-y-[2px] border-l-2 border-l-green-100 pl-[5px] text-left"
+    >
+      <span>${symbol}</span>
+      <span
+        class="rounded-[6px] bg-[#232426CC] px-[5px] py-[2px] text-[10px] xl:text-xs"
+        >${leverageTitle} ${leverage}x</span
+      >
+    </div>
+    <div class="w-[130px] shrink-0 text-left text-green-100">${size}</div>
+    <div class="w-[110px] shrink-0 text-left">${entryPrice}</div>
+    <div class="w-[120px] shrink-0 text-left">${markPrice}</div>
+    <div class="w-[120px] shrink-0 text-left text-red-secondary">
+      ${liquidPrice}
+    </div>
+    <div class="w-[130px] shrink-0 text-left">${margin}</div>
+
+    ${pnl}
+
+    <div class="w-[80px] shrink-0 text-left">
+      <button
+        type="button"
+        class="positions-view-button text-sm text-yellow-100 xl:text-base"
+        data-id="${id}"
+        data-tooltip-text="Click to view TP/SL of your position"
+      >
+        View
+      </button>
+    </div>
+
+    <div class="w-[154px] shrink-0 text-left">
+      <button
+        type="button"
+        class="positions-close-button rounded-[100px] border border-red-200 px-[18px] py-[6px] text-sm text-red-200"
+        data-id="${id}"
+        data-tooltip-text="Click to close"
+      >
+        ${marketClose}
+      </button>
+    </div>
+  </div>
+</li>

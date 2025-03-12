@@ -1,0 +1,45 @@
+<li class="cancel-trigger mt-5 w-fit border-b border-b-gray-line-primary">
+  <div
+    class="open-orders-table-row flex h-[62px] w-full min-w-fit !items-start text-sm xl:h-[71px] xl:text-base"
+  >
+    <div
+      class="flex w-[130px] shrink-0 flex-col items-start justify-center gap-y-[2px] text-left"
+    >
+      <span>${symbol}</span>
+      <span
+        class="rounded-[6px] bg-[#232426CC] px-[5px] py-[2px] text-[10px] xl:text-xs"
+        >${leverageTitle} ${leverage}x</span
+      >
+    </div>
+    <div class="w-[100px] shrink-0 text-left">${type}</div>
+    <div class="w-[120px] shrink-0 text-left">${position}</div>
+    <div class="w-[140px] shrink-0 text-left">${price}</div>
+    <div class="w-[150px] shrink-0 text-left">${amount}</div>
+    <div
+      class="flex w-[160px] shrink-0 flex-col items-start justify-center gap-y-[2px] text-left"
+    >
+      <span>${openingDate}</span>
+      <span class="text-xs text-gray-500 xl:text-sm">${openingTime}</span>
+    </div>
+    <div class="w-[100px] shrink-0 text-left">
+      <button
+        type="button"
+        class="open-orders-view-button text-sm text-yellow-100 xl:text-base"
+        data-id="${id}"
+        data-tooltip-text="Click to view TP/SL of your order"
+      >
+        View
+      </button>
+    </div>
+    <div class="w-[130px] shrink-0 text-left">
+      <button
+        type="button"
+        class="open-orders-cancel-button rounded-[100px] border border-red-200 px-[18px] py-[6px] text-sm text-red-200"
+        data-id="${id}"
+        data-tooltip-text="Click to cancel your order"
+      >
+        ${cancelAll}
+      </button>
+    </div>
+  </div>
+</li>

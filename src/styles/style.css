@@ -2,6 +2,25 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@utility faded-right-container {
+  -webkit-mask-image: linear-gradient(to left, transparent, black 80px);
+  mask-image: linear-gradient(to left, transparent, black 80px);
+}
+
+@utility faded-bottom-container {
+  -webkit-mask-image: linear-gradient(to top, transparent, black 40px);
+  mask-image: linear-gradient(to top, transparent, black 40px);
+}
+
+@utility tw-no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @theme {
   --breakpoint-sm: initial;
   --breakpoint-md: 48rem;
@@ -45,6 +64,8 @@
 
   --color-blue-100: #1492ff;
   --color-blue-200: #2871ff;
+
+  --color-yellow-100: #e9af3d;
 
   --color-red-primary: #ae3c58;
   --color-red-secondary: #ff678c;
@@ -138,16 +159,6 @@ button {
   /* IE and Edge */
   scrollbar-width: unset;
   /* Firefox */
-}
-
-.faded-right-container {
-  -webkit-mask-image: linear-gradient(to left, transparent, black 80px);
-  mask-image: linear-gradient(to left, transparent, black 80px);
-}
-
-.faded-bottom-container {
-  -webkit-mask-image: linear-gradient(to top, transparent, black 40px);
-  mask-image: linear-gradient(to top, transparent, black 40px);
 }
 
 .blue-gradient {
@@ -268,5 +279,61 @@ button {
   .transactions-table-row.transactions-list-row {
     height: 91px;
     font-size: 16px;
+  }
+}
+
+/* Market page => Orders section */
+.orders-section-dropdown-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 200ms;
+  overflow: hidden;
+  opacity: 0;
+
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+}
+
+.orders-section-dropdown-content.expanded {
+  opacity: 1;
+  grid-template-rows: 1fr;
+  background-color: #141518;
+}
+
+.positions-table-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.open-orders-table-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 1024px) {
+  .positions-table-row {
+    column-gap: 18px;
+  }
+
+  .open-orders-table-row {
+    column-gap: 36px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .positions-table-row {
+    column-gap: 19px;
+  }
+
+  .open-orders-table-row {
+    column-gap: 31px;
   }
 }

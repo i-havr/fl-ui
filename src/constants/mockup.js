@@ -84,6 +84,7 @@ export const mockup = {
   market: {
     pageName: "Торговля",
     route: "/market",
+    commonButtons: { buy: "Купить", sell: "Продать" },
     assetsData: assetsList,
     assetsModal: {
       placeholder: "Введите значение",
@@ -108,35 +109,44 @@ export const mockup = {
       }
     },
     ordersSection: {
+      leverage: "Кред. плечо",
+      cancelButton: "Отмена",
+      marketCloseButton: "Market Close",
       filterParams: [
         { title: "Позиции", name: "positions" },
         { title: "Открытые ордера", name: "openOrders" },
         { title: "История позиций", name: "positionsHistory" },
-        { title: "История ордеров", name: "ordersHistory" }
+        { title: "История ордеров", name: "openOrdersHistory" }
       ],
-      positionsTitles: [
-        { title: "Символ", name: "symbol" },
-        { title: "Size", name: "size" },
-        { title: "Entry Price", name: "entryPrice" },
-        { title: "Mark Price", name: "markPrice" },
-        { title: "Liq.Price", name: "liquidPrice" },
-        { title: "Margin", name: "margin" },
-        { title: "PNL (ROI%)", name: "pnl" },
-        { title: "SL/TP", name: "sltp" },
-        { title: "Закрыть позиции", name: "closePositions" }
-      ],
+      positionsTitles: {
+        symbol: { title: "Символ", name: "symbol" },
+        size: { title: "Size", name: "size" },
+        entryPrice: { title: "Entry Price", name: "entryPrice" },
+        markPrice: { title: "Mark Price", name: "markPrice" },
+        liquidPrice: { title: "Liq.Price", name: "liquidPrice" },
+        margin: { title: "Margin", name: "margin" },
+        pnl: { title: "PNL (ROI%)", name: "pnl" },
+        tpsl: { title: "TP/SL", name: "tpsl" },
+        closePositions: { title: "Закрыть позиции", name: "closePositions" }
+      },
       positionsData,
-      openOrdersTitles: [
-        { title: "Символ", name: "symbol" },
-        { title: "Тип", name: "type" },
-        { title: "Позиция", name: "position" },
-        { title: "Цена", name: "price" },
-        { title: "Количество", name: "amount" },
-        { title: "Дата открытия", name: "openingDate" },
-        { title: "SL/TP", name: "sltp" },
-        { title: "Отменить все", name: "cancelAll" }
-      ],
-      openOrdersData
+      openOrdersTitles: {
+        symbol: { title: "Символ", name: "symbol" },
+        type: { title: "Тип", name: "type" },
+        position: { title: "Позиция", name: "position" },
+        price: { title: "Цена", name: "price" },
+        amount: { title: "Количество", name: "amount" },
+        openingDate: { title: "Дата открытия", name: "openingDate" },
+        tpsl: { title: "TP/SL", name: "tpsl" },
+        cancelAll: { title: "Отменить все", name: "cancelAll" }
+      },
+      openOrdersData,
+      emptyState: {
+        positions: "Позиции будут отображаться здесь",
+        openOrders: "Ордера будут отображаться здесь",
+        positionsHistory: "История позиций будет отображаться здесь",
+        openOrdersHistory: "История ордеров будет отображаться здесь"
+      }
     }
   },
   profile: { pageName: "Профиль", route: "/profile" },
