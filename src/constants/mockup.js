@@ -84,7 +84,32 @@ export const mockup = {
   market: {
     pageName: "Торговля",
     route: "/market",
-    commonButtons: { buy: "Купить", sell: "Продать" },
+    commonButtons: {
+      buy: { title: "Купить", name: "buy" },
+      sell: { title: "Продать", name: "sell" }
+    },
+    tradingBlock: {
+      buttons: {
+        market: { title: "Маркет", name: "market" },
+        limit: { title: "Лимит", name: "limit" }
+      },
+      orderPriceInput: {
+        label: "Цена ордера",
+        marketPlaceholder: "Рыночная цена",
+        limitPlaceholder: "Цена ордера"
+      },
+      amountInput: {
+        label: "Количество",
+        placeholder: "Введите значение"
+      },
+      totalOrderAmountInput: {
+        label: "Стоимость ордера",
+        placeholder: "Введите значение"
+      },
+      freeMargin: "Свободная маржа",
+      maxTotalAmount: "Макс. сумма покупки"
+    },
+    leverage: "Кредитное плечо",
     assetsData: assetsList,
     assetsModal: {
       placeholder: "Введите значение",

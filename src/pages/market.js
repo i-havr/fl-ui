@@ -50,3 +50,31 @@ export default function Market() {
     </div>
   `;
 }
+
+// update after resizing:
+// positions/orders list content
+
+document.addEventListener("DOMContentLoaded", () => {
+  let previousWidth = window.innerWidth;
+
+  window.addEventListener("resize", () => {
+    const currentWidth = window.innerWidth;
+
+    if (
+      (previousWidth < 768 && currentWidth >= 768) ||
+      (previousWidth >= 768 && currentWidth < 768)
+    ) {
+      const activeTab = document.querySelector(
+        ".orders-table-filter-tab.pointer-events-none"
+      );
+
+      const tabQuery = activeTab
+        ? activeTab.getAttribute("data-orders-filter-param")
+        : defaultTabName;
+
+      window.updateOrdersTableContent(tabQuery);
+    }
+
+    previousWidth = currentWidth;
+  });
+});
