@@ -111,7 +111,9 @@ export default function OrdersSection() {
 
   html = html
     .replaceAll("${defaultTabName}", defaultTabName || "positions")
-    .replace("${filterTitlesHeader}", filterParamsHtml);
+    .replace("${filterTitlesHeader}", filterParamsHtml)
+    .replace("${buyButton}", mockup.market.commonButtons.buy)
+    .replace("${sellButton}", mockup.market.commonButtons.sell);
 
   return html;
 }

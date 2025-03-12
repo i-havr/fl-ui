@@ -84,6 +84,7 @@ export const mockup = {
   market: {
     pageName: "Торговля",
     route: "/market",
+    commonButtons: { buy: "Купить", sell: "Продать" },
     assetsData: assetsList,
     assetsModal: {
       placeholder: "Введите значение",
