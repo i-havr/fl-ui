@@ -91,7 +91,9 @@ export const mockup = {
     tradingBlock: {
       buttons: {
         market: { title: "Маркет", name: "market" },
-        limit: { title: "Лимит", name: "limit" }
+        limit: { title: "Лимит", name: "limit" },
+        close: { title: "Закрыть", name: "close" },
+        set: { title: "Установить", name: "set" }
       },
       orderPriceInput: {
         label: "Цена ордера",
@@ -106,6 +108,8 @@ export const mockup = {
         label: "Стоимость ордера",
         placeholder: "Введите значение"
       },
+      takeProfitLabel: "Тейк профит",
+      stopLossLabel: "Стоп-лосс",
       freeMargin: "Свободная маржа",
       maxTotalAmount: "Макс. сумма покупки"
     },

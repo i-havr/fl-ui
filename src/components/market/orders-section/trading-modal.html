@@ -1,7 +1,17 @@
 <div
   x-data="{
-    resetToDefault() {
+    resetTradingModalToDefault() {
         isTradingModalOpen = false;
+
+        rangeSliderTradingBlockValue = '0';
+            
+        const selector = document.querySelector('.range-slider-selector-trading-block');
+            
+        const progressBar = document.querySelector('.range-slider-progress-bar-trading-block');
+            
+        selector.style.left = '0';
+        progressBar.style.width = '0';
+
         $el.closest('body').classList.remove('no-scroll');}
 }"
   x-show="isTradingModalOpen"
@@ -11,12 +21,12 @@
   x-transition:leave="transition ease-in duration-300"
   x-transition:leave-start="translate-y-0"
   x-transition:leave-end="translate-y-full md:translate-y-0"
-  @click.away="resetToDefault()"
+  @click.away="resetTradingModalToDefault()"
   class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:hidden"
 >
   <button
     type="button"
-    @click="resetToDefault()"
+    @click="resetTradingModalToDefault()"
     class="mb-[17px] ml-auto h-[14px] w-[14px]"
   >
     ${closeIcon}

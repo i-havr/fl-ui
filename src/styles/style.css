@@ -367,3 +367,24 @@ input[type="number"] {
     column-gap: 31px;
   }
 }
+
+/* Market page => Trading block => Range Slider Primary */
+
+#range-slider-primary-input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 19px;
+  outline: none;
+}
+
+#range-slider-primary-input::-webkit-slider-thumb {
+  position: relative;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  z-index: 3;
+  -webkit-appearance: none;
+
+  border: 2px solid transparent;
+  border-radius: 50%;
+}

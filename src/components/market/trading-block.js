@@ -6,6 +6,7 @@ import checkIcon from "../../assets/icons/check-icon.svg?raw";
 import { formatAmountWithoutSigns } from "../../helpers";
 
 import tradingBlockHtml from "./trading-block.html?raw";
+import RangeSliderPrimary from "./range-slider-primary";
 
 export default function TradingBlock() {
   const assetsData = mockup.market.assetsData;
@@ -63,7 +64,8 @@ export default function TradingBlock() {
     )
     .replace("${freeMargin}", mockup.market.tradingBlock.freeMargin)
     .replace("${maxTotalAmount}", mockup.market.tradingBlock.maxTotalAmount)
-    .replace("${checkIcon}", checkIcon);
+    .replace("${checkIcon}", checkIcon)
+    .replace("${rangeSliderPrimary}", RangeSliderPrimary("tradingBlock"));
 
   return html;
 }

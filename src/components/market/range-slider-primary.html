@@ -1,0 +1,77 @@
+<div
+  class="flex h-[55px] w-full flex-col justify-end"
+  x-init="
+    const input = document.querySelector('.${inputClass}');
+    const selector = document.querySelector('.${selectorClass}');
+    const progressBar = document.querySelector('.${progressBarClass}');
+    if (input) {
+      input.oninput = (e) => {
+        selector.style.left = `calc(${e.target.value}% - (${19 * e.target.value / 100}px))`;
+        progressBar.style.width = e.target.value + '%';
+      }
+    }
+  "
+>
+  <div class="relative mb-[14px] h-px w-full bg-[#373A43]">
+    <span
+      class="absolute top-1/2 left-0 size-[11px] -translate-y-1/2 rounded-full bg-yellow-100"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(25%-11px)] size-[11px] translate-x-[10px] -translate-y-1/2 rounded-full"
+      :class="{'bg-yellow-100': ${rangeSliderValue} > 25, 'border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary': ${rangeSliderValue} < 25}"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(50%-11px)] size-[11px] translate-x-[6px] -translate-y-1/2 rounded-full"
+      :class="{'bg-yellow-100': ${rangeSliderValue} > 50, 'border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary': ${rangeSliderValue} < 50}"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(75%-11px)] size-[11px] -translate-y-1/2 rounded-full"
+      :class="{'bg-yellow-100': ${rangeSliderValue} > 75, 'border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary': ${rangeSliderValue} < 75}"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(100%-11px)] size-[11px] -translate-y-1/2 rounded-full border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary"
+    ></span>
+
+    <input
+      id="range-slider-primary-input"
+      type="range"
+      min="0"
+      max="100"
+      x-model="${rangeSliderValue}"
+      class="${inputClass} absolute top-1/2 left-0 w-full -translate-y-1/2"
+    />
+
+    <div
+      class="${selectorClass} pointer-events-none absolute top-1/2 z-[2] w-[19px] -translate-y-1/2"
+    >
+      <!-- button -->
+      <div
+        class="flex size-[19px] items-center justify-center rounded-full bg-yellow-100"
+      >
+        ${rangeSliderPrimaryThumbIcon}
+      </div>
+
+      <!-- value -->
+      <div
+        class="absolute bottom-6 -left-[2px] z-10 w-[26px] text-center font-manrope text-xs text-yellow-100"
+        x-text="${rangeSliderValue} === '0' ? '' : ${rangeSliderValue} + 'x'"
+      ></div>
+    </div>
+
+    <!-- progress bar -->
+    <div
+      class="${progressBarClass} absolute top-0 left-0 h-0.5 w-0 bg-yellow-100"
+    ></div>
+  </div>
+
+  <!-- range digits bottom block -->
+  <div
+    class="flex w-full items-center justify-between font-manrope text-xs text-gray-primary"
+  >
+    <span>0x</span>
+    <span class="translate-x-[9px]">25x</span>
+    <span class="translate-x-[10px]">50x</span>
+    <span class="translate-x-[10px]">75x</span>
+    <span class="">100x</span>
+  </div>
+</div>

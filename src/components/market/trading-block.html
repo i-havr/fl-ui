@@ -8,8 +8,6 @@
 
     maxTotalAmount: '${maxTotalAmount}',
 
-    checkedTpsl: false,
-
     resetToDefault() {
       this.activeTab = '${defaultTab}';
       $el.closest('body').classList.remove('no-scroll');
@@ -109,7 +107,7 @@
     </label>
 
     <!-- range slider -->
-    <div class="w-full bg-gray opacity-50">there is range slider</div>
+    ${rangeSliderPrimary}
 
     <!-- tp/sl checkbox for limit tab -->
     <label
@@ -117,14 +115,18 @@
       :class="{ 'hidden': activeTab === 'market' }"
     >
       TP/SL
-      <input type="checkbox" class="hidden-checkbox" x-model="checkedTpsl" />
+      <input
+        type="checkbox"
+        class="hidden-checkbox"
+        x-model="isTpslModalOpen"
+      />
       <span
         class="flex size-6 items-center justify-center rounded-[6px]"
-        :class="{ 'bg-green-400 border-none': checkedTpsl, 'bg-transparent border border-[#484C5C]': !checkedTpsl }"
-        :aria-checked="checkedTpsl"
+        :class="{ 'bg-green-400 border-none': isTpslModalOpen, 'bg-transparent border border-[#484C5C]': !isTpslModalOpen }"
+        :aria-checked="isTpslModalOpen"
         ><span
           class="size-5 text-white-100"
-          :class="{'inline-block': checkedTpsl, 'hidden': !checkedTpsl}"
+          :class="{'inline-block': isTpslModalOpen, 'hidden': !isTpslModalOpen}"
           >${checkIcon}</span
         ></span
       >
