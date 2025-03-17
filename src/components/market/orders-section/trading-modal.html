@@ -2,15 +2,10 @@
   x-data="{
     resetTradingModalToDefault() {
         isTradingModalOpen = false;
-
-        rangeSliderTradingBlockValue = '0';
-            
-        const selector = document.querySelector('.range-slider-selector-trading-block');
-            
-        const progressBar = document.querySelector('.range-slider-progress-bar-trading-block');
-            
-        selector.style.left = '0';
-        progressBar.style.width = '0';
+        
+        setTimeout(()=>{
+          rangeSliderTradingBlockValue = '0';
+        }, 100)
 
         $el.closest('body').classList.remove('no-scroll');}
 }"

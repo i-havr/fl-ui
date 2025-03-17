@@ -93,7 +93,8 @@ export const mockup = {
         market: { title: "Маркет", name: "market" },
         limit: { title: "Лимит", name: "limit" },
         close: { title: "Закрыть", name: "close" },
-        set: { title: "Установить", name: "set" }
+        set: { title: "Установить", name: "set" },
+        cancel: { title: "Отменить", name: "cancel" }
       },
       orderPriceInput: {
         label: "Цена ордера",

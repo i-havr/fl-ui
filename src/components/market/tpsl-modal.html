@@ -1,4 +1,103 @@
 <div
+  x-data="{
+    currentPrice: ${currentPrice},
+
+    handleSetTpslButtonClick() {
+      isTpslModalOpen = false;
+      if(takeProfitValue.endsWith('.')) {
+        takeProfitValue = takeProfitValue.slice(0, -1);
+      };
+      if(stopLossValue.endsWith('.')) {
+        stopLossValue = stopLossValue.slice(0, -1);
+      };
+    },
+
+    updateTpValues() {
+        if(!takeProfitValue) {
+          isLong = null;
+          isShort = null;
+          tpProfit = '0.00';
+        };
+        
+        const tpValue = parseFloat(takeProfitValue);
+
+        if (!isNaN(tpValue)) {
+          if (this.currentPrice) {
+            if(this.currentPrice > tpValue){
+              isLong = false;
+              isShort = true;
+
+              const profit = (this.currentPrice - tpValue) * assetVolume;
+              tpProfit = profit.toLocaleString('en-US');
+            } else {
+              isLong = true;
+              isShort = false;
+
+              const profit = (tpValue - this.currentPrice) * assetVolume;
+              tpProfit = profit.toLocaleString('en-US');
+            }
+          }
+        }
+      
+
+      this.updateSlValues()
+    },
+
+    updateSlValues() {
+        if(!stopLossValue) {
+          if(!takeProfitValue) {
+            isLong = null;
+            isShort = null;
+          }
+        };
+        
+        const slValue = parseFloat(stopLossValue);
+
+        if (!isNaN(slValue)) {
+          if (this.currentPrice) {
+            if (!takeProfitValue && this.currentPrice > slValue){
+              isLong = false;
+              isShort = true;
+
+              const profit = (slValue - this.currentPrice) * assetVolume;
+              slProfit = profit.toLocaleString('en-US');
+            } 
+            
+            if (!takeProfitValue && this.currentPrice < slValue){
+              isLong = true;
+              isShort = false;
+
+              const profit = (this.currentPrice - slValue) * assetVolume;
+              slProfit = profit.toLocaleString('en-US');
+            }
+
+            if(takeProfitValue && this.currentPrice > slValue){
+              if(isLong){
+                const profit = (slValue - this.currentPrice) * assetVolume;
+                slProfit = profit.toLocaleString('en-US');
+              } else {
+                const profit = (this.currentPrice - slValue) * assetVolume;
+                slProfit = profit.toLocaleString('en-US');
+              }
+            }
+
+            if(takeProfitValue && this.currentPrice < slValue){
+              if(isLong){
+                const profit = (this.currentPrice - slValue) * assetVolume;
+                slProfit = profit.toLocaleString('en-US');
+              } else {
+                const profit = (slValue - this.currentPrice) * assetVolume;
+                slProfit = profit.toLocaleString('en-US');
+              }
+            }
+          }
+        }
+    }
+  }"
+  x-init="$nextTick(() => {
+    updateTpValues(); 
+    updateSlValues();
+  })"
   x-show="isTpslModalOpen"
   x-transition:enter="transition ease-out duration-300"
   x-transition:enter-start="translate-y-full md:translate-y-0"
@@ -8,7 +107,7 @@
   x-transition:leave-end="translate-y-full md:translate-y-0"
   @click.away="resetTpslModalToDefault()"
   @click.stop=""
-  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:hidden"
+  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:max-w-[480px]"
 >
   <button
     type="button"
@@ -24,65 +123,92 @@
     Take Profit / Stop Loss
   </h2>
 
-  <form class="flex w-full flex-col items-start gap-y-4">
+  <form class="mb-10 flex w-full flex-col items-start gap-y-4">
     <!-- take profit block -->
     <div class="flex w-full items-end justify-center gap-x-1">
-      <label class="flex flex-2/3 flex-col gap-y-2 text-left text-xs text-gray">
+      <label
+        class="flex flex-2/3 flex-col gap-y-2 text-left text-xs text-white-100"
+      >
         ${takeProfitLabel}
 
         <input
           type="text"
           inputmode="decimal"
           placeholder="Trigger price"
-          class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm placeholder:text-gray-600"
+          x-model="takeProfitValue"
+          @input="
+          let value = $event.target.value.replace(',', '.');
+          value = value.replace(/[^0-9.]/g, '');
+          if (value.split('.').length > 2) value = value.replace(/\.+$/, '');
+          takeProfitValue = value;
+          updateTpValues();
+          "
+          class="tp-value-input no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm placeholder:text-gray-600"
         />
       </label>
 
-      <label
-        class="flex w-full flex-1/3 shrink-0 flex-col gap-y-2 text-left text-xs text-gray"
-      >
-        <input
-          type="text"
-          inputmode="decimal"
-          placeholder="Decrease"
-          class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm placeholder:text-gray-600"
-        />
-      </label>
+      <div
+        x-text="takeProfitValue && !isNaN(((takeProfitValue - currentPrice)/currentPrice * 100).toFixed(2)) ? ((takeProfitValue - currentPrice)/currentPrice * 100).toFixed(2) + '%' : '0%'"
+        class="tp-value-diff flex h-12 w-full flex-1/3 shrink-0 items-center rounded-[100px] bg-[#232426CC] py-2 pl-5 text-left text-sm text-white-100"
+      ></div>
     </div>
 
-    <!-- take profit range slider  -->
-
-    ${takeProfitRangeSliderPrimary}
+    <!-- take profit description -->
+    <p
+      class="rounded-lg bg-[#202123] px-[10px] py-[6px] text-left text-xs leading-[20px] text-white-100"
+    >
+      When the last traded price reaches
+      <span
+        x-text="!isNaN(parseFloat(takeProfitValue)) ? parseFloat(takeProfitValue).toLocaleString('en-US') : '0.00'"
+      ></span
+      >, it will trigger a take profit market order, resulting in an expected
+      profit of <span x-text="tpProfit"></span> USDT.
+    </p>
 
     <!-- stop loss block -->
     <div class="flex w-full items-end justify-center gap-x-1">
-      <label class="flex flex-2/3 flex-col gap-y-2 text-left text-xs text-gray">
+      <label
+        class="flex flex-2/3 flex-col gap-y-2 text-left text-xs text-white-100"
+      >
         ${stopLossLabel}
 
         <input
           type="text"
           inputmode="decimal"
           placeholder="Trigger price"
+          x-model="stopLossValue"
+          @input="
+          let value = $event.target.value.replace(',', '.');
+          value = value.replace(/[^0-9.]/g, '');
+          if (value.split('.').length > 2) value = value.replace(/\.+$/, '');
+          stopLossValue = value;
+          updateSlValues();
+          "
           class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm placeholder:text-gray-600"
         />
       </label>
 
-      <label
-        class="flex w-full flex-1/3 shrink-0 flex-col gap-y-2 text-left text-xs text-gray"
-      >
-        <input
-          type="text"
-          inputmode="decimal"
-          placeholder="Decrease"
-          class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm placeholder:text-gray-600"
-        />
-      </label>
+      <div
+        x-text="stopLossValue && !isNaN(((stopLossValue - currentPrice)/currentPrice * 100).toFixed(2)) ? ((stopLossValue - currentPrice)/currentPrice * 100).toFixed(2) + '%' : '0%'"
+        class="tp-value-diff flex h-12 w-full flex-1/3 shrink-0 items-center rounded-[100px] bg-[#232426CC] py-2 pl-5 text-left text-sm text-white-100"
+      ></div>
     </div>
 
-    <!-- stop loss range slider  -->
-
-    <!-- ${stopLossRangeSliderPrimary} -->
+    <!-- stop loss description -->
+    <p
+      class="rounded-lg bg-[#202123] px-[10px] py-[6px] text-left text-xs leading-[20px] text-white-100"
+    >
+      When the last traded price reaches
+      <span
+        x-text="!isNaN(parseFloat(stopLossValue)) ? parseFloat(stopLossValue).toLocaleString('en-US') : '0.00'"
+      ></span
+      >, it will trigger a stop loss market order, resulting in an expected
+      <span x-text="slProfit.startsWith('-')? 'loss' : 'profit'"></span> of
+      <span x-text="slProfit"></span> USDT.
+    </p>
   </form>
 
-  <div class="h-[400px] w-full bg-amber-100"></div>
+  <div class="flex w-full items-center justify-center gap-x-[10px]">
+    ${closeButton} ${setButton}
+  </div>
 </div>

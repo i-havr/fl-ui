@@ -1,8 +1,6 @@
 <div
   x-data="{
     activeTab: '${defaultTab}',
-   
-    leverageValue: '${leverageValue}',
 
     freeMargin: '${freeMargin}',
 
@@ -11,10 +9,6 @@
     resetToDefault() {
       this.activeTab = '${defaultTab}';
       $el.closest('body').classList.remove('no-scroll');
-    },
-
-    updateLeverage(newValue) {
-      this.leverageValue = newValue;
     },
 
     setActiveTab(tab) {
@@ -28,6 +22,7 @@
   <button
     type="button"
     class="mb-[22px] flex h-9 w-full items-center justify-between rounded-lg bg-bg-button-gray px-[10px] text-sm"
+    @click="isLeverageModalOpen = true"
   >
     <div class="flex items-center gap-x-1">
       <span>${leverage}</span>
@@ -110,27 +105,53 @@
     ${rangeSliderPrimary}
 
     <!-- tp/sl checkbox for limit tab -->
-    <label
-      class="flex cursor-pointer flex-row-reverse gap-x-2 text-gray-primary"
+    <div
+      class="flex w-full items-center justify-between"
       :class="{ 'hidden': activeTab === 'market' }"
     >
-      TP/SL
-      <input
-        type="checkbox"
-        class="hidden-checkbox"
-        x-model="isTpslModalOpen"
-      />
-      <span
-        class="flex size-6 items-center justify-center rounded-[6px]"
-        :class="{ 'bg-green-400 border-none': isTpslModalOpen, 'bg-transparent border border-[#484C5C]': !isTpslModalOpen }"
-        :aria-checked="isTpslModalOpen"
-        ><span
-          class="size-5 text-white-100"
-          :class="{'inline-block': isTpslModalOpen, 'hidden': !isTpslModalOpen}"
-          >${checkIcon}</span
-        ></span
+      <label
+        class="flex cursor-pointer flex-row-reverse gap-x-2 text-gray-primary"
       >
-    </label>
+        TP/SL
+        <input
+          type="checkbox"
+          class="hidden-checkbox"
+          @click="takeProfitValue || stopLossValue ? resetTpslModalToDefault () : isTpslModalOpen = true"
+        />
+        <span
+          class="flex size-6 items-center justify-center rounded-[6px]"
+          :class="{ 'bg-green-400 border-none': takeProfitValue || stopLossValue, 'bg-transparent border border-[#484C5C]': !takeProfitValue && !stopLossValue }"
+          ><span
+            class="size-5 text-white-100"
+            :class="{'inline-block': takeProfitValue || stopLossValue, 'hidden': !takeProfitValue && !stopLossValue}"
+            >${checkIcon}</span
+          ></span
+        >
+      </label>
+
+      <button
+        type="button"
+        class="size-6 text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
+        :class="{ 'hidden': !takeProfitValue && !stopLossValue }"
+        @click="isTpslModalOpen = true"
+      >
+        ${editIcon}
+      </button>
+    </div>
+
+    <!-- trigger price for limit tab -->
+    <button
+      type="button"
+      class="flex h-9 w-full items-center justify-between rounded-lg bg-[#202123] px-[10px] text-xs text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
+      :class="{ 'hidden': activeTab === 'market' || (!takeProfitValue && !stopLossValue) }"
+      @click="isTpslModalOpen = true"
+    >
+      <span>Trigger Price</span>
+      <span>
+        <span>637 737,43</span> /
+        <span>44 543</span>
+      </span>
+    </button>
 
     <!-- total order amount input -->
     <label class="flex w-full flex-col gap-y-2 text-left text-xs text-gray">

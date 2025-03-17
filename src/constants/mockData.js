@@ -908,7 +908,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 0,
+    lastPrice: 83000,
     priceDifference: 0,
     category: "stocks"
   },

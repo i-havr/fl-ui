@@ -5,6 +5,7 @@ import HeaderSection from "../components/market/header-section/header-section";
 import TradingSection from "../components/market/trading-section/trading-section";
 import OrdersSection from "../components/market/orders-section/orders-section";
 import { TpslModal } from "../components/market/tpsl-modal";
+import { LeverageModal } from "../components/market/leverage-modal";
 
 export default function Market() {
   const assetsData = mockup.market.assetsData;
@@ -32,11 +33,40 @@ export default function Market() {
   return `
     <div
     class="flex flex-col gap-y-4 md:gap-y-6 mx-auto text-center pt-4 md:pt-[49px] pb-[92px] md:pb-[42px] xl:px-10 xl:max-w-[1440px]"
+
     x-data="{
     isTpslModalOpen: true,
-    takeProfitValue: '0',
-    stopLossValue: '0',
+    isLeverageModalOpen: false,
+    takeProfitValue: '',
+    tpProfit: '0.00',
+    stopLossValue: '',
+    slProfit: '0.00',
+    leverageValue: '0',
     rangeSliderTradingBlockValue: '0',
+
+    resetTpslModalToDefault  () {
+    this.isTpslModalOpen = false;
+
+    setTimeout(() => {
+      this.takeProfitValue = '';
+      this.tpProfit = '0.00';
+      this.stopLossValue = '';
+      this.slProfit = '0.00';
+    }, 100);
+    },
+
+    resetLeverageModalToDefault  () {
+    this.isLeverageModalOpen = false;
+
+    setTimeout(() => {
+      this.leverageValue = '0';
+    }, 100);
+    },
+
+    assetVolume: '500',
+    isLong: null,
+    isShort: null,
+
     }"
     >
       <div class="flex flex-col xl:flex-row gap-y-0 xl:gap-y-0 xl:gap-x-4">
@@ -57,33 +87,39 @@ export default function Market() {
 
       ${OrdersSection()}
 
-      <div
-          x-data="{
-            resetTpslModalToDefault() {
-            isTpslModalOpen = false;
-            takeProfitValue = '0';
-            stopLossValue = '0';
-            
-            const selector = document.querySelector('.range-slider-selector-tpsl-modal-tp');
-            
-            const progressBar = document.querySelector('.range-slider-progress-bar-tpsl-modal-tp');
-
-            selector.style.left = '0';
-            progressBar.style.width = '0';
-            }
-          }"
+      <div          
           x-show="isTpslModalOpen"
+
           x-transition:enter="transition ease-out duration-300"
           x-transition:enter-start="opacity-0"
           x-transition:enter-end="opacity-100"
           x-transition:leave="transition ease-in duration-300"
           x-transition:leave-start="opacity-100"
           x-transition:leave-end="opacity-0"
-          class="bg-opacity-50 fixed inset-0 flex items-end justify-center bg-black/80 md:items-start md:justify-start md:bg-transparent z-[11]"
+
+          class="fixed inset-0 flex items-end justify-center bg-black/80 md:items-center z-[11]"
+
           @click.stop="resetTpslModalToDefault()"
         >
           ${TpslModal()}
         </div>
+
+        <div          
+            x-show="isLeverageModalOpen"
+
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+
+            class="fixed inset-0 flex items-end justify-center bg-black/80 md:items-center z-[11]"
+
+            @click.stop="resetLeverageModalToDefault()"
+          >
+            ${LeverageModal()}
+          </div>
 
     </div>
   `;

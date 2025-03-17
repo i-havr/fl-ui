@@ -1,0 +1,96 @@
+<div
+  x-data="{
+  isInputFocused: false,
+  handleSetLeverageButtonClick() {
+      isLeverageModalOpen = false;
+    },
+     updateLeverageValue(newValue) {
+      let value = parseInt(newValue);
+      if (isNaN(value) || value < 0) {
+        value = 0;
+      } else if (value > 100) {
+        value = 100;
+      }
+      leverageValue = value.toString();
+    }
+  }"
+  x-show="isLeverageModalOpen"
+  x-transition:enter="transition ease-out duration-300"
+  x-transition:enter-start="translate-y-full md:translate-y-0"
+  x-transition:enter-end="translate-y-0 md:translate-y-0"
+  x-transition:leave="transition ease-in duration-300"
+  x-transition:leave-start="translate-y-0"
+  x-transition:leave-end="translate-y-full md:translate-y-0"
+  @click.away="resetLeverageModalToDefault()"
+  @click.stop=""
+  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:max-w-sm md:rounded-b-2xl"
+>
+  <button
+    type="button"
+    @click.stop="resetLeverageModalToDefault()"
+    class="mb-[17px] ml-auto h-[14px] w-[14px]"
+  >
+    ${closeIcon}
+  </button>
+
+  <h2
+    class="pointer-events-none -translate-y-7 text-xl font-semibold text-white-100"
+  >
+    ${leverageTitle}
+  </h2>
+
+  <form class="mb-[121px] flex w-full flex-col items-start gap-y-[25px]">
+    <div class="flex w-full items-center justify-center gap-x-[6px]">
+      <button
+        type="button"
+        class="flex size-[54px] shrink-0 items-center justify-center rounded-full bg-[#232426CC]"
+        @click.stop="leverageValue > 0 ? leverageValue = +leverageValue - 1 : leverageValue = '0'"
+      >
+        <span class="h-1 w-4 bg-white"></span>
+      </button>
+
+      <label
+        class="relative flex h-[54px] flex-1 flex-col text-left text-xl font-medium"
+      >
+        <input
+          id="rateIndexInput"
+          type="number"
+          step="1"
+          pattern="[0-9]*"
+          x-model="leverageValue"
+          @input="updateLeverageValue($event.target.value)"
+          @focus="isInputFocused = true"
+          @blur="isInputFocused = false"
+          class="no-outline flex h-full w-full items-center justify-center rounded-[100px] border border-[#373A43] bg-[#232426CC] px-5 py-2 text-center"
+          :class="{'text-white': isInputFocused, 'text-transparent': !isInputFocused}"
+        />
+
+        <span
+          id="rateIndex"
+          class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white"
+          x-show="!isInputFocused"
+          x-text="leverageValue + 'x'"
+        ></span>
+      </label>
+
+      <button
+        type="button"
+        class="relative flex size-[54px] shrink-0 items-center justify-center rounded-full bg-[#232426CC] text-white"
+        @click.stop="leverageValue < 100 ? leverageValue = +leverageValue + 1 : leverageValue = '100'"
+      >
+        <span class="h-1 w-4 bg-white"></span>
+        <span
+          class="absolute top-1/2 left-1/2 h-4 w-1 -translate-x-1/2 -translate-y-1/2 bg-white"
+        ></span>
+      </button>
+    </div>
+
+    <!-- take profit range slider  -->
+
+    ${leverageRangeSliderPrimary}
+  </form>
+
+  <div class="flex w-full items-center justify-center gap-x-4">
+    ${cancelButton} ${setButton}
+  </div>
+</div>
