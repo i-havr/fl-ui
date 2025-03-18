@@ -1,0 +1,201 @@
+<div
+  x-data="{
+    activeTab: '${defaultTab}',
+
+    freeMargin: '${freeMargin}',
+
+    maxTotalAmount: '${maxTotalAmount}',
+
+    resetToDefault() {
+      this.activeTab = '${defaultTab}';
+      $el.closest('body').classList.remove('no-scroll');
+    },
+
+    setActiveTab(tab) {
+      this.activeTab = tab;
+    }
+  }"
+  x-init="setActiveTab('${defaultTab}')"
+  class="flex w-full flex-col items-center"
+>
+  <!-- open leverage config button -->
+  <button
+    type="button"
+    class="mb-[22px] flex h-9 w-full items-center justify-between rounded-lg bg-bg-button-gray px-[10px] text-sm"
+    @click="isLeverageModalOpen = true; leverageValue != 1 ? isLeverageModalEditMode = true : isLeverageModalEditMode = false"
+  >
+    <div class="flex items-center gap-x-1">
+      <span>${leverage}</span>
+      <span
+        class="font-semibold text-yellow-100"
+        x-text="'x' + leverageValue"
+      ></span>
+    </div>
+
+    <span class="size-5 text-white">${chevronIconRight}</span>
+  </button>
+
+  <!-- market / limit tabs -->
+  <div class="mb-[22px] flex w-full items-center gap-x-5 text-gray-primary">
+    <button
+      class="border-b border-b-transparent px-3 pb-1"
+      :class="{ 'text-yellow-100 font-medium border-b-yellow-100': activeTab === 'market' }"
+      @click="setActiveTab('market')"
+    >
+      ${marketTabTitle}
+    </button>
+
+    <button
+      class="border-b border-b-transparent px-3 pb-1"
+      :class="{ 'text-yellow-100 font-medium border-b-yellow-100': activeTab === 'limit' }"
+      @click="setActiveTab('limit')"
+    >
+      ${limitTabTitle}
+    </button>
+  </div>
+
+  <form class="mb-7 flex w-full flex-col items-start gap-y-[22px]">
+    <!-- order price input -->
+    <label class="flex w-full flex-col gap-y-2 text-left text-xs text-gray">
+      ${orderPriceLabel}
+      <div
+        class="flex h-12 w-full items-center rounded-[100px] border border-[#373A43] py-2 pl-5 text-sm"
+        :class="{ 'bg-bg-button-gray': activeTab === 'market', 'bg-[#232426CC]': activeTab === 'limit' }"
+      >
+        <input
+          type="text"
+          inputmode="decimal"
+          :placeholder="activeTab === 'market'? '${orderMarketPricePlaceholder}' : '${orderLimitPricePlaceholder}'"
+          class="no-outline h-full w-full bg-transparent"
+          :class="{ 'placeholder:text-gray-primary': activeTab === 'market', 'placeholder:text-gray-600': activeTab === 'limit' }"
+          :disabled="activeTab === 'market'"
+        />
+
+        <div
+          class="flex h-full min-w-[76px] shrink-0 items-center border-l border-l-[#373A43] px-3 text-white"
+          :class="{ 'hidden': activeTab === 'market' }"
+        >
+          ${assetName}
+        </div>
+      </div>
+    </label>
+
+    <!-- amount input -->
+    <label class="flex w-full flex-col gap-y-2 text-left text-xs text-gray">
+      ${amountLabel}
+      <div
+        class="flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm text-white-100"
+      >
+        <input
+          type="number"
+          inputmode="decimal"
+          placeholder="${amountPlaceholder}"
+          class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
+        />
+
+        <div
+          class="flex h-full min-w-[76px] shrink-0 items-center border-l border-l-[#373A43] px-3 text-white"
+        >
+          ${assetName}
+        </div>
+      </div>
+    </label>
+
+    <!-- range slider -->
+    ${rangeSliderPrimary}
+
+    <!-- tp/sl checkbox for limit tab -->
+    <div
+      class="flex w-full items-center justify-between"
+      :class="{ 'hidden': activeTab === 'market' }"
+    >
+      <label
+        class="flex cursor-pointer flex-row-reverse gap-x-2 text-gray-primary"
+      >
+        TP/SL
+        <input
+          type="checkbox"
+          class="hidden-checkbox"
+          @click="takeProfitValue || stopLossValue ? resetTpslModalToDefault () : isTpslModalOpen = true"
+        />
+        <span
+          class="flex size-6 items-center justify-center rounded-[6px]"
+          :class="{ 'bg-green-400 border-none': takeProfitValue || stopLossValue, 'bg-transparent border border-[#484C5C]': !takeProfitValue && !stopLossValue }"
+          ><span
+            class="size-5 text-white-100"
+            :class="{'inline-block': takeProfitValue || stopLossValue, 'hidden': !takeProfitValue && !stopLossValue}"
+            >${checkIcon}</span
+          ></span
+        >
+      </label>
+
+      <button
+        type="button"
+        class="size-6 text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
+        :class="{ 'hidden': !takeProfitValue && !stopLossValue }"
+        @click="isTpslModalOpen = true; isTpslModalEditMode = true"
+      >
+        ${editIcon}
+      </button>
+    </div>
+
+    <!-- trigger price for limit tab -->
+    <button
+      type="button"
+      class="flex h-9 w-full items-center justify-between rounded-lg bg-[#202123] px-[10px] text-xs text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
+      :class="{ 'hidden': activeTab === 'market' || (!takeProfitValue && !stopLossValue) }"
+      @click="isTpslModalOpen = true; isTpslModalEditMode = true"
+    >
+      <span>Trigger Price</span>
+      <span>
+        <span
+          x-text="takeProfitValue && !isNaN(parseFloat(takeProfitValue)) ? parseFloat(takeProfitValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
+        ></span>
+        /
+        <span
+          x-text="stopLossValue && !isNaN(parseFloat(stopLossValue)) ? parseFloat(stopLossValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
+        ></span>
+      </span>
+    </button>
+
+    <!-- total order amount input -->
+    <label class="flex w-full flex-col gap-y-2 text-left text-xs text-gray">
+      ${totalOrderAmountLabel}
+      <div
+        class="flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm text-white-100"
+      >
+        <input
+          type="number"
+          inputmode="decimal"
+          placeholder="${totalOrderAmountPlaceholder}"
+          class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
+        />
+
+        <div
+          class="flex h-full min-w-[76px] shrink-0 items-center border-l border-l-[#373A43] px-3 text-white"
+        >
+          USDT
+        </div>
+      </div>
+    </label>
+  </form>
+
+  <!-- free margin / max total amount -->
+  <div class="flex w-full flex-col gap-y-[6px]">
+    <div class="flex items-center justify-between">
+      <span class="text-xs text-gray-primary">${freeMargin}</span>
+      <span
+        class="text-xs font-semibold text-white-100"
+        x-text="freeMargin + ' ' + 'USDT'"
+      ></span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <span class="text-xs text-gray-primary">${maxTotalAmount}</span>
+      <span
+        class="text-xs font-semibold text-white-100"
+        x-text="maxTotalAmount + ' ' + 'USDT'"
+      ></span>
+    </div>
+  </div>
+</div>

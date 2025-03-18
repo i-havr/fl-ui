@@ -56,6 +56,7 @@
   --color-gray-300: #3f4046;
   --color-gray-400: #3c3d45;
   --color-gray-500: #595959;
+  --color-gray-600: #4b4b4b;
 
   --color-green-100: #00b69b;
   --color-green-200: #3ecf09;
@@ -125,6 +126,11 @@ body.no-scroll {
   overflow: hidden;
 }
 
+.no-outline {
+  outline: none;
+  outline-offset: 0;
+}
+
 .custom-container {
   width: 100%;
   padding-inline: 1rem;
@@ -161,6 +167,23 @@ button {
   /* Firefox */
 }
 
+/* Hide input arrows for Chrome, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide input arrows for Firefox */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"] {
+  appearance: none;
+}
+
 .blue-gradient {
   background: linear-gradient(
     265.56deg,
@@ -168,6 +191,13 @@ button {
     #1e68f6 -0.26%,
     #0047d0 98.59%
   );
+}
+
+.hidden-checkbox {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 @keyframes fadeInOpacityTransformFromBottom {
@@ -336,4 +366,25 @@ button {
   .open-orders-table-row {
     column-gap: 31px;
   }
+}
+
+/* Market page => Trading block => Range Slider Primary */
+
+#range-slider-primary-input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 19px;
+  outline: none;
+}
+
+#range-slider-primary-input::-webkit-slider-thumb {
+  position: relative;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  z-index: 3;
+  -webkit-appearance: none;
+
+  border: 2px solid transparent;
+  border-radius: 50%;
 }

@@ -6,6 +6,7 @@ import "swiper/css";
 import ordersSectionHtml from "./orders-section.html?raw";
 import { PositionsOrdersList } from "./positions-orders-list";
 import { TooltipManager } from "../../../js/tooltip-manager";
+import TradingModal from "./trading-modal";
 
 const defaultTabName = mockup.market.ordersSection.filterParams[0].name;
 
@@ -37,11 +38,6 @@ window.updateOrdersTableContent = function (tabName = defaultTabName) {
   }
 
   contentContainer.innerHTML = `${PositionsOrdersList(positionsOrdersListToRender, tabName)}`;
-
-  // const modal = document.querySelector('div[x-data*="activeTabQuery"]');
-  // if (modal) {
-  //   modal.setAttribute("data-active-tab-query", tabQuery);
-  // }
 
   setOrdersTableActiveTab(tabName);
 
@@ -112,8 +108,9 @@ export default function OrdersSection() {
   html = html
     .replaceAll("${defaultTabName}", defaultTabName || "positions")
     .replace("${filterTitlesHeader}", filterParamsHtml)
-    .replace("${buyButton}", mockup.market.commonButtons.buy)
-    .replace("${sellButton}", mockup.market.commonButtons.sell);
+    .replace("${buyButton}", mockup.market.commonButtons.buy.title)
+    .replace("${sellButton}", mockup.market.commonButtons.sell.title)
+    .replace("${TradingModal}", TradingModal());
 
   return html;
 }
@@ -158,31 +155,4 @@ document.addEventListener("click", (e) => {
     setOrdersTableActiveTab(tabQuery);
     window.updateOrdersTableContent(tabQuery);
   }
-});
-
-// update list content after resizing
-
-document.addEventListener("DOMContentLoaded", () => {
-  let previousWidth = window.innerWidth;
-
-  window.addEventListener("resize", () => {
-    const currentWidth = window.innerWidth;
-
-    if (
-      (previousWidth < 768 && currentWidth >= 768) ||
-      (previousWidth >= 768 && currentWidth < 768)
-    ) {
-      const activeTab = document.querySelector(
-        ".orders-table-filter-tab.pointer-events-none"
-      );
-
-      const tabQuery = activeTab
-        ? activeTab.getAttribute("data-orders-filter-param")
-        : defaultTabName;
-
-      window.updateOrdersTableContent(tabQuery);
-    }
-
-    previousWidth = currentWidth;
-  });
 });
