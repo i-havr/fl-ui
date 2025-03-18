@@ -112,7 +112,9 @@ export const mockup = {
       takeProfitLabel: "Тейк профит",
       stopLossLabel: "Стоп-лосс",
       freeMargin: "Свободная маржа",
-      maxTotalAmount: "Макс. сумма покупки"
+      freeMarginValue: 114252.34,
+      maxTotalAmount: "Макс. сумма покупки",
+      maxTotalAmountValue: 114252.34
     },
     leverage: "Кредитное плечо",
     assetsData: assetsList,

@@ -22,7 +22,7 @@
   <button
     type="button"
     class="mb-[22px] flex h-9 w-full items-center justify-between rounded-lg bg-bg-button-gray px-[10px] text-sm"
-    @click="isLeverageModalOpen = true"
+    @click="isLeverageModalOpen = true; leverageValue != 1 ? isLeverageModalEditMode = true : isLeverageModalEditMode = false"
   >
     <div class="flex items-center gap-x-1">
       <span>${leverage}</span>
@@ -133,7 +133,7 @@
         type="button"
         class="size-6 text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
         :class="{ 'hidden': !takeProfitValue && !stopLossValue }"
-        @click="isTpslModalOpen = true"
+        @click="isTpslModalOpen = true; isTpslModalEditMode = true"
       >
         ${editIcon}
       </button>
@@ -144,12 +144,17 @@
       type="button"
       class="flex h-9 w-full items-center justify-between rounded-lg bg-[#202123] px-[10px] text-xs text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
       :class="{ 'hidden': activeTab === 'market' || (!takeProfitValue && !stopLossValue) }"
-      @click="isTpslModalOpen = true"
+      @click="isTpslModalOpen = true; isTpslModalEditMode = true"
     >
       <span>Trigger Price</span>
       <span>
-        <span>637 737,43</span> /
-        <span>44 543</span>
+        <span
+          x-text="takeProfitValue && !isNaN(parseFloat(takeProfitValue)) ? parseFloat(takeProfitValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
+        ></span>
+        /
+        <span
+          x-text="stopLossValue && !isNaN(parseFloat(stopLossValue)) ? parseFloat(stopLossValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
+        ></span>
       </span>
     </button>
 

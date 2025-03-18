@@ -28,9 +28,16 @@ export default function TradingBlock() {
     .replace("${leverage}", mockup.market.leverage)
     .replace(
       "${maxTotalAmount}",
-      formatAmountWithoutSigns(initialMaxTotalAmount, 0, 5)
+      formatAmountWithoutSigns(
+        mockup.market.tradingBlock.maxTotalAmountValue,
+        0,
+        5
+      )
     )
-    .replace("${freeMargin}", formatAmountWithoutSigns(initialFreeMargin, 0, 5))
+    .replace(
+      "${freeMargin}",
+      formatAmountWithoutSigns(mockup.market.tradingBlock.freeMarginValue, 0, 5)
+    )
     .replace("${chevronIconRight}", chevronIconRight)
     .replace(
       "${marketTabTitle}",

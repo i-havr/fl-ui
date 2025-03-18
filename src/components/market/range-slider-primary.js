@@ -10,21 +10,8 @@ export default function RangeSliderPrimary(place) {
       case "tradingBlock":
         return {
           rangeSliderValue: "rangeSliderTradingBlockValue",
+          normalizedRangeSliderValue: "normalizedRangeSliderTradingBlockValue",
           sign: "%",
-          mark1: "-50",
-          mark2: "-25",
-          mark3: "0",
-          mark4: "25",
-          mark5: "50",
-          isCentered: true,
-          minValue: -50,
-          maxValue: 50
-        };
-
-      case "leverageModal":
-        return {
-          rangeSliderValue: "leverageValue",
-          sign: "x",
           mark1: "0",
           mark2: "25",
           mark3: "50",
@@ -35,10 +22,25 @@ export default function RangeSliderPrimary(place) {
           maxValue: 100
         };
 
+      case "leverageModal":
+        return {
+          rangeSliderValue: "leverageValue",
+          normalizedRangeSliderValue: "normalizedLeverageValue",
+          sign: "x",
+          mark1: "1",
+          mark2: "25",
+          mark3: "50",
+          mark4: "75",
+          mark5: "100",
+          isCentered: false,
+          minValue: 1,
+          maxValue: 100
+        };
+
       default:
         return {
           rangeSliderValue: "",
-          sign: "x",
+          sign: "%",
           mark1: "0",
           mark2: "25",
           mark3: "50",
@@ -56,6 +58,10 @@ export default function RangeSliderPrimary(place) {
   html = html
     .replaceAll("${rangeSliderPrimaryThumbIcon}", rangeSliderPrimaryThumbIcon)
     .replaceAll("${rangeSliderValue}", template.rangeSliderValue)
+    .replaceAll(
+      "${normalizedRangeSliderValue}",
+      template.normalizedRangeSliderValue
+    )
     .replaceAll("${sign}", template.sign)
     .replaceAll("${mark1}", template.mark1)
     .replaceAll("${mark2}", template.mark2)

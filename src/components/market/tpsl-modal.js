@@ -16,7 +16,7 @@ export function TpslModal() {
   const currentPrice = asset ? asset.lastPrice : 0;
 
   html = html
-    .replace("${closeIcon}", closeIcon || "")
+    .replaceAll("${closeIcon}", closeIcon || "")
     .replaceAll(
       "${takeProfitLabel}",
       mockup.market.tradingBlock.takeProfitLabel

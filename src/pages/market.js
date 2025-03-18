@@ -35,31 +35,73 @@ export default function Market() {
     class="flex flex-col gap-y-4 md:gap-y-6 mx-auto text-center pt-4 md:pt-[49px] pb-[92px] md:pb-[42px] xl:px-10 xl:max-w-[1440px]"
 
     x-data="{
-    isTpslModalOpen: true,
+    isTpslModalOpen: false,
     isLeverageModalOpen: false,
     takeProfitValue: '',
+    lastTakeProfitValue: '',
     tpProfit: '0.00',
+    lastTpProfit: '0.00',
     stopLossValue: '',
+    lastStopLossValue: '',
     slProfit: '0.00',
-    leverageValue: '0',
+    lastSlProfit: '0.00',
+    leverageValue: '1',
+    lastLeverageValue: '1',
     rangeSliderTradingBlockValue: '0',
+    isTpslModalEditMode: false,
+    isLeverageModalEditMode: false,
+    
+    normalizedLeverageValue: '0%',
+    lastNormalizedLeverageValue: '0%',
+    normalizedRangeSliderTradingBlockValue: '0%',
 
-    resetTpslModalToDefault  () {
+    setNormalizedValue (rangeSliderValue, normalizedRangeSliderValue, minValue, maxValue) {
+
+    this[normalizedRangeSliderValue] = ((Number(this[rangeSliderValue]) - Number(minValue)) / (Number(maxValue) - Number(minValue)) * 100) + '%'
+    },
+
+    resetTpslModalToDefault () {
     this.isTpslModalOpen = false;
+
+    if (this.isTpslModalEditMode){
+    this.takeProfitValue = this.lastTakeProfitValue;
+    this.stopLossValue = this.lastStopLossValue;
+
+    this.tpProfit = this.lastTpProfit;
+    this.slProfit = this.lastSlProfit;
+
+    this.isTpslModalEditMode = false;
+    return;
+    };
 
     setTimeout(() => {
       this.takeProfitValue = '';
+      this.lastTakeProfitValue = '';
       this.tpProfit = '0.00';
+      this.lastTpProfit = '0.00';
       this.stopLossValue = '';
+      this.lastStopLossValue = '';
       this.slProfit = '0.00';
+      this.lastSlProfit = '0.00';
     }, 100);
     },
 
     resetLeverageModalToDefault  () {
     this.isLeverageModalOpen = false;
 
+    if (this.isLeverageModalEditMode){
+      this.leverageValue = this.lastLeverageValue;
+      this.normalizedLeverageValue = this.lastNormalizedLeverageValue;
+
+      this.isLeverageModalEditMode = false;
+      return;
+    };
+
     setTimeout(() => {
-      this.leverageValue = '0';
+      this.leverageValue = '1';
+      this.lastLeverageValue = '1';
+      this.normalizedLeverageValue = '0%';
+      this.lastNormalizedLeverageValue = '0%';
     }, 100);
     },
 

@@ -3,15 +3,20 @@
   isInputFocused: false,
   handleSetLeverageButtonClick() {
       isLeverageModalOpen = false;
+      lastLeverageValue = leverageValue;
+      lastNormalizedLeverageValue = normalizedLeverageValue;
     },
      updateLeverageValue(newValue) {
       let value = parseInt(newValue);
-      if (isNaN(value) || value < 0) {
-        value = 0;
+      if (isNaN(value) || value < 1) {
+        value = 1;
       } else if (value > 100) {
         value = 100;
       }
+      
       leverageValue = value.toString();
+
+      setNormalizedValue('leverageValue', 'normalizedLeverageValue', 1, 100);
     }
   }"
   x-show="isLeverageModalOpen"
@@ -44,7 +49,7 @@
       <button
         type="button"
         class="flex size-[54px] shrink-0 items-center justify-center rounded-full bg-[#232426CC]"
-        @click.stop="leverageValue > 0 ? leverageValue = +leverageValue - 1 : leverageValue = '0'"
+        @click.stop="updateLeverageValue(+leverageValue - 1)"
       >
         <span class="h-1 w-4 bg-white"></span>
       </button>
@@ -76,7 +81,7 @@
       <button
         type="button"
         class="relative flex size-[54px] shrink-0 items-center justify-center rounded-full bg-[#232426CC] text-white"
-        @click.stop="leverageValue < 100 ? leverageValue = +leverageValue + 1 : leverageValue = '100'"
+        @click.stop="updateLeverageValue(+leverageValue + 1)"
       >
         <span class="h-1 w-4 bg-white"></span>
         <span
