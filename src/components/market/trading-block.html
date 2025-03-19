@@ -1,9 +1,7 @@
 <div
   x-data="{
     activeTab: '${defaultTab}',
-
     freeMargin: '${freeMargin}',
-
     maxTotalAmount: '${maxTotalAmount}',
 
     resetToDefault() {
@@ -13,6 +11,59 @@
 
     setActiveTab(tab) {
       this.activeTab = tab;
+    },
+
+    balanceUSDT: ${balanceUSDT},
+    orderPrice: this.activeTab === '${defaultTab}' ? '${marketPrice}' : '',
+    orderVolume: '',
+    orderAmount: '',
+
+    updateFromPrice() {
+      const price = parseFloat(this.orderPrice) || 0;
+      const volume = parseFloat(this.orderVolume) || 0;
+
+      const calculatedOrderAmount = formatNumericValue(price * volume);
+
+      if (parseFloat(calculatedOrderAmount) > this.balanceUSDT) {
+        this.orderAmount = formatNumericValue(this.balanceUSDT);
+        this.orderVolume = price ? formatNumericValue(this.balanceUSDT / price) : '0';
+      }
+      rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && parseFloat(this.balanceUSDT) ? 
+        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
+    },
+
+    updateFromVolume() {
+      const price = parseFloat(this.orderPrice) || 0;
+      const volume = parseFloat(this.orderVolume) || 0;
+
+      const calculatedOrderAmount = formatNumericValue(price * volume);
+
+      if (parseFloat(calculatedOrderAmount) > this.balanceUSDT) {
+        this.orderAmount = formatNumericValue(this.balanceUSDT);
+        this.orderVolume = price ? formatNumericValue(this.balanceUSDT / price) : '0';
+      }
+      rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && parseFloat(this.balanceUSDT) ? 
+        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
+    },
+
+    updateFromAmount() {
+      const price = parseFloat(this.orderPrice) || 0;
+
+      const calculatedOrderAmount = formatNumericValue(price * volume);
+
+      this.orderAmount = parseFloat(this.orderAmount) || 0;
+      if (this.orderAmount > this.balanceUSDT) {
+        this.orderAmount = this.balanceUSDT.toFixed(2);
+      }
+      this.orderVolume = price ? (this.orderAmount / price).toFixed(5) : '0';
+      rangeSliderTradingBlockValue = this.orderAmount && this.balanceUSDT ? 
+        ((this.orderAmount * 100) / this.balanceUSDT).toFixed(2) : '0';
+    },
+
+    updateFromSlider() {
+      const price = parseFloat(this.orderPrice) || 0;
+      this.orderAmount = ((rangeSliderTradingBlockValue * this.balanceUSDT) / 100).toFixed(2);
+      this.orderVolume = price ? (this.orderAmount / price).toFixed(5) : '0';
     }
   }"
   x-init="setActiveTab('${defaultTab}')"
@@ -59,17 +110,26 @@
     <label class="flex w-full flex-col gap-y-2 text-left text-xs text-gray">
       ${orderPriceLabel}
       <div
-        class="flex h-12 w-full items-center rounded-[100px] border border-[#373A43] py-2 pl-5 text-sm"
+        class="relative flex h-12 w-full items-center rounded-[100px] border border-[#373A43] py-2 pl-5 text-sm"
         :class="{ 'bg-bg-button-gray': activeTab === 'market', 'bg-[#232426CC]': activeTab === 'limit' }"
       >
         <input
+          id="order-price-input"
           type="text"
           inputmode="decimal"
-          :placeholder="activeTab === 'market'? '${orderMarketPricePlaceholder}' : '${orderLimitPricePlaceholder}'"
-          class="no-outline h-full w-full bg-transparent"
-          :class="{ 'placeholder:text-gray-primary': activeTab === 'market', 'placeholder:text-gray-600': activeTab === 'limit' }"
+          :placeholder="activeTab === 'market'? '' : '${orderLimitPricePlaceholder}'"
+          x-model="orderPrice"
+          @input="
+          orderPrice = formatInputNumericValue($event.target.value);
+          updateFromPrice()"
+          class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
           :disabled="activeTab === 'market'"
         />
+
+        <span
+          class="absolute text-sm text-gray-primary"
+          x-text="activeTab === 'market' ? '${orderMarketPricePlaceholder}' : ''"
+        ></span>
 
         <div
           class="flex h-full min-w-[76px] shrink-0 items-center border-l border-l-[#373A43] px-3 text-white"
@@ -87,9 +147,14 @@
         class="flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm text-white-100"
       >
         <input
+          id="order-volume-input"
           type="number"
           inputmode="decimal"
           placeholder="${amountPlaceholder}"
+          x-model="orderVolume"
+          @input="
+          orderVolume = formatInputNumericValue($event.target.value);
+          updateFromVolume()"
           class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
         />
 
@@ -165,9 +230,14 @@
         class="flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pl-5 text-sm text-white-100"
       >
         <input
+          id="order-amount-input"
           type="number"
           inputmode="decimal"
           placeholder="${totalOrderAmountPlaceholder}"
+          x-model="orderAmount"
+          @input="
+          orderAmount = formatInputNumericValue($event.target.value);
+          updateFromAmount()"
           class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
         />
 

@@ -14,10 +14,6 @@ export default function TradingBlock() {
 
   let html = tradingBlockHtml;
 
-  // mocks
-  const initialFreeMargin = 55;
-  const initialMaxTotalAmount = 100;
-
   const selectedAssetId = localStorage.getItem("selectedAssetId");
 
   const asset = assetsData.find((asset) => asset.id === selectedAssetId);
@@ -25,6 +21,7 @@ export default function TradingBlock() {
   html = html
     .replaceAll("${defaultTab}", mockup.market.tradingBlock.buttons.market.name)
     .replaceAll("${assetName}", asset.name)
+    .replaceAll("${marketPrice}", asset.priceUSDT)
     .replace("${leverage}", mockup.market.leverage)
     .replace(
       "${maxTotalAmount}",
@@ -73,7 +70,8 @@ export default function TradingBlock() {
     .replace("${maxTotalAmount}", mockup.market.tradingBlock.maxTotalAmount)
     .replace("${checkIcon}", checkIcon)
     .replace("${rangeSliderPrimary}", RangeSliderPrimary("tradingBlock"))
-    .replace("${editIcon}", editIcon);
+    .replace("${editIcon}", editIcon)
+    .replaceAll("${balanceUSDT}", mockup.user.balanceUSDT);
 
   return html;
 }

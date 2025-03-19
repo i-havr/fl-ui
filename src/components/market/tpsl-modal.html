@@ -12,12 +12,12 @@
 
       if(takeProfitValue.endsWith('.')) {
         takeProfitValue = takeProfitValue.slice(0, -1);
-        lastTakeProfitValue = takeProfitValue.slice(0, -1);
+        lastTakeProfitValue = takeProfitValue;
       };
 
       if(stopLossValue.endsWith('.')) {
         stopLossValue = stopLossValue.slice(0, -1);
-        lastStopLossValue = stopLossValue.slice(0, -1);
+        lastStopLossValue = stopLossValue;
       };
     },
 
@@ -147,10 +147,7 @@
           placeholder="Trigger price"
           x-model="takeProfitValue"
           @input="
-          let value = $event.target.value.replace(',', '.');
-          value = value.replace(/[^0-9.]/g, '');
-          if (value.split('.').length > 2) value = value.replace(/\.+$/, '');
-          takeProfitValue = value;
+          takeProfitValue = formatInputNumericValue($event.target.value);
           updateTpValues();
           "
           class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pr-12 pl-5 text-sm placeholder:text-gray-600"
@@ -196,11 +193,8 @@
           inputmode="decimal"
           placeholder="Trigger price"
           x-model="stopLossValue"
-          @input="
-          let value = $event.target.value.replace(',', '.');
-          value = value.replace(/[^0-9.]/g, '');
-          if (value.split('.').length > 2) value = value.replace(/\.+$/, '');
-          stopLossValue = value;
+          @input="         
+          stopLossValue = formatInputNumericValue($event.target.value);
           updateSlValues();
           "
           class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pr-12 pl-5 text-sm placeholder:text-gray-600"
