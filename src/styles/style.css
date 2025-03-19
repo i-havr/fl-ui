@@ -1,0 +1,390 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility faded-right-container {
+  -webkit-mask-image: linear-gradient(to left, transparent, black 80px);
+  mask-image: linear-gradient(to left, transparent, black 80px);
+}
+
+@utility faded-bottom-container {
+  -webkit-mask-image: linear-gradient(to top, transparent, black 40px);
+  mask-image: linear-gradient(to top, transparent, black 40px);
+}
+
+@utility tw-no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@theme {
+  --breakpoint-sm: initial;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 90rem;
+  --breakpoint-2xl: initial;
+  --breakpoint-xxl: initial;
+
+  --font-montserrat: "Montserrat", system-ui, sans-serif;
+  --font-manrope: "Manrope", system-ui, sans-serif;
+
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #191919;
+  --color-bg-button-gray: #333333;
+  --color-bg-element-primary: #242424;
+  --color-bg-block-primary: #141518;
+
+  --color-text-primary: #f7f8f8;
+  --color-text-secondary: #ffffff;
+
+  --color-black: #000000;
+  --color-black-primary: #191919;
+
+  --color-white: #ffffff;
+  --color-white-100: #f7f8f8;
+
+  --color-gray: #8a8a8a;
+  --color-gray-primary: #979797;
+  --color-gray-secondary: #4c4c4c;
+  --color-gray-line-primary: rgba(255, 255, 255, 0.1);
+  --color-gray-100: #bfbfbf;
+  --color-gray-200: #828282;
+  --color-gray-300: #3f4046;
+  --color-gray-400: #3c3d45;
+  --color-gray-500: #595959;
+  --color-gray-600: #4b4b4b;
+
+  --color-green-100: #00b69b;
+  --color-green-200: #3ecf09;
+  --color-green-300: #08ab92;
+  --color-green-400: #21b36c;
+
+  --color-blue-100: #1492ff;
+  --color-blue-200: #2871ff;
+
+  --color-yellow-100: #e9af3d;
+
+  --color-red-primary: #ae3c58;
+  --color-red-secondary: #ff678c;
+  --color-red-100: #ff5981;
+  --color-red-200: #fa3162;
+}
+
+:root {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+
+  font-family:
+    "Montserrat", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.light {
+  --color-bg-primary: #f7f8f8;
+  --color-bg-secondary: gray;
+  --color-bg-button-gray: #333333;
+  --color-bg-element-primary: gray;
+  --color-bg-block-primary: #141518;
+
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+
+  --color-gray-line-primary: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  text-align: center;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.no-outline {
+  outline: none;
+  outline-offset: 0;
+}
+
+.custom-container {
+  width: 100%;
+  padding-inline: 1rem;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .custom-container {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .custom-container {
+    padding-inline: 2.5rem;
+    max-width: 90rem;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: unset;
+  /* Firefox */
+}
+
+/* Hide input arrows for Chrome, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide input arrows for Firefox */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"] {
+  appearance: none;
+}
+
+.blue-gradient {
+  background: linear-gradient(
+    265.56deg,
+    #246cf9 -0.27%,
+    #1e68f6 -0.26%,
+    #0047d0 98.59%
+  );
+}
+
+.hidden-checkbox {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@keyframes fadeInOpacityTransformFromBottom {
+  from {
+    opacity: 0;
+    transform: translate(0, 100%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fadeInOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-opacity-transform-from-bottom {
+  opacity: 0;
+  animation: fadeInOpacityTransformFromBottom 300ms ease forwards;
+}
+
+.fade-in-opacity {
+  opacity: 0;
+  animation: fadeInOpacity 300ms ease forwards;
+}
+
+/* Home page => Balance section => Accounts Cards Slider */
+#accounts-container .swiper-pagination-bullet {
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+  background-color: #3c3d45 !important;
+  opacity: 1 !important;
+  transition: all 200ms ease-in-out !important;
+}
+
+#accounts-container .swiper-pagination-bullet-active {
+  width: 27px !important;
+  height: 8px !important;
+  border-radius: 20px !important;
+  background-color: #3c3d45 !important;
+}
+
+/* Home page => Last transactions list & Pagination */
+.transactions-table-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 9px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.transactions-table-row.transactions-list-row {
+  height: 62px;
+  font-size: 13px;
+}
+
+.transactions-table-cell {
+  width: 100px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.pagination-number-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.pagination-number-btn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.pagination-number-btn:active:not(:disabled) {
+  opacity: 0.75;
+}
+
+@media (min-width: 768px) {
+  .transactions-table-cell {
+    width: 100px;
+  }
+
+  .transactions-table-row.transactions-list-row {
+    height: 80px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--line-primary-gray);
+  }
+
+  .transactions-table-row.transactions-list-row:last-child {
+    border-bottom: 1px solid transparent;
+  }
+}
+
+@media (min-width: 1440px) {
+  .transactions-table-cell {
+    width: 150px;
+  }
+
+  .transactions-table-row.transactions-list-row {
+    height: 91px;
+    font-size: 16px;
+  }
+}
+
+/* Market page => Orders section */
+.orders-section-dropdown-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 200ms;
+  overflow: hidden;
+  opacity: 0;
+
+  width: 100%;
+  border-radius: 0 0 8px 8px;
+}
+
+.orders-section-dropdown-content.expanded {
+  opacity: 1;
+  grid-template-rows: 1fr;
+  background-color: #141518;
+}
+
+.positions-table-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.open-orders-table-row {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  column-gap: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 1024px) {
+  .positions-table-row {
+    column-gap: 18px;
+  }
+
+  .open-orders-table-row {
+    column-gap: 36px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .positions-table-row {
+    column-gap: 19px;
+  }
+
+  .open-orders-table-row {
+    column-gap: 31px;
+  }
+}
+
+/* Market page => Trading block => Range Slider Primary */
+
+#range-slider-primary-input {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 19px;
+  outline: none;
+}
+
+#range-slider-primary-input::-webkit-slider-thumb {
+  position: relative;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  z-index: 3;
+  -webkit-appearance: none;
+
+  border: 2px solid transparent;
+  border-radius: 50%;
+}

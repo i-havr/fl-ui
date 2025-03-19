@@ -28,7 +28,7 @@ const iconWrapperStyle = (isSelected) =>
 
 export function ToggleIconTheme() {
   return `
-    <button id="theme-icon-toggle" type="button" class="relative transition-all duration-300 h-10 w-20 cursor-pointer rounded-lg ease-in-out bg-bgElementPrimary flex items-center justify-center gap-x-[5px]">
+    <button id="theme-icon-toggle" type="button" class="relative transition-all duration-300 h-10 w-20 cursor-pointer rounded-lg ease-in-out bg-bg-element-primary flex items-center justify-center gap-x-[5px]">
 
     <div id="theme-icon-toggle-switch" class="${toggleSwitchStyle(!isCurrentThemeLight())}"></div>
 

@@ -11,15 +11,15 @@ export function Nav() {
 
   const linkStyle = (route) => {
     return cn(
-      "flex items-center md:text-gray-primary gap-x-3 h-10 px-3 py-2 text-left opacity-75 md:opacity-100 md:text-[17px]",
+      "flex items-center md:text-gray-primary gap-x-3 h-10 px-3 py-2 text-left opacity-75 md:opacity-100 md:text-sm lg:text-[17px]",
       {
-        "bg-accentSecondary opacity-100 font-medium rounded-lg md:text-textPrimary md:font-normal":
+        "bg-black-primary opacity-100 font-medium rounded-lg md:text-text-primary md:font-normal pointer-events-none":
           currentPath === route
       }
     );
   };
 
-  return `<nav class="flex flex-col md:flex-row gap-y-2 md:gap-y-0 md:gap-x-[30px] mb-7 md:mb-0">
+  return `<nav class="flex flex-col md:flex-row gap-y-2 md:gap-y-0 md:gap-x-0 lg:gap-x-[30px] mb-7 md:mb-0">
         <a href="/" data-link class="${linkStyle("/")}">
         <div class="md:hidden">${homeLinkIcon}</div>
         ${mockup.home.pageName}

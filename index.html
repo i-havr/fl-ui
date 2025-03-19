@@ -11,14 +11,21 @@
       rel="stylesheet"
     />
     <title>Finlab</title>
+
     <script>
       (function () {
         const theme = localStorage.getItem("theme") || "dark";
-        if (theme === "light") {
-          document.documentElement.classList.add("light-mode");
-        }
+
+        document.documentElement.classList.add(
+          theme === "light" ? "light" : "dark"
+        );
       })();
     </script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
   </head>
   <body>
     <div id="app"></div>

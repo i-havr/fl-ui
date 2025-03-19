@@ -18,13 +18,13 @@ function initSwiper() {
 export function AccountsHeader() {
   return `
   <div class="flex justify-between items-center">
-    <div id="swiper-accounts-header" class="faded-right-container swiper w-full min-[768px]:w-auto min-[768px]:flex-1 overflow-hidden !pr-10">
+    <div id="swiper-accounts-header" class="faded-right-container swiper w-full md:w-auto md:flex-1 overflow-hidden !pr-10">
         <div class="swiper-wrapper flex !w-fit">
 
             ${mockup.home.balance.accountsMockup
               .map(
                 (account) =>
-                  `<div class="swiper-slide account-tab !w-fit !mr-2 md:!mr-4 py-[6px] px-[10px]" data-account-id="${account.accountId}">
+                  `<div class="swiper-slide account-tab !w-fit !mr-2 md:!mr-4 py-[6px] px-[10px] rounded-lg" data-account-id="${account.accountId}">
                         <div class="cursor-pointer text-sm transition-colors">
                         ${account.title}
                         </div>
@@ -36,7 +36,7 @@ export function AccountsHeader() {
         
     </div>
 
-    <div class="hidden min-[768px]:flex">
+    <div class="hidden md:flex">
       ${ButtonPrimary(
         `
           <span>
@@ -45,7 +45,7 @@ export function AccountsHeader() {
                       
           ${arrowRightIcon}
           `,
-        "bg-blue-gradient h-9 px-[10px] rounded-lg text-xs gap-x-1",
+        "blue-gradient h-9 px-[10px] rounded-lg text-xs gap-x-1",
         "/market"
       )}
     </div>
@@ -78,7 +78,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 export function setActiveTab(accountId) {
   document.querySelectorAll(".account-tab").forEach((tab) => {
-    tab.classList.remove("text-textPrimary", "text-gray-primary");
+    tab.classList.remove(
+      "text-text-primary",
+      "text-gray-primary",
+      "bg-bg-block-primary",
+      "pointer-events-none"
+    );
     tab.classList.add("text-gray-primary");
   });
 
@@ -86,7 +91,12 @@ export function setActiveTab(accountId) {
     `.account-tab[data-account-id="${accountId}"]`
   );
   if (activeTab) {
-    activeTab.classList.add("text-textPrimary");
+    activeTab.classList.add(
+      "text-text-primary",
+      "bg-bg-block-primary",
+      "pointer-events-none"
+    );
+
     activeTab.classList.remove("text-gray-primary");
   }
 

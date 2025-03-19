@@ -2,13 +2,13 @@ import { languages } from "../../constants";
 import chevronIcon from "../../assets/icons/chevron-icon.svg?raw";
 
 export function LanguageSelector(currentLanguage) {
-  return `<div class="relative text-textPrimary">
-            <button id="language-selector" type="button" class="bg-bgElementPrimary rounded-md flex items-center justify-center gap-x-[6px] text-textPrimary font-manrope w-14 h-7 md:w-[59px] md:h-10">
+  return `<div class="relative text-text-primary">
+            <button id="language-selector" type="button" class="bg-bg-element-primary rounded-md flex items-center justify-center gap-x-[6px] text-text-primary font-manrope w-14 h-7 md:w-[59px] md:h-10">
               <span id="current-language">${currentLanguage}</span>
               <span class="chevron-icon-wrapper block rotate-180 transition-transform duration-200 ease-out">${chevronIcon}</span>
             </button>
   
-            <div id="language-dropdown" class="overflow-hidden w-full absolute right-0 mt-3 bg-bgElementPrimary shadow-md rounded-md hidden py-1">
+            <div id="language-dropdown" class="overflow-hidden w-full absolute right-0 mt-3 bg-bg-element-primary shadow-md rounded-md hidden py-1">
 
                 <button class="lang-btn font-manrope font-medium text-sm block w-full text-left px-4 py-2 hover:bg-gray-700 leading-[1.4]" data-lang="ru">RU</button>
 
@@ -36,9 +36,9 @@ document.addEventListener("click", (e) => {
 
     buttons.forEach((btn) => {
       if (btn.dataset.lang === currentLang) {
-        btn.classList.add("text-textPrimary");
+        btn.classList.add("text-text-primary");
       } else {
-        btn.classList.remove("text-textPrimary");
+        btn.classList.remove("text-text-primary");
         btn.classList.add("text-gray");
       }
     });

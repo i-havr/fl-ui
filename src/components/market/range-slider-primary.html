@@ -1,0 +1,79 @@
+<div
+  class="flex h-[55px] w-full flex-col justify-end"
+  x-init="setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
+>
+  <div class="relative mb-[14px] h-px w-full bg-[#373A43]">
+    <span
+      class="absolute top-1/2 left-0 size-[11px] -translate-y-1/2 rounded-full bg-yellow-100"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(25%-11px)] size-[11px] translate-x-[10px] -translate-y-1/2 rounded-full"
+      :class="{'bg-yellow-100': ${rangeSliderValue} > ${mark2}, 'border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary': ${rangeSliderValue} < ${mark2}}"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(50%-11px)] size-[11px] translate-x-[6px] -translate-y-1/2 rounded-full"
+      :class="{'bg-yellow-100': ${rangeSliderValue} > ${mark3}, 'border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary': ${rangeSliderValue} < ${mark3}}"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(75%-11px)] size-[11px] -translate-y-1/2 rounded-full"
+      :class="{'bg-yellow-100': ${rangeSliderValue} > ${mark4}, 'border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary': ${rangeSliderValue} < ${mark4}}"
+    ></span>
+    <span
+      class="absolute top-1/2 left-[calc(100%-11px)] size-[11px] -translate-y-1/2 rounded-full border-2 border-[#373A43] bg-bg-secondary outline-4 outline-bg-secondary"
+    ></span>
+
+    <input
+      id="range-slider-primary-input"
+      type="range"
+      min="${minValue}"
+      max="${maxValue}"
+      x-model="${rangeSliderValue}"
+      @input="setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
+      class="absolute top-1/2 left-0 w-full -translate-y-1/2"
+    />
+
+    <div
+      class="pointer-events-none absolute top-1/2 z-[2] w-[19px] -translate-y-1/2"
+      :style="{ left: `calc(${${normalizedRangeSliderValue}} - ${19 * ${rangeSliderValue} / 100}px)` }"
+    >
+      <!-- button -->
+      <div
+        class="flex size-[19px] items-center justify-center rounded-full bg-yellow-100"
+      >
+        ${rangeSliderPrimaryThumbIcon}
+      </div>
+
+      <!-- value -->
+      <div
+        class="absolute bottom-6 -left-[2px] z-10 w-[26px] text-center font-manrope text-xs text-yellow-100"
+        x-text="${rangeSliderValue} == ${minValue} ? '' : ${rangeSliderValue} + '${sign}'"
+      ></div>
+    </div>
+
+    <!-- progress bar -->
+    <div
+      class="absolute top-0 left-0 h-0.5 w-0 bg-yellow-100"
+      :style="{ width: ${normalizedRangeSliderValue} }"
+    ></div>
+  </div>
+
+  <!-- range digits bottom block -->
+  <div
+    class="flex w-full items-center justify-between font-manrope text-xs text-gray-primary"
+  >
+    <span>${mark1}${sign}</span>
+    <span
+      :class="{'translate-x-0' : ${isCentered}, 'translate-x-[9px]' : !${isCentered}}"
+      >${mark2}${sign}</span
+    >
+    <span
+      :class="{'translate-x-0' : ${isCentered}, 'translate-x-[10px]' : !${isCentered} && ${minValue} === 0, 'translate-x-[9px]' : !${isCentered} && ${minValue} === 1 }"
+      >${mark3}${sign}</span
+    >
+    <span
+      :class="{'translate-x-[8px]' : ${isCentered}, 'translate-x-[10px]' : !${isCentered} && ${minValue} === 0, 'translate-x-[9px]' : !${isCentered} && ${minValue} === 1 } "
+      >${mark4}${sign}</span
+    >
+    <span class="">${mark5}${sign}</span>
+  </div>
+</div>

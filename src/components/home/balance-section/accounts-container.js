@@ -38,7 +38,7 @@ function renderCards(accounts) {
   accounts.forEach((account) => {
     const card = `
     <div class="swiper-slide !w-fit">
-        <div class="cursor-pointer shrink-0 w-[240px] h-[125px] flex flex-col justify-start items-start gap-y-6 p-[18px] rounded-lg border border-gray-linePrimary hover:opacity-85 active:opacity-75 transition-opacity">
+        <div class="cursor-pointer shrink-0 w-[240px] h-[125px] flex flex-col justify-start items-start gap-y-6 p-[18px] rounded-lg border border-gray-line-primary hover:opacity-85 active:opacity-75 transition-opacity">
             <span class="font-medium text-left">${account.title}</span>
             <span class="font-semibold text-xl">$${account.amount.toLocaleString(
               undefined,

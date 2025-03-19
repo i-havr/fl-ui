@@ -34,26 +34,30 @@ const getPageName = () => {
 
 export function Header() {
   return `
-    <header class="container flex justify-between items-center text-white py-[7px] h-10">
+    <header class="custom-container flex justify-between items-center text-white py-[7px] h-10">
 
     <div class="flex items-center md:hidden">
     ${MenuBtn()}
     ${HeaderTitle(getPageName())}
     </div>
 
-    <div class="hidden items-center md:flex md:gap-x-16">
+    <div class="hidden items-center md:flex md:gap-x-5 lg:gap-x-16">
     ${finlabLogoIcon}
     ${Nav()}
     </div>
 
-    <div class="flex gap-x-3 items-center">
-    <div class="hidden md:flex md:items-center">${ToggleIconTheme()}</div>
+    <div class="flex gap-x-2 lg:gap-x-3 items-center">
+    <div class="hidden md:flex md:items-center">
+        ${ToggleIconTheme()}
+    </div>
 
     ${LanguageSelector(languages[currentLanguage])}
 
-    <button id="go-to-profile" type="button" class="bg-bgElementPrimary rounded-[6px] flex justify-center items-center gap-x-[6px] h-7 px-2 md:h-10">    
-    <span class="w-[18px] h-[19px] md:w-6 md:h-6">${verificationStarIcon}</span>
-    <span class="text-sm">${userName}</span>
+    <button id="go-to-profile" type="button" class="bg-bg-element-primary rounded-[6px] flex justify-center items-center gap-x-[6px] h-7 px-2 md:h-10 max-w-[128px] lg:max-w-auto">    
+        <span class="shrink-0 w-[18px] h-[19px] md:w-6 md:h-6">${verificationStarIcon}</span>
+        <span class="text-sm truncate">
+          ${userName}
+        </span>
     </button>
     </div>
 
@@ -64,7 +68,7 @@ export function Header() {
 document.body.insertAdjacentHTML(
   "beforeend",
   `
-  <div id="menu-container" class="fixed inset-0 z-[50] pointer-events-none"></div>
+  <div id="menu-container" class="fixed inset-0 z-10 pointer-events-none"></div>
   `
 );
 
@@ -77,6 +81,8 @@ const closeMobileMenu = () => {
 
     menuContainer.classList.add("pointer-events-none");
 
+    document.body.classList.remove("no-scroll");
+
     setTimeout(() => {
       document.getElementById("menu-container").innerHTML = "";
     }, 300);
@@ -84,7 +90,7 @@ const closeMobileMenu = () => {
 };
 
 window.addEventListener("resize", () => {
-  if (window.innerWidth >= 1024) {
+  if (window.innerWidth >= 768) {
     closeMobileMenu();
   }
 });
@@ -96,6 +102,8 @@ document.addEventListener("click", (e) => {
 
   if (e.target.closest("#menu-btn")) {
     document.getElementById("menu-container").innerHTML = MobileMenu();
+    document.body.classList.add("no-scroll");
+
     setTimeout(() => {
       const menu = document.getElementById("mobile-menu");
       menu.classList.remove("translate-x-full");
