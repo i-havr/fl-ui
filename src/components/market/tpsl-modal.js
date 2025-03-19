@@ -13,7 +13,7 @@ export function TpslModal() {
 
   const asset = assetsData.find((asset) => asset.id === selectedAssetId);
 
-  const currentPrice = asset ? asset.lastPrice : 0;
+  const currentPrice = asset ? asset.priceUSDT : 0;
 
   html = html
     .replaceAll("${closeIcon}", closeIcon || "")

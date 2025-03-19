@@ -10,6 +10,7 @@ import {
 } from "./mockData";
 
 export const mockup = {
+  user: { name: "Diana S.", balanceUSDT: 50000 },
   home: {
     pageName: "Главная",
     route: "/",

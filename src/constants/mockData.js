@@ -908,7 +908,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 83000,
+    priceUSDT: 50000,
     priceDifference: 0,
     category: "stocks"
   },
@@ -922,7 +922,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 14,
+    priceUSDT: 14,
     priceDifference: 0,
     category: "stocks"
   },
@@ -936,7 +936,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 0.923,
+    priceUSDT: 0.923,
     priceDifference: 3,
     category: "crypto"
   },
@@ -950,7 +950,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 12.33,
+    priceUSDT: 12.33,
     priceDifference: 2.9,
     category: "crypto"
   },
@@ -964,7 +964,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 0.923,
+    priceUSDT: 0.923,
     priceDifference: -0.6,
     category: "indexes"
   },
@@ -978,7 +978,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 12.33,
+    priceUSDT: 12.33,
     priceDifference: 2.9,
     category: "indexes"
   },
@@ -992,7 +992,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 12.33,
+    priceUSDT: 12.33,
     priceDifference: 2.9,
     category: "forex"
   },
@@ -1006,7 +1006,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 12.33,
+    priceUSDT: 12.33,
     priceDifference: 2.9,
     category: "forex"
   },
@@ -1020,7 +1020,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 12.33,
+    priceUSDT: 12.33,
     priceDifference: 2.9,
     category: "etf"
   },
@@ -1034,7 +1034,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 9.12,
+    priceUSDT: 9.12,
     priceDifference: 5.1,
     category: "etf"
   },
@@ -1048,7 +1048,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 12.33,
+    priceUSDT: 12.33,
     priceDifference: 2.9,
     category: "index"
   },
@@ -1062,7 +1062,7 @@ export const assetsList = [
     change: -6.33,
     hight: 0.523,
     low: 0.321,
-    lastPrice: 9.12,
+    priceUSDT: 9.12,
     priceDifference: 5.1,
     category: "index"
   }
