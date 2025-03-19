@@ -109,6 +109,19 @@ export default function Market() {
     isLong: null,
     isShort: null,
 
+    formatNumericValue(numericValue, min = 0, max = 5){
+    return numericValue.toLocaleString('en-US', {minimumFractionDigits: min,maximumFractionDigits: max})
+    },
+
+    formatInputNumericValue (targetValue) {
+      let value = targetValue.replace(/,/g, '.');
+      value = value.replace(/[^0-9.]/g, '');
+      const parts = value.split('.');
+      if (parts.length > 1) {
+        value = parts[0] + '.' + parts.slice(1).join('');
+      }
+      return value;
+      },
     }"
     >
       <div class="flex flex-col xl:flex-row gap-y-0 xl:gap-y-0 xl:gap-x-4">

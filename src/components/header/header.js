@@ -13,8 +13,6 @@ import { ToggleIconTheme } from "./toggle-icon-theme";
 
 import verificationStarIcon from "../../assets/icons/verification-start-icon.svg?raw";
 
-const userName = "Diana S.";
-
 const currentLanguage = localStorage.getItem("language") || "ru";
 
 const getPageName = () => {
@@ -56,7 +54,7 @@ export function Header() {
     <button id="go-to-profile" type="button" class="bg-bg-element-primary rounded-[6px] flex justify-center items-center gap-x-[6px] h-7 px-2 md:h-10 max-w-[128px] lg:max-w-auto">    
         <span class="shrink-0 w-[18px] h-[19px] md:w-6 md:h-6">${verificationStarIcon}</span>
         <span class="text-sm truncate">
-          ${userName}
+          ${mockup.user.name}
         </span>
     </button>
     </div>

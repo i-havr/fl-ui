@@ -39,7 +39,7 @@ export function AssetsList(list) {
 
         <div class="h-full flex flex-col md:flex-row justify-start items-end md:items-center gap-y-1 md:gap-y-0 text-right text-sm">
           <span class="md:w-[155px] md:text-left">
-              ${asset.lastPrice.toLocaleString(undefined, {
+              ${asset.priceUSDT.toLocaleString(undefined, {
                 style: "currency",
                 currency: "USD",
                 minimumFractionDigits: 0,
