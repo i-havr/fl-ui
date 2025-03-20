@@ -10,7 +10,7 @@ import { OpenNewAccountBtn } from "./open-new-account-btn";
 function initSwiper() {
   new Swiper("#accounts-container", {
     slidesPerView: "auto",
-    spaceBetween: 30,
+    spaceBetween: window.innerWidth < 768 ? 16 : 30,
     modules: [Pagination],
     pagination: {
       el: ".swiper-pagination",
