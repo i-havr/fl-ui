@@ -33,7 +33,7 @@ export function LeverageModal() {
         "flex-1 grow shrink-0 rounded-[100px] border border-blue-100 h-12",
         "",
         "tpsl-modal-close-button",
-        "resetLeverageModalToDefault()"
+        "$store.market.resetLeverageModalToDefault()"
       )
     )
     .replace(

@@ -1,351 +1,32 @@
 <div
   x-data="{
-    activeTab: '${defaultTab}',
     freeMargin: '${freeMargin}',
     maxTotalAmount: '${maxTotalAmount}',
 
     resetToDefault() {
-      this.activeTab = '${defaultTab}';
+      $store.market.activeTab = 'market';
       $el.closest('body').classList.remove('no-scroll');
     },
 
     setActiveTab(tab) {
-      this.activeTab = tab;
-      this.orderPrice = tab === '${defaultTab}' ? '${marketPrice}' : ''
+      $store.market.activeTab = tab;
+      $store.market.orderPrice = tab === 'market' ? '${marketPrice}' : ''
     },
-
-    balanceUSDT: ${balanceUSDT},
-    orderPrice: '',
-    orderVolume: '',
-    orderAmount: '',
-
-    updateFromPrice() {
-      const price = parseFloat(this.orderPrice) || 0;
-      const volume = parseFloat(this.orderVolume) || 0;
-      const amount = parseFloat(this.orderAmount) || 0;
-      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
-
-      if (!price && !volume && !amount){
-        this.orderAmount = '';
-        this.orderVolume = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (!price && volume && !amount) {
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (!price && !volume && amount) {
-        this.orderAmount = '';
-        this.orderVolume = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (!price && volume && amount) {
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (price && !volume && !amount){
-        this.orderAmount = '';
-        this.orderVolume = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (price && volume && !amount){        
-        const calculatedOrderAmount = price * volume;
-        if (calculatedOrderAmount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-          this.orderVolume = formatNumericValue(balanceUSDT / price);
-        } else {
-          this.orderAmount = formatNumericValue(calculatedOrderAmount);
-        }        
-
-        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
-        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
-
-        return;
-      }
-
-      if (price && !volume && amount){
-        const calculatedOrderVolume = amount / price;
-        
-        this.orderVolume = formatNumericValue(calculatedOrderVolume);
-        
-        return;
-      }
-      
-      if (price && volume && amount){
-        const calculatedOrderAmount = price * volume;
-
-        if (calculatedOrderAmount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-           this.orderVolume = formatNumericValue(balanceUSDT / price);
-        } else {
-          this.orderAmount = formatNumericValue(calculatedOrderAmount);
-        }
-
-        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
-        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
-
-        return;
-      }
-    },
-
-    updateFromVolume() {
-      const price = parseFloat(this.orderPrice) || 0;
-      const volume = parseFloat(this.orderVolume) || 0;
-      const amount = parseFloat(this.orderAmount) || 0;
-      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
-
-      if (!price && !volume && !amount){
-        if(this.activeTab !== '${defaultTab}') {
-          this.orderPrice = '';
-        }
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (!price && volume && !amount) {
-        if(this.activeTab !== '${defaultTab}') {
-          this.orderPrice = '';
-        }
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (!price && !volume && amount) {
-        if(this.activeTab !== '${defaultTab}') {
-          this.orderPrice = '';
-        }
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (!price && volume && amount) {
-        if(this.activeTab === '${defaultTab}') {
-          this.orderAmount = '';
-        } else {
-          const calculatedOrderPrice = amount / volume;
-          this.orderPrice = formatNumericValue(calculatedOrderPrice);
-        }
-
-        return;
-      }
-
-      if (price && !volume && !amount){
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (price && volume && !amount){
-        const calculatedOrderAmount = price * volume;
-
-        if (calculatedOrderAmount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-          this.orderVolume = formatNumericValue(parseFloat(this.orderAmount) / price);
-        } else {
-          this.orderAmount = formatNumericValue(calculatedOrderAmount);
-        }
-
-        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
-        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
-
-        return;
-      }
-
-      if (price && !volume && amount){
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      if (price && volume && amount){
-        const calculatedOrderAmount = price * volume;
-
-        if (calculatedOrderAmount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-          this.orderVolume = formatNumericValue(parseFloat(this.orderAmount) / price);
-        } else {
-          this.orderAmount = formatNumericValue(calculatedOrderAmount);
-        }
-
-        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
-        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
-
-        return;
-      }
-    },
-
-    updateFromAmount() {
-      const price = parseFloat(this.orderPrice) || 0;
-      const volume = parseFloat(this.orderVolume) || 0;
-      const amount = parseFloat(this.orderAmount) || 0;
-      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
-
-      if (!price && !volume && !amount){
-        if(this.activeTab !== '${defaultTab}') {
-          this.orderPrice = '';
-        }
-        this.orderVolume = '';
-        if(rangeSliderTradingBlockValue !== '0') {
-          rangeSliderTradingBlockValue = '0';
-        }
-        return;
-      }
-
-      if (!price && volume && !amount) {
-        if(this.activeTab !== '${defaultTab}') {
-          this.orderPrice = '';
-        }
-        if(rangeSliderTradingBlockValue !== '0') {
-          rangeSliderTradingBlockValue = '0';
-        }
-        return;
-      }
-
-      if (!price && !volume && amount) {
-        if(this.activeTab !== '${defaultTab}') {
-          this.orderPrice = '';
-        }
-        this.orderVolume = '';
-
-        if (amount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-        } else {
-          this.orderAmount = formatNumericValue(amount);
-        }
-        
-        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
-          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
-        }
-
-        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
-          rangeSliderTradingBlockValue = '0';
-        }
-
-        return;
-      }
-
-      if (!price && volume && amount) {
-        if (amount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-          this.orderPrice = formatNumericValue(balanceUSDT / volume);
-        } else {
-          this.orderAmount = formatNumericValue(amount);
-          this.orderPrice = formatNumericValue(amount / volume);
-        }
-
-        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
-          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
-        }
-
-        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
-          rangeSliderTradingBlockValue = '0';
-        }
-
-        return;
-      }
-
-      if (price && !volume && !amount){
-        this.orderVolume = '';
-        if(rangeSliderTradingBlockValue !== '0') {
-          rangeSliderTradingBlockValue = '0';
-        }
-        return;
-      }
-
-      if (price && volume && !amount){
-        this.orderVolume = '';
-        if(rangeSliderTradingBlockValue !== '0') {
-          rangeSliderTradingBlockValue = '0';
-        }
-        return;
-      }
-
-      if (price && !volume && amount){
-        if (amount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-          this.orderVolume = formatNumericValue(balanceUSDT / price);
-        } else {
-          this.orderAmount = formatNumericValue(amount);
-          this.orderVolume = formatNumericValue(amount / price);
-        }
-
-        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
-          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
-        }
-
-        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
-          rangeSliderTradingBlockValue = '0';
-        }
-
-        return;
-      }
-
-      if (price && volume && amount){
-        if (amount > balanceUSDT) {
-          this.orderAmount = formatNumericValue(balanceUSDT);
-          this.orderVolume = formatNumericValue(balanceUSDT / price);
-        } else {
-          this.orderAmount = formatNumericValue(amount);
-          this.orderVolume = formatNumericValue(amount / price);
-        }
-
-        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
-          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
-        }
-
-        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
-          rangeSliderTradingBlockValue = '0';
-        }
-
-        return;
-      }
-    },
-
-    updateFromSlider() {
-      const amount = parseFloat(this.orderAmount) || 0;
-      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
-      const sliderValue = parseFloat(rangeSliderTradingBlockValue) || 0;
-
-      if (!balanceUSDT){
-        this.orderAmount = '';
-        rangeSliderTradingBlockValue = '0';
-        return;
-      }
-
-      const calculatedOrderAmount = sliderValue * balanceUSDT;
-
-      this.orderAmount = calculatedOrderAmount ? formatNumericValue((calculatedOrderAmount) / 100) : '';
-      
-      this.updateFromAmount();
-    }
   }"
-  x-init="setActiveTab('${defaultTab}')"
+  x-init="setActiveTab('market')"
   class="flex w-full flex-col items-center"
 >
   <!-- open leverage config button -->
   <button
     type="button"
     class="mb-[22px] flex h-9 w-full items-center justify-between rounded-lg bg-bg-button-gray px-[10px] text-sm"
-    @click="isLeverageModalOpen = true; leverageValue != 1 ? isLeverageModalEditMode = true : isLeverageModalEditMode = false"
+    @click="$store.market.isLeverageModalOpen = true; $store.market.leverageValue != 1 ? $store.market.isLeverageModalEditMode = true : $store.market.isLeverageModalEditMode = false"
   >
     <div class="flex items-center gap-x-1">
       <span>${leverage}</span>
       <span
         class="font-semibold text-yellow-100"
-        x-text="'x' + leverageValue"
+        x-text="'x' + $store.market.leverageValue"
       ></span>
     </div>
 
@@ -356,7 +37,7 @@
   <div class="mb-[22px] flex w-full items-center gap-x-5 text-gray-primary">
     <button
       class="border-b border-b-transparent px-3 pb-1"
-      :class="{ 'text-yellow-100 font-medium border-b-yellow-100': activeTab === 'market' }"
+      :class="{ 'text-yellow-100 font-medium border-b-yellow-100': $store.market.activeTab === 'market' }"
       @click="setActiveTab('market')"
     >
       ${marketTabTitle}
@@ -364,7 +45,7 @@
 
     <button
       class="border-b border-b-transparent px-3 pb-1"
-      :class="{ 'text-yellow-100 font-medium border-b-yellow-100': activeTab === 'limit' }"
+      :class="{ 'text-yellow-100 font-medium border-b-yellow-100': $store.market.activeTab === 'limit' }"
       @click="setActiveTab('limit')"
     >
       ${limitTabTitle}
@@ -377,31 +58,31 @@
       ${orderPriceLabel}
       <div
         class="relative flex h-12 w-full items-center rounded-[100px] border border-[#373A43] py-2 pl-5 text-sm"
-        :class="{ 'bg-bg-button-gray': activeTab === 'market', 'bg-[#232426CC]': activeTab === 'limit' }"
+        :class="{ 'bg-bg-button-gray': $store.market.activeTab === 'market', 'bg-[#232426CC]': $store.market.activeTab === 'limit' }"
       >
         <input
           id="order-price-input"
           type="text"
           inputmode="decimal"
           autocomplete="off"
-          :placeholder="activeTab === 'market'? '' : '${orderLimitPricePlaceholder}'"
-          x-model="orderPrice"
+          :placeholder="$store.market.activeTab === 'market'? '' : '${orderLimitPricePlaceholder}'"
+          x-model="$store.market.orderPrice"
           @input="
-          orderPrice = formatInputNumericValue($event.target.value);
-          updateFromPrice()"
+          $store.market.orderPrice = $store.market.formatInputNumericValue($event.target.value);
+          $store.market.updateFromPrice()"
           class="no-outline h-full w-full bg-transparent text-white-100 placeholder:text-gray-600"
-          :class="{ 'hidden': activeTab === 'market'}"
-          :disabled="activeTab === 'market'"
+          :class="{ 'hidden': $store.market.activeTab === 'market'}"
+          :disabled="$store.market.activeTab === 'market'"
         />
 
         <span
           class="absolute text-sm text-gray-primary"
-          x-text="activeTab === 'market' ? '${orderMarketPricePlaceholder}' : ''"
+          x-text="$store.market.activeTab === 'market' ? '${orderMarketPricePlaceholder}' : ''"
         ></span>
 
         <div
           class="flex h-full min-w-[76px] shrink-0 items-center border-l border-l-[#373A43] px-3 text-white"
-          :class="{ 'hidden': activeTab === 'market' }"
+          :class="{ 'hidden': $store.market.activeTab === 'market' }"
         >
           USDT
         </div>
@@ -420,10 +101,10 @@
           inputmode="decimal"
           autocomplete="off"
           placeholder="${amountPlaceholder}"
-          x-model="orderVolume"
+          x-model="$store.market.orderVolume"
           @input="
-          orderVolume = formatInputNumericValue($event.target.value);
-          updateFromVolume()"
+          $store.market.orderVolume = $store.market.formatInputNumericValue($event.target.value);
+          $store.market.updateFromVolume()"
           class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
         />
 
@@ -441,7 +122,7 @@
     <!-- tp/sl checkbox for limit tab -->
     <div
       class="flex w-full items-center justify-between"
-      :class="{ 'hidden': activeTab === 'market' }"
+      :class="{ 'hidden': $store.market.activeTab === 'market' }"
     >
       <label
         class="flex cursor-pointer flex-row-reverse gap-x-2 text-gray-primary"
@@ -450,14 +131,14 @@
         <input
           type="checkbox"
           class="hidden-checkbox"
-          @click="takeProfitValue || stopLossValue ? resetTpslModalToDefault () : isTpslModalOpen = true"
+          @click="parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue) ? $store.market.resetTpslModalToDefault () : $store.market.isTpslModalOpen = true"
         />
         <span
           class="flex size-6 items-center justify-center rounded-[6px]"
-          :class="{ 'bg-green-400 border-none': takeProfitValue || stopLossValue, 'bg-transparent border border-[#484C5C]': !takeProfitValue && !stopLossValue }"
+          :class="{ 'bg-green-400 border-none': parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue), 'bg-transparent border border-[#484C5C]': !parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue) }"
           ><span
             class="size-5 text-white-100"
-            :class="{'inline-block': takeProfitValue || stopLossValue, 'hidden': !takeProfitValue && !stopLossValue}"
+            :class="{'inline-block': parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue), 'hidden': !parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue)}"
             >${checkIcon}</span
           ></span
         >
@@ -466,8 +147,8 @@
       <button
         type="button"
         class="size-6 text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
-        :class="{ 'hidden': !takeProfitValue && !stopLossValue }"
-        @click="isTpslModalOpen = true; isTpslModalEditMode = true"
+        :class="{ 'hidden': !parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue) }"
+        @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true"
       >
         ${editIcon}
       </button>
@@ -477,17 +158,17 @@
     <button
       type="button"
       class="flex h-9 w-full items-center justify-between rounded-lg bg-[#202123] px-[10px] text-xs text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
-      :class="{ 'hidden': activeTab === 'market' || (!takeProfitValue && !stopLossValue) }"
-      @click="isTpslModalOpen = true; isTpslModalEditMode = true"
+      :class="{ 'hidden': $store.market.activeTab === 'market' || (!parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue)) }"
+      @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true"
     >
       <span>Trigger Price</span>
       <span>
         <span
-          x-text="takeProfitValue && !isNaN(parseFloat(takeProfitValue)) ? parseFloat(takeProfitValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
+          x-text="parseFloat($store.market.takeProfitValue) ? parseFloat($store.market.takeProfitValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
         ></span>
         /
         <span
-          x-text="stopLossValue && !isNaN(parseFloat(stopLossValue)) ? parseFloat(stopLossValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
+          x-text="parseFloat($store.market.stopLossValue) ? parseFloat($store.market.stopLossValue).toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 5}).replaceAll(',', ' ').replaceAll('.', ',') : '--'"
         ></span>
       </span>
     </button>
@@ -504,10 +185,10 @@
           inputmode="decimal"
           autocomplete="off"
           placeholder="${totalOrderAmountPlaceholder}"
-          x-model="orderAmount"
+          x-model="$store.market.orderAmount"
           @input="
-          orderAmount = formatInputNumericValue($event.target.value);
-          updateFromAmount()"
+          $store.market.orderAmount = $store.market.formatInputNumericValue($event.target.value);
+          $store.market.updateFromAmount()"
           class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
         />
 

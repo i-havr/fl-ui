@@ -3,47 +3,64 @@
     currentPrice: ${currentPrice},
 
     handleSetTpslButtonClick() {
-      isTpslModalOpen = false;
-      isTpslModalEditMode = false;
-      lastTakeProfitValue = takeProfitValue;
-      lastStopLossValue = stopLossValue;
-      lastTpProfit = tpProfit;
-      lastSlProfit = slProfit;
+      $store.market.isTpslModalOpen = false;
+      $store.market.isTpslModalEditMode = false;
 
-      if(takeProfitValue.endsWith('.')) {
-        takeProfitValue = takeProfitValue.slice(0, -1);
-        lastTakeProfitValue = takeProfitValue;
+      if (parseFloat($store.market.takeProfitValue)){
+        $store.market.lastTakeProfitValue = $store.market.takeProfitValue;
+        $store.market.lastTpProfit = $store.market.tpProfit;
+      } else {
+        $store.market.takeProfitValue = '';
+        $store.market.lastTakeProfitValue = '';
+        $store.market.tpProfit = '0.00';
+        $store.market.lastTpProfit = '0.00';
+      }
+
+      if (parseFloat($store.market.stopLossValue)){
+        $store.market.lastStopLossValue = $store.market.stopLossValue;
+        $store.market.lastSlProfit = $store.market.slProfit;
+      } else {
+        $store.market.stopLossValue = '';
+        $store.market.lastStopLossValue = '';
+        $store.market.slProfit = '0.00';
+        $store.market.lastSlProfit = '0.00';
+      }
+
+
+      if($store.market.takeProfitValue.endsWith('.')) {
+        $store.market.takeProfitValue = $store.market.takeProfitValue.slice(0, -1);
+        $store.market.lastTakeProfitValue = $store.market.takeProfitValue;
       };
 
-      if(stopLossValue.endsWith('.')) {
-        stopLossValue = stopLossValue.slice(0, -1);
-        lastStopLossValue = stopLossValue;
+      if($store.market.stopLossValue.endsWith('.')) {
+        $store.market.stopLossValue = $store.market.stopLossValue.slice(0, -1);
+        $store.market.lastStopLossValue = $store.market.stopLossValue;
       };
     },
 
     updateTpValues() {
-        if(!takeProfitValue) {
-          isLong = null;
-          isShort = null;
-          tpProfit = '0.00';
+        if(!$store.market.takeProfitValue) {
+          $store.market.isLong = null;
+          $store.market.isShort = null;
+          $store.market.tpProfit = '0.00';
         };
         
-        const tpValue = parseFloat(takeProfitValue);
+        const tpValue = parseFloat($store.market.takeProfitValue);
 
         if (!isNaN(tpValue)) {
           if (this.currentPrice) {
             if(this.currentPrice > tpValue){
-              isLong = false;
-              isShort = true;
+              $store.market.isLong = false;
+              $store.market.isShort = true;
 
-              const profit = (this.currentPrice - tpValue) * assetVolume;
-              tpProfit = profit.toLocaleString('en-US');
+              const profit = (this.currentPrice - tpValue) * $store.market.assetVolume;
+              $store.market.tpProfit = profit.toLocaleString('en-US');
             } else {
-              isLong = true;
-              isShort = false;
+              $store.market.isLong = true;
+              $store.market.isShort = false;
 
-              const profit = (tpValue - this.currentPrice) * assetVolume;
-              tpProfit = profit.toLocaleString('en-US');
+              const profit = (tpValue - this.currentPrice) * $store.market.assetVolume;
+              $store.market.tpProfit = profit.toLocaleString('en-US');
             }
           }
         }
@@ -53,51 +70,51 @@
     },
 
     updateSlValues() {
-        if(!stopLossValue) {
-          slProfit = '0.00';
-          if(!takeProfitValue) {
-            isLong = null;
-            isShort = null;
+        if(!$store.market.stopLossValue) {
+          $store.market.slProfit = '0.00';
+          if(!$store.market.takeProfitValue) {
+            $store.market.isLong = null;
+            $store.market.isShort = null;
           }
         };
         
-        const slValue = parseFloat(stopLossValue);
+        const slValue = parseFloat($store.market.stopLossValue);
 
         if (!isNaN(slValue)) {
           if (this.currentPrice) {
-            if (!takeProfitValue && this.currentPrice > slValue){
-              isLong = false;
-              isShort = true;
+            if (!$store.market.takeProfitValue && this.currentPrice > slValue){
+              $store.market.isLong = false;
+              $store.market.isShort = true;
 
-              const profit = (slValue - this.currentPrice) * assetVolume;
-              slProfit = profit.toLocaleString('en-US');
+              const profit = (slValue - this.currentPrice) * $store.market.assetVolume;
+              $store.market.slProfit = profit.toLocaleString('en-US');
             } 
             
-            if (!takeProfitValue && this.currentPrice < slValue){
-              isLong = true;
-              isShort = false;
+            if (!$store.market.takeProfitValue && this.currentPrice < slValue){
+              $store.market.isLong = true;
+              $store.market.isShort = false;
 
-              const profit = (this.currentPrice - slValue) * assetVolume;
-              slProfit = profit.toLocaleString('en-US');
+              const profit = (this.currentPrice - slValue) * $store.market.assetVolume;
+              $store.market.slProfit = profit.toLocaleString('en-US');
             }
 
-            if(takeProfitValue && this.currentPrice > slValue){
-              if(isLong){
-                const profit = (slValue - this.currentPrice) * assetVolume;
-                slProfit = profit.toLocaleString('en-US');
+            if($store.market.takeProfitValue && this.currentPrice > slValue){
+              if($store.market.isLong){
+                const profit = (slValue - this.currentPrice) * $store.market.assetVolume;
+                $store.market.slProfit = profit.toLocaleString('en-US');
               } else {
-                const profit = (this.currentPrice - slValue) * assetVolume;
-                slProfit = profit.toLocaleString('en-US');
+                const profit = (this.currentPrice - slValue) * $store.market.assetVolume;
+                $store.market.slProfit = profit.toLocaleString('en-US');
               }
             }
 
-            if(takeProfitValue && this.currentPrice < slValue){
-              if(isLong){
-                const profit = (this.currentPrice - slValue) * assetVolume;
-                slProfit = profit.toLocaleString('en-US');
+            if($store.market.takeProfitValue && this.currentPrice < slValue){
+              if($store.market.isLong){
+                const profit = (this.currentPrice - slValue) * $store.market.assetVolume;
+                $store.market.slProfit = profit.toLocaleString('en-US');
               } else {
-                const profit = (slValue - this.currentPrice) * assetVolume;
-                slProfit = profit.toLocaleString('en-US');
+                const profit = (slValue - this.currentPrice) * $store.market.assetVolume;
+                $store.market.slProfit = profit.toLocaleString('en-US');
               }
             }
           }
@@ -108,20 +125,20 @@
     updateTpValues(); 
     updateSlValues();
   })"
-  x-show="isTpslModalOpen"
+  x-show="$store.market.isTpslModalOpen"
   x-transition:enter="transition ease-out duration-300"
   x-transition:enter-start="translate-y-full md:translate-y-0"
   x-transition:enter-end="translate-y-0"
   x-transition:leave="transition ease-in duration-300"
   x-transition:leave-start="translate-y-0"
   x-transition:leave-end="translate-y-full md:translate-y-0"
-  @click.away="resetTpslModalToDefault()"
+  @click.away="$store.market.resetTpslModalToDefault()"
   @click.stop=""
   class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:max-w-[480px]"
 >
   <button
     type="button"
-    @click.stop="resetTpslModalToDefault()"
+    @click.stop="$store.market.resetTpslModalToDefault()"
     class="mb-[17px] ml-auto h-[14px] w-[14px]"
   >
     ${closeIcon}
@@ -145,9 +162,9 @@
           type="text"
           inputmode="decimal"
           placeholder="Trigger price"
-          x-model="takeProfitValue"
+          x-model="$store.market.takeProfitValue"
           @input="
-          takeProfitValue = formatInputNumericValue($event.target.value);
+          $store.market.takeProfitValue = $store.market.formatInputNumericValue($event.target.value);
           updateTpValues();
           "
           class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pr-12 pl-5 text-sm placeholder:text-gray-600"
@@ -155,16 +172,16 @@
 
         <button
           type="button"
-          @click.stop="takeProfitValue = ''; updateTpValues()"
+          @click.stop="$store.market.takeProfitValue = ''; updateTpValues()"
           class="absolute right-5 bottom-[14px] flex size-5 items-center justify-center rounded-full bg-[#565656] text-[#1C1D1E]"
-          :class="{'hidden': !takeProfitValue}"
+          :class="{'hidden': !$store.market.takeProfitValue}"
         >
           <div class="size-[10px] scale-95">${closeIcon}</div>
         </button>
       </label>
 
       <div
-        x-text="takeProfitValue && !isNaN(((takeProfitValue - currentPrice)/currentPrice * 100).toFixed(2)) ? ((takeProfitValue - currentPrice)/currentPrice * 100).toFixed(2) + '%' : '0%'"
+        x-text="$store.market.takeProfitValue && !isNaN((($store.market.takeProfitValue - currentPrice)/currentPrice * 100).toFixed(2)) ? (($store.market.takeProfitValue - currentPrice)/currentPrice * 100).toFixed(2) + '%' : '0%'"
         class="flex h-12 w-[116px] shrink-0 items-center overflow-hidden rounded-[100px] bg-[#232426CC] px-5 py-2 text-left text-sm text-white-100"
       ></div>
     </div>
@@ -175,10 +192,10 @@
     >
       When the last traded price reaches
       <span
-        x-text="!isNaN(parseFloat(takeProfitValue)) ? parseFloat(takeProfitValue).toLocaleString('en-US') : '0.00'"
+        x-text="isNaN(parseFloat($store.market.takeProfitValue)) || !parseFloat($store.market.takeProfitValue) ? '0.00' : parseFloat($store.market.takeProfitValue).toLocaleString('en-US')"
       ></span
       >, it will trigger a take profit market order, resulting in an expected
-      profit of <span x-text="tpProfit"></span> USDT.
+      profit of <span x-text="$store.market.tpProfit"></span> USDT.
     </p>
 
     <!-- stop loss block -->
@@ -192,9 +209,9 @@
           type="text"
           inputmode="decimal"
           placeholder="Trigger price"
-          x-model="stopLossValue"
+          x-model="$store.market.stopLossValue"
           @input="         
-          stopLossValue = formatInputNumericValue($event.target.value);
+          $store.market.stopLossValue = $store.market.formatInputNumericValue($event.target.value);
           updateSlValues();
           "
           class="no-outline flex h-12 w-full items-center rounded-[100px] border border-[#373A43] bg-[#232426CC] py-2 pr-12 pl-5 text-sm placeholder:text-gray-600"
@@ -202,16 +219,16 @@
 
         <button
           type="button"
-          @click.stop="stopLossValue = ''; updateSlValues()"
+          @click.stop="$store.market.stopLossValue = ''; updateSlValues()"
           class="absolute right-5 bottom-[14px] flex size-5 items-center justify-center rounded-full bg-[#565656] text-[#1C1D1E]"
-          :class="{'hidden': !stopLossValue}"
+          :class="{'hidden': !$store.market.stopLossValue}"
         >
           <div class="size-[10px] scale-95">${closeIcon}</div>
         </button>
       </label>
 
       <div
-        x-text="stopLossValue && !isNaN(((stopLossValue - currentPrice)/currentPrice * 100).toFixed(2)) ? ((stopLossValue - currentPrice)/currentPrice * 100).toFixed(2) + '%' : '0%'"
+        x-text="$store.market.stopLossValue && !isNaN((($store.market.stopLossValue - currentPrice)/currentPrice * 100).toFixed(2)) ? (($store.market.stopLossValue - currentPrice)/currentPrice * 100).toFixed(2) + '%' : '0%'"
         class="flex h-12 w-[116px] shrink-0 items-center rounded-[100px] bg-[#232426CC] px-5 py-2 text-left text-sm text-white-100"
       ></div>
     </div>
@@ -222,11 +239,13 @@
     >
       When the last traded price reaches
       <span
-        x-text="!isNaN(parseFloat(stopLossValue)) ? parseFloat(stopLossValue).toLocaleString('en-US') : '0.00'"
+        x-text="isNaN(parseFloat($store.market.stopLossValue)) || !parseFloat($store.market.stopLossValue) ? '0.00': parseFloat($store.market.stopLossValue).toLocaleString('en-US')"
       ></span
       >, it will trigger a stop loss market order, resulting in an expected
-      <span x-text="slProfit.startsWith('-')? 'loss' : 'profit'"></span> of
-      <span x-text="slProfit"></span> USDT.
+      <span
+        x-text="$store.market.slProfit.startsWith('-')? 'loss' : 'profit'"
+      ></span>
+      of <span x-text="$store.market.slProfit"></span> USDT.
     </p>
   </form>
 
