@@ -35,7 +35,7 @@ export default function BalanceSection() {
                   mockup.home.balance.isCreditAvailable
                     ? `<button type="button" class="flex items-center gap-x-1 bg-bg-button-gray px-[10px] py-[10px] md:px-[14px] rounded-lg text-xs md:text-xs transition-opacity hover:opacity-85 active:bg-opacity-75">
                 <span>${mockup.home.balance.takeLoan}</span>
-                <span class="size-[14px]">${chevronIcon}</span>                
+                <span class="w-[14px]">${chevronIcon}</span>                
                 </button>`
                     : `
                     `
@@ -94,14 +94,14 @@ export default function BalanceSection() {
                 }">
                                       
                     ${ButtonPrimary(
-                      `<span class="hidden md:block size-6">${depositIcon}</span>
+                      `<span class="hidden md:block w-6">${depositIcon}</span>
                     ${mockup.home.balance.buttons.deposit}
                       `,
                       "blue-gradient grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 h-10 md:h-16"
                     )}
                    
                     ${ButtonPrimary(
-                      `<span class="hidden md:block size-6">${withdrawalIcon}</span>
+                      `<span class="hidden md:block w-6">${withdrawalIcon}</span>
                     ${mockup.home.balance.buttons.withdrawal}
                     `,
                       "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-16"
@@ -111,7 +111,7 @@ export default function BalanceSection() {
                     ${
                       mockup.home.balance.accountsMockup.length > 1
                         ? ButtonPrimary(
-                            `<span class="hidden md:block size-6">${transferIcon}</span>
+                            `<span class="hidden md:block w-6">${transferIcon}</span>
                           ${mockup.home.balance.buttons.transfer}
                           `,
                             "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-16"
