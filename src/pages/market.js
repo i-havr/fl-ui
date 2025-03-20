@@ -110,17 +110,37 @@ export default function Market() {
     isShort: null,
 
     formatNumericValue(numericValue, min = 0, max = 5){
-    return numericValue.toLocaleString('en-US', {minimumFractionDigits: min,maximumFractionDigits: max})
+    return numericValue.toLocaleString('en-US', {minimumFractionDigits: min,maximumFractionDigits: max}).replaceAll(',', '')
     },
 
     formatInputNumericValue (targetValue) {
       let value = targetValue.replace(/,/g, '.');
       value = value.replace(/[^0-9.]/g, '');
       const parts = value.split('.');
-      if (parts.length > 1) {
-        value = parts[0] + '.' + parts.slice(1).join('');
+
+      let integerPart = parts[0] || '0';
+      integerPart = parseInt(integerPart, 10).toString();
+      if (isNaN(integerPart)) {
+        integerPart = '0'; 
       }
+
+      if (parts.length > 1) {
+        const decimalPart = parts.slice(1).join('');
+        value = integerPart + '.' + decimalPart;
+      } else {
+        value = integerPart;
+      }
+
+      if (value === '0' && targetValue === '0') {
+        return '0';
+      }
+
+      if (value === '' || value === '0') {
+        return targetValue === '' ? '' : '0';
+      }
+
       return value;
+
       },
     }"
     >
@@ -188,6 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", () => {
     const currentWidth = window.innerWidth;
+
+    const defaultTabName = mockup.market.ordersSection.filterParams[0].name;
 
     if (
       (previousWidth < 768 && currentWidth >= 768) ||
