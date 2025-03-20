@@ -1,6 +1,9 @@
 <div
   class="flex h-[55px] w-full flex-col justify-end"
-  x-init="`${rangeSliderValue}` === 'rangeSliderTradingBlockValue' ? $watch('rangeSliderTradingBlockValue', () => updateFromSlider()) : null, setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
+  x-init="$watch('${rangeSliderValue}', () => {
+    setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})
+  }),    
+    setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
 >
   <div class="relative mb-[14px] h-px w-full bg-[#373A43]">
     <span
@@ -28,7 +31,8 @@
       min="${minValue}"
       max="${maxValue}"
       x-model="${rangeSliderValue}"
-      @input="setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
+      @input="`${rangeSliderValue}` === 'rangeSliderTradingBlockValue' 
+    ? updateFromSlider() : null"
       class="absolute top-1/2 left-0 w-full -translate-y-1/2"
     />
 

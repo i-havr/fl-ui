@@ -11,59 +11,325 @@
 
     setActiveTab(tab) {
       this.activeTab = tab;
+      this.orderPrice = tab === '${defaultTab}' ? '${marketPrice}' : ''
     },
 
     balanceUSDT: ${balanceUSDT},
-    orderPrice: this.activeTab === '${defaultTab}' ? '${marketPrice}' : '',
+    orderPrice: '',
     orderVolume: '',
     orderAmount: '',
 
     updateFromPrice() {
       const price = parseFloat(this.orderPrice) || 0;
       const volume = parseFloat(this.orderVolume) || 0;
+      const amount = parseFloat(this.orderAmount) || 0;
+      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
 
-      const calculatedOrderAmount = formatNumericValue(price * volume);
-
-      if (parseFloat(calculatedOrderAmount) > this.balanceUSDT) {
-        this.orderAmount = formatNumericValue(this.balanceUSDT);
-        this.orderVolume = price ? formatNumericValue(this.balanceUSDT / price) : '0';
+      if (!price && !volume && !amount){
+        this.orderAmount = '';
+        this.orderVolume = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
       }
-      rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && parseFloat(this.balanceUSDT) ? 
+
+      if (!price && volume && !amount) {
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (!price && !volume && amount) {
+        this.orderAmount = '';
+        this.orderVolume = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (!price && volume && amount) {
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (price && !volume && !amount){
+        this.orderAmount = '';
+        this.orderVolume = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (price && volume && !amount){        
+        const calculatedOrderAmount = price * volume;
+        if (calculatedOrderAmount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+          this.orderVolume = formatNumericValue(balanceUSDT / price);
+        } else {
+          this.orderAmount = formatNumericValue(calculatedOrderAmount);
+        }        
+
+        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
         formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
+
+        return;
+      }
+
+      if (price && !volume && amount){
+        const calculatedOrderVolume = amount / price;
+        
+        this.orderVolume = formatNumericValue(calculatedOrderVolume);
+        
+        return;
+      }
+      
+      if (price && volume && amount){
+        const calculatedOrderAmount = price * volume;
+
+        if (calculatedOrderAmount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+           this.orderVolume = formatNumericValue(balanceUSDT / price);
+        } else {
+          this.orderAmount = formatNumericValue(calculatedOrderAmount);
+        }
+
+        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
+        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
+
+        return;
+      }
     },
 
     updateFromVolume() {
       const price = parseFloat(this.orderPrice) || 0;
       const volume = parseFloat(this.orderVolume) || 0;
+      const amount = parseFloat(this.orderAmount) || 0;
+      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
 
-      const calculatedOrderAmount = formatNumericValue(price * volume);
-
-      if (parseFloat(calculatedOrderAmount) > this.balanceUSDT) {
-        this.orderAmount = formatNumericValue(this.balanceUSDT);
-        this.orderVolume = price ? formatNumericValue(this.balanceUSDT / price) : '0';
+      if (!price && !volume && !amount){
+        if(this.activeTab !== '${defaultTab}') {
+          this.orderPrice = '';
+        }
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
       }
-      rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && parseFloat(this.balanceUSDT) ? 
+
+      if (!price && volume && !amount) {
+        if(this.activeTab !== '${defaultTab}') {
+          this.orderPrice = '';
+        }
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (!price && !volume && amount) {
+        if(this.activeTab !== '${defaultTab}') {
+          this.orderPrice = '';
+        }
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (!price && volume && amount) {
+        if(this.activeTab === '${defaultTab}') {
+          this.orderAmount = '';
+        } else {
+          const calculatedOrderPrice = amount / volume;
+          this.orderPrice = formatNumericValue(calculatedOrderPrice);
+        }
+
+        return;
+      }
+
+      if (price && !volume && !amount){
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (price && volume && !amount){
+        const calculatedOrderAmount = price * volume;
+
+        if (calculatedOrderAmount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+          this.orderVolume = formatNumericValue(parseFloat(this.orderAmount) / price);
+        } else {
+          this.orderAmount = formatNumericValue(calculatedOrderAmount);
+        }
+
+        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
         formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
+
+        return;
+      }
+
+      if (price && !volume && amount){
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      if (price && volume && amount){
+        const calculatedOrderAmount = price * volume;
+
+        if (calculatedOrderAmount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+          this.orderVolume = formatNumericValue(parseFloat(this.orderAmount) / price);
+        } else {
+          this.orderAmount = formatNumericValue(calculatedOrderAmount);
+        }
+
+        rangeSliderTradingBlockValue = parseFloat(this.orderAmount) && balanceUSDT ? 
+        formatNumericValue((parseFloat(this.orderAmount) * 100) / parseFloat(this.balanceUSDT)) : '0';
+
+        return;
+      }
     },
 
     updateFromAmount() {
       const price = parseFloat(this.orderPrice) || 0;
+      const volume = parseFloat(this.orderVolume) || 0;
+      const amount = parseFloat(this.orderAmount) || 0;
+      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
 
-      const calculatedOrderAmount = formatNumericValue(price * volume);
-
-      this.orderAmount = parseFloat(this.orderAmount) || 0;
-      if (this.orderAmount > this.balanceUSDT) {
-        this.orderAmount = this.balanceUSDT.toFixed(2);
+      if (!price && !volume && !amount){
+        if(this.activeTab !== '${defaultTab}') {
+          this.orderPrice = '';
+        }
+        this.orderVolume = '';
+        if(rangeSliderTradingBlockValue !== '0') {
+          rangeSliderTradingBlockValue = '0';
+        }
+        return;
       }
-      this.orderVolume = price ? (this.orderAmount / price).toFixed(5) : '0';
-      rangeSliderTradingBlockValue = this.orderAmount && this.balanceUSDT ? 
-        ((this.orderAmount * 100) / this.balanceUSDT).toFixed(2) : '0';
+
+      if (!price && volume && !amount) {
+        if(this.activeTab !== '${defaultTab}') {
+          this.orderPrice = '';
+        }
+        if(rangeSliderTradingBlockValue !== '0') {
+          rangeSliderTradingBlockValue = '0';
+        }
+        return;
+      }
+
+      if (!price && !volume && amount) {
+        if(this.activeTab !== '${defaultTab}') {
+          this.orderPrice = '';
+        }
+        this.orderVolume = '';
+
+        if (amount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+        } else {
+          this.orderAmount = formatNumericValue(amount);
+        }
+        
+        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
+          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
+        }
+
+        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
+          rangeSliderTradingBlockValue = '0';
+        }
+
+        return;
+      }
+
+      if (!price && volume && amount) {
+        if (amount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+          this.orderPrice = formatNumericValue(balanceUSDT / volume);
+        } else {
+          this.orderAmount = formatNumericValue(amount);
+          this.orderPrice = formatNumericValue(amount / volume);
+        }
+
+        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
+          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
+        }
+
+        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
+          rangeSliderTradingBlockValue = '0';
+        }
+
+        return;
+      }
+
+      if (price && !volume && !amount){
+        this.orderVolume = '';
+        if(rangeSliderTradingBlockValue !== '0') {
+          rangeSliderTradingBlockValue = '0';
+        }
+        return;
+      }
+
+      if (price && volume && !amount){
+        this.orderVolume = '';
+        if(rangeSliderTradingBlockValue !== '0') {
+          rangeSliderTradingBlockValue = '0';
+        }
+        return;
+      }
+
+      if (price && !volume && amount){
+        if (amount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+          this.orderVolume = formatNumericValue(balanceUSDT / price);
+        } else {
+          this.orderAmount = formatNumericValue(amount);
+          this.orderVolume = formatNumericValue(amount / price);
+        }
+
+        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
+          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
+        }
+
+        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
+          rangeSliderTradingBlockValue = '0';
+        }
+
+        return;
+      }
+
+      if (price && volume && amount){
+        if (amount > balanceUSDT) {
+          this.orderAmount = formatNumericValue(balanceUSDT);
+          this.orderVolume = formatNumericValue(balanceUSDT / price);
+        } else {
+          this.orderAmount = formatNumericValue(amount);
+          this.orderVolume = formatNumericValue(amount / price);
+        }
+
+        if (parseFloat(this.orderAmount) && balanceUSDT && rangeSliderTradingBlockValue !== formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT)){
+          rangeSliderTradingBlockValue = formatNumericValue((parseFloat(this.orderAmount) * 100) / balanceUSDT);
+        }
+
+        if ((!parseFloat(this.orderAmount) || !balanceUSDT) && rangeSliderTradingBlockValue !== '0'){
+          rangeSliderTradingBlockValue = '0';
+        }
+
+        return;
+      }
     },
 
     updateFromSlider() {
-      const price = parseFloat(this.orderPrice) || 0;
-      this.orderAmount = ((rangeSliderTradingBlockValue * this.balanceUSDT) / 100).toFixed(2);
-      this.orderVolume = price ? (this.orderAmount / price).toFixed(5) : '0';
+      const amount = parseFloat(this.orderAmount) || 0;
+      const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
+      const sliderValue = parseFloat(rangeSliderTradingBlockValue) || 0;
+
+      if (!balanceUSDT){
+        this.orderAmount = '';
+        rangeSliderTradingBlockValue = '0';
+        return;
+      }
+
+      const calculatedOrderAmount = sliderValue * balanceUSDT;
+
+      this.orderAmount = calculatedOrderAmount ? formatNumericValue((calculatedOrderAmount) / 100) : '';
+      
+      this.updateFromAmount();
     }
   }"
   x-init="setActiveTab('${defaultTab}')"
@@ -117,12 +383,14 @@
           id="order-price-input"
           type="text"
           inputmode="decimal"
+          autocomplete="off"
           :placeholder="activeTab === 'market'? '' : '${orderLimitPricePlaceholder}'"
           x-model="orderPrice"
           @input="
           orderPrice = formatInputNumericValue($event.target.value);
           updateFromPrice()"
-          class="no-outline h-full w-full bg-transparent placeholder:text-gray-600"
+          class="no-outline h-full w-full bg-transparent text-white-100 placeholder:text-gray-600"
+          :class="{ 'hidden': activeTab === 'market'}"
           :disabled="activeTab === 'market'"
         />
 
@@ -135,7 +403,7 @@
           class="flex h-full min-w-[76px] shrink-0 items-center border-l border-l-[#373A43] px-3 text-white"
           :class="{ 'hidden': activeTab === 'market' }"
         >
-          ${assetName}
+          USDT
         </div>
       </div>
     </label>
@@ -148,8 +416,9 @@
       >
         <input
           id="order-volume-input"
-          type="number"
+          type="text"
           inputmode="decimal"
+          autocomplete="off"
           placeholder="${amountPlaceholder}"
           x-model="orderVolume"
           @input="
@@ -231,8 +500,9 @@
       >
         <input
           id="order-amount-input"
-          type="number"
+          type="text"
           inputmode="decimal"
+          autocomplete="off"
           placeholder="${totalOrderAmountPlaceholder}"
           x-model="orderAmount"
           @input="
