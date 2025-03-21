@@ -46,7 +46,13 @@
 
       <div class="flex items-center justify-between">
         <span class="text-gray">${tpsl}</span>
-        <button type="button" class="text-yellow-100">View</button>
+        <button
+          type="button"
+          class="text-yellow-100"
+          @click="$store.market.isTpslModalOpen = true; $store.market.tpslModalPlace = 'openOrders'"
+        >
+          View
+        </button>
       </div>
 
       <div class="flex items-center justify-between">

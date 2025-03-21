@@ -16,6 +16,7 @@ export default function Market() {
   const showDefaultAsset = () => {
     localStorage.setItem("selectedAssetId", assetsData[0].id);
     selectedAssetData = assetsData[0];
+    Alpine.store("market").selectedAssetData = assetsData[0];
   };
 
   if (!selectedAssetId) {
@@ -25,9 +26,13 @@ export default function Market() {
 
     if (asset) {
       selectedAssetData = asset;
+      Alpine.store("market").selectedAssetData = asset;
     } else {
       showDefaultAsset();
     }
+
+    // need to update current price with websockets
+    Alpine.store("market").assetMarketPrice = selectedAssetData.priceUSDT;
   }
 
   return `
