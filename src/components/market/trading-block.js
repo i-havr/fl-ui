@@ -19,7 +19,6 @@ export default function TradingBlock() {
   const asset = assetsData.find((asset) => asset.id === selectedAssetId);
 
   html = html
-    .replaceAll("${defaultTab}", mockup.market.tradingBlock.buttons.market.name)
     .replaceAll("${assetName}", asset.name)
     .replaceAll("${marketPrice}", asset.priceUSDT)
     .replace("${leverage}", mockup.market.leverage)
@@ -70,8 +69,7 @@ export default function TradingBlock() {
     .replace("${maxTotalAmount}", mockup.market.tradingBlock.maxTotalAmount)
     .replace("${checkIcon}", checkIcon)
     .replace("${rangeSliderPrimary}", RangeSliderPrimary("tradingBlock"))
-    .replace("${editIcon}", editIcon)
-    .replaceAll("${balanceUSDT}", mockup.user.balanceUSDT);
+    .replace("${editIcon}", editIcon);
 
   return html;
 }

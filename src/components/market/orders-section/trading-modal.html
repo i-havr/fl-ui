@@ -4,8 +4,8 @@
         isTradingModalOpen = false;
         
         setTimeout(()=>{
-          rangeSliderTradingBlockValue = '0';
-          normalizedRangeSliderTradingBlockValue = '0%';
+          $store.market.rangeSliderTradingBlockValue = '0';
+          $store.market.normalizedRangeSliderTradingBlockValue = '0%';
         }, 100)
 
         $el.closest('body').classList.remove('no-scroll');}

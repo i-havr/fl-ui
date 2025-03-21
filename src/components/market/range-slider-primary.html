@@ -1,9 +1,9 @@
 <div
   class="flex h-[55px] w-full flex-col justify-end"
   x-init="$watch('${rangeSliderValue}', () => {
-    setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})
+    $store.market.setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})
   }),    
-    setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
+    $store.market.setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})"
 >
   <div class="relative mb-[14px] h-px w-full bg-[#373A43]">
     <span
@@ -31,8 +31,8 @@
       min="${minValue}"
       max="${maxValue}"
       x-model="${rangeSliderValue}"
-      @input="`${rangeSliderValue}` === 'rangeSliderTradingBlockValue' 
-    ? updateFromSlider() : null"
+      @input="`${rangeSliderValue}` === '$store.market.rangeSliderTradingBlockValue' 
+    ? $store.market.updateFromSlider() : null"
       class="absolute top-1/2 left-0 w-full -translate-y-1/2"
     />
 
