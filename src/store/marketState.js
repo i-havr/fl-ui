@@ -1,12 +1,12 @@
 export function initMarketState() {
-  document.addEventListener("alpine:init", () => {
+  const initializeStore = () => {
     Alpine.store("market", {
       selectedAssetData: {},
       selectedPositionType: "",
       selectedPositionLeverage: "",
 
       isTradingModalOpen: false,
-      isTpslModalOpen: true,
+      isTpslModalOpen: false,
       isLeverageModalOpen: false,
       takeProfitValue: "",
       lastTakeProfitValue: "",
@@ -670,5 +670,11 @@ export function initMarketState() {
         }
       }
     });
-  });
+  };
+
+  if (window.Alpine) {
+    initializeStore();
+  } else {
+    document.addEventListener("alpine:init", initializeStore);
+  }
 }
