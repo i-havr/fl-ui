@@ -10,11 +10,11 @@ export function LanguageSelector(currentLanguage) {
   
             <div id="language-dropdown" class="overflow-hidden w-full absolute right-0 mt-3 bg-bg-element-primary shadow-md rounded-md hidden py-1">
 
-                <button class="lang-btn font-manrope font-medium text-sm block w-full text-left px-4 py-2 hover:bg-gray-700 leading-[1.4]" data-lang="ru">RU</button>
+                <button class="lang-btn font-manrope font-medium block w-full text-sm text-center px-4 py-2 hover:bg-[#2E2E2E] leading-[1.4]" data-lang="ru">RU</button>
 
-                <button class="lang-btn font-manrope font-medium text-sm block w-full text-left px-4 py-2 hover:bg-gray-700 leading-[1.4]" data-lang="en">EN</button>
+                <button class="lang-btn font-manrope font-medium block w-full text-sm text-center px-4 py-2 hover:bg-[#2E2E2E] leading-[1.4]" data-lang="en">EN</button>
 
-                <button class="lang-btn font-manrope font-medium text-sm block w-full text-left px-4 py-2 hover:bg-gray-700 leading-[1.4]" data-lang="ua">UA</button>
+                <button class="lang-btn font-manrope font-medium block w-full text-sm text-center px-4 py-2 hover:bg-[#2E2E2E] leading-[1.4]" data-lang="ua">UA</button>
             </div>
           </div>`;
 }
@@ -39,7 +39,7 @@ document.addEventListener("click", (e) => {
         btn.classList.add("text-text-primary");
       } else {
         btn.classList.remove("text-text-primary");
-        btn.classList.add("text-gray");
+        btn.classList.add("text-gray-secondary");
       }
     });
   }
