@@ -1073,6 +1073,7 @@ export const positionsData = [
   {
     id: "1",
     symbol: "BTCUSDT",
+    type: "Long",
     size: 238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
@@ -1087,7 +1088,8 @@ export const positionsData = [
   {
     id: "2",
     symbol: "BTCUSDT",
-    size: 238.64,
+    type: "Short",
+    size: -238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
     entryPrice: 79500.23,
@@ -1101,7 +1103,8 @@ export const positionsData = [
   {
     id: "3",
     symbol: "BTCUSDT",
-    size: 238.64,
+    type: "Short",
+    size: -238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
     entryPrice: 79500.23,
@@ -1115,6 +1118,7 @@ export const positionsData = [
   {
     id: "4",
     symbol: "BTCUSDT",
+    type: "Long",
     size: 238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
@@ -1129,6 +1133,7 @@ export const positionsData = [
   {
     id: "5",
     symbol: "BTCUSDT",
+    type: "Long",
     size: 238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
@@ -1143,7 +1148,8 @@ export const positionsData = [
   {
     id: "6",
     symbol: "BTCUSDT",
-    size: 238.64,
+    type: "Short",
+    size: -238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
     entryPrice: 79500.23,

@@ -9,10 +9,10 @@ import { formatAmountWithoutCurrency } from "../../../helpers";
 
 export default function ListItemMobile(item) {
   let html = ``;
-
   if (item.category === "positions") {
     html = positionsItemMobileHtml
       .replaceAll("${symbol}", item.symbol)
+      .replaceAll("${positionType}", item.type)
       .replaceAll("${leverageTitle}", mockup.market.ordersSection.leverage)
       .replaceAll("${leverage}", item.leverage)
       .replaceAll("${chevronIcon}", chevronIcon)

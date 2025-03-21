@@ -1,16 +1,14 @@
 <div
   x-data="{
     resetTradingModalToDefault() {
-        isTradingModalOpen = false;
+        $store.market.isTradingModalOpen = false;
         
         setTimeout(()=>{
-          $store.market.rangeSliderTradingBlockValue = '0';
-          $store.market.normalizedRangeSliderTradingBlockValue = '0%';
+          $store.market.resetTradingBlockModalToDefault()
         }, 100)
-
-        $el.closest('body').classList.remove('no-scroll');}
-}"
-  x-show="isTradingModalOpen"
+      }
+  }"
+  x-show="$store.market.isTradingModalOpen"
   x-transition:enter="transition ease-out duration-300"
   x-transition:enter-start="translate-y-full md:translate-y-0"
   x-transition:enter-end="translate-y-0"

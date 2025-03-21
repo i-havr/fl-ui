@@ -10,17 +10,12 @@ import tradingBlockHtml from "./trading-block.html?raw";
 import RangeSliderPrimary from "./range-slider-primary";
 
 export default function TradingBlock() {
-  const assetsData = mockup.market.assetsData;
-
   let html = tradingBlockHtml;
 
-  const selectedAssetId = localStorage.getItem("selectedAssetId");
-
-  const asset = assetsData.find((asset) => asset.id === selectedAssetId);
+  const asset = Alpine.store("market").selectedAssetData;
 
   html = html
     .replaceAll("${assetName}", asset.name)
-    .replaceAll("${marketPrice}", asset.priceUSDT)
     .replace("${leverage}", mockup.market.leverage)
     .replace(
       "${maxTotalAmount}",
