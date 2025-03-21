@@ -9,8 +9,9 @@ export default function RangeSliderPrimary(place) {
     switch (place) {
       case "tradingBlock":
         return {
-          rangeSliderValue: "rangeSliderTradingBlockValue",
-          normalizedRangeSliderValue: "normalizedRangeSliderTradingBlockValue",
+          rangeSliderValue: "$store.market.rangeSliderTradingBlockValue",
+          normalizedRangeSliderValue:
+            "$store.market.normalizedRangeSliderTradingBlockValue",
           sign: "%",
           mark1: "0",
           mark2: "25",
@@ -24,8 +25,8 @@ export default function RangeSliderPrimary(place) {
 
       case "leverageModal":
         return {
-          rangeSliderValue: "leverageValue",
-          normalizedRangeSliderValue: "normalizedLeverageValue",
+          rangeSliderValue: "$store.market.leverageValue",
+          normalizedRangeSliderValue: "$store.market.normalizedLeverageValue",
           sign: "x",
           mark1: "1",
           mark2: "25",

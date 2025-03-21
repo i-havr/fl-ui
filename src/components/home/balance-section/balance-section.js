@@ -97,14 +97,14 @@ export default function BalanceSection() {
                       `<span class="hidden md:block w-6">${depositIcon}</span>
                     ${mockup.home.balance.buttons.deposit}
                       `,
-                      "blue-gradient grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 h-10 md:h-16"
+                      "blue-gradient grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 h-10 md:h-[58px] xl:h-16 md:max-w-[380px] xl:max-w-[444px]"
                     )}
                    
                     ${ButtonPrimary(
                       `<span class="hidden md:block w-6">${withdrawalIcon}</span>
                     ${mockup.home.balance.buttons.withdrawal}
                     `,
-                      "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-16"
+                      "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-[58px] xl:h-16 md:max-w-[380px] xl:max-w-[444px]"
                     )}
                   
 
@@ -114,7 +114,7 @@ export default function BalanceSection() {
                             `<span class="hidden md:block w-6">${transferIcon}</span>
                           ${mockup.home.balance.buttons.transfer}
                           `,
-                            "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-16"
+                            "grow flex-shrink-0 basis-[150px] rounded-[100px] gap-x-3 border border-blue-100 h-10 md:h-[58px] xl:h-16 md:max-w-[380px] xl:max-w-[444px]"
                           )
                         : `
                       `

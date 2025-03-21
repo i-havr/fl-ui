@@ -32,98 +32,7 @@ export default function Market() {
 
   return `
     <div
-    class="flex flex-col gap-y-4 md:gap-y-6 mx-auto text-center pt-4 md:pt-[49px] pb-[92px] md:pb-[42px] xl:px-10 xl:max-w-[1440px]"
-
-    x-data="{
-    isTpslModalOpen: false,
-    isLeverageModalOpen: false,
-    takeProfitValue: '',
-    lastTakeProfitValue: '',
-    tpProfit: '0.00',
-    lastTpProfit: '0.00',
-    stopLossValue: '',
-    lastStopLossValue: '',
-    slProfit: '0.00',
-    lastSlProfit: '0.00',
-    leverageValue: '1',
-    lastLeverageValue: '1',
-    rangeSliderTradingBlockValue: '0',
-    isTpslModalEditMode: false,
-    isLeverageModalEditMode: false,
-    
-    normalizedLeverageValue: '0%',
-    lastNormalizedLeverageValue: '0%',
-    normalizedRangeSliderTradingBlockValue: '0%',
-
-    setNormalizedValue (rangeSliderValue, normalizedRangeSliderValue, minValue, maxValue) {
-
-    this[normalizedRangeSliderValue] = ((Number(this[rangeSliderValue]) - Number(minValue)) / (Number(maxValue) - Number(minValue)) * 100) + '%'
-    },
-
-    resetTpslModalToDefault () {
-    this.isTpslModalOpen = false;
-
-    if (this.isTpslModalEditMode){
-    this.takeProfitValue = this.lastTakeProfitValue;
-    this.stopLossValue = this.lastStopLossValue;
-
-    this.tpProfit = this.lastTpProfit;
-    this.slProfit = this.lastSlProfit;
-
-    this.isTpslModalEditMode = false;
-    return;
-    };
-
-    setTimeout(() => {
-      this.takeProfitValue = '';
-      this.lastTakeProfitValue = '';
-      this.tpProfit = '0.00';
-      this.lastTpProfit = '0.00';
-      this.stopLossValue = '';
-      this.lastStopLossValue = '';
-      this.slProfit = '0.00';
-      this.lastSlProfit = '0.00';
-    }, 100);
-    },
-
-    resetLeverageModalToDefault  () {
-    this.isLeverageModalOpen = false;
-
-    if (this.isLeverageModalEditMode){
-      this.leverageValue = this.lastLeverageValue;
-      this.normalizedLeverageValue = this.lastNormalizedLeverageValue;
-
-      this.isLeverageModalEditMode = false;
-      return;
-    };
-
-    setTimeout(() => {
-      this.leverageValue = '1';
-      this.lastLeverageValue = '1';
-      this.normalizedLeverageValue = '0%';
-      this.lastNormalizedLeverageValue = '0%';
-    }, 100);
-    },
-
-    assetVolume: '500',
-    isLong: null,
-    isShort: null,
-
-    formatNumericValue(numericValue, min = 0, max = 5){
-    return numericValue.toLocaleString('en-US', {minimumFractionDigits: min,maximumFractionDigits: max})
-    },
-
-    formatInputNumericValue (targetValue) {
-      let value = targetValue.replace(/,/g, '.');
-      value = value.replace(/[^0-9.]/g, '');
-      const parts = value.split('.');
-      if (parts.length > 1) {
-        value = parts[0] + '.' + parts.slice(1).join('');
-      }
-      return value;
-      },
-    }"
-    >
+    class="flex flex-col gap-y-4 md:gap-y-6 mx-auto text-center pt-4 md:pt-[49px] pb-[92px] md:pb-[42px] xl:px-10 xl:max-w-[1440px]">
       <div class="flex flex-col xl:flex-row gap-y-0 xl:gap-y-0 xl:gap-x-4">
           <div class="xl:flex xl:justify-between w-full mx-auto">
             <div>
@@ -143,7 +52,7 @@ export default function Market() {
       ${OrdersSection()}
 
       <div          
-          x-show="isTpslModalOpen"
+          x-show="$store.market.isTpslModalOpen"
 
           x-transition:enter="transition ease-out duration-300"
           x-transition:enter-start="opacity-0"
@@ -154,13 +63,13 @@ export default function Market() {
 
           class="fixed inset-0 flex items-end justify-center bg-black/80 md:items-center z-[11]"
 
-          @click.stop="resetTpslModalToDefault()"
+          @click.stop="$store.market.resetTpslModalToDefault()"
         >
           ${TpslModal()}
         </div>
 
         <div          
-            x-show="isLeverageModalOpen"
+            x-show="$store.market.isLeverageModalOpen"
 
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0"
@@ -171,7 +80,7 @@ export default function Market() {
 
             class="fixed inset-0 flex items-end justify-center bg-black/80 md:items-center z-[11]"
 
-            @click.stop="resetLeverageModalToDefault()"
+            @click.stop="$store.market.resetLeverageModalToDefault()"
           >
             ${LeverageModal()}
           </div>
@@ -188,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", () => {
     const currentWidth = window.innerWidth;
+
+    const defaultTabName = mockup.market.ordersSection.filterParams[0].name;
 
     if (
       (previousWidth < 768 && currentWidth >= 768) ||
