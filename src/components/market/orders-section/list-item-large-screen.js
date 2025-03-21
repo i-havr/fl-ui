@@ -15,6 +15,7 @@ export default function ListItemLargeScreen(item) {
     html = positionsItemLargeScreenHtml
       .replaceAll("${id}", item.id)
       .replaceAll("${symbol}", item.symbol)
+      .replaceAll("${positionType}", item.type)
       .replaceAll("${leverageTitle}", mockup.market.ordersSection.leverage)
       .replaceAll("${leverage}", item.leverage)
       .replaceAll(

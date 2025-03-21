@@ -31,6 +31,8 @@ const getPageName = () => {
 };
 
 export function Header() {
+  Alpine.store("market").balanceUSDT = mockup.user.balanceUSDT;
+
   return `
     <header class="custom-container flex justify-between items-center text-white py-[7px] h-10">
 

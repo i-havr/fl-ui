@@ -50,7 +50,7 @@
       <!-- value -->
       <div
         class="absolute bottom-6 -left-[2px] z-10 w-[26px] text-center font-manrope text-xs text-yellow-100"
-        x-text="${rangeSliderValue} == ${minValue} ? '' : ${rangeSliderValue} + '${sign}'"
+        x-text="${rangeSliderValue} == ${minValue} ? '' : $store.market.formatNumericValue(Number(${rangeSliderValue}), 0, 2) + '${sign}'"
       ></div>
     </div>
 

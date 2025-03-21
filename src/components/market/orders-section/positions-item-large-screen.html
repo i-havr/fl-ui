@@ -3,7 +3,8 @@
     class="positions-table-row flex h-[62px] w-full min-w-fit !items-start text-sm xl:h-[71px] xl:text-base"
   >
     <div
-      class="flex w-[120px] shrink-0 flex-col items-start justify-center gap-y-[2px] border-l-2 border-l-green-100 pl-[5px] text-left"
+      class="flex w-[120px] shrink-0 flex-col items-start justify-center gap-y-[2px] border-l-2 pl-[5px] text-left"
+      :class="{'border-l-green-100' : '${positionType}' === 'Long', 'border-l-red-secondary' : '${positionType}' === 'Short'}"
     >
       <span>${symbol}</span>
       <span
@@ -11,7 +12,12 @@
         >${leverageTitle} ${leverage}x</span
       >
     </div>
-    <div class="w-[130px] shrink-0 text-left text-green-100">${size}</div>
+    <div
+      class="w-[130px] shrink-0 text-left"
+      :class="{'text-green-100' : '${positionType}' === 'Long', 'text-red-secondary' : '${positionType}' === 'Short'}"
+    >
+      ${size}
+    </div>
     <div class="w-[110px] shrink-0 text-left">${entryPrice}</div>
     <div class="w-[120px] shrink-0 text-left">${markPrice}</div>
     <div class="w-[120px] shrink-0 text-left text-red-secondary">
@@ -27,6 +33,11 @@
         class="positions-view-button text-sm text-yellow-100 xl:text-base"
         data-id="${id}"
         data-tooltip-text="Click to view TP/SL of your position"
+        @click="
+        $store.market.isTpslModalOpen = true; 
+        $store.market.tpslModalPlace = 'positions';
+        $store.market.selectedPositionType = '${positionType}'; 
+        $store.market.selectedPositionLeverage = ${leverage}"
       >
         View
       </button>

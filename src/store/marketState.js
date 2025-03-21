@@ -1,6 +1,11 @@
 document.addEventListener("alpine:init", () => {
   Alpine.store("market", {
-    isTpslModalOpen: false,
+    selectedAssetData: {},
+    selectedPositionType: "",
+    selectedPositionLeverage: "",
+
+    isTradingModalOpen: false,
+    isTpslModalOpen: true,
     isLeverageModalOpen: false,
     takeProfitValue: "",
     lastTakeProfitValue: "",
@@ -20,16 +25,22 @@ document.addEventListener("alpine:init", () => {
     lastNormalizedLeverageValue: "0%",
     normalizedRangeSliderTradingBlockValue: "0%",
 
-    assetVolume: "500",
     isLong: null,
     isShort: null,
 
     activeTab: "market",
-
-    balanceUSDT: 50000,
+    assetMarketPrice: 0,
+    balanceUSDT: 0,
     orderPrice: "",
     orderVolume: "",
     orderAmount: "",
+
+    tpslModalPlace: "",
+
+    setActiveTab(tab) {
+      this.activeTab = tab;
+      this.orderPrice = tab === "market" ? this.assetMarketPrice : "";
+    },
 
     setNormalizedValue(
       rangeSliderValue,
@@ -45,8 +56,36 @@ document.addEventListener("alpine:init", () => {
         "%";
     },
 
+    resetTradingBlockModalToDefault() {
+      this.activeTab = "market";
+      this.orderPrice = this.assetMarketPrice;
+      this.orderVolume = "";
+      this.orderAmount = "";
+      this.rangeSliderTradingBlockValue = "0";
+      this.normalizedRangeSliderTradingBlockValue = "0%";
+
+      this.normalizedLeverageValue = "0%";
+      this.lastNormalizedLeverageValue = "0%";
+
+      this.takeProfitValue = "";
+      this.lastTakeProfitValue = "";
+      this.tpProfit = "0.00";
+      this.lastTpProfit = "0.00";
+      this.stopLossValue = "";
+      this.lastStopLossValue = "";
+      this.slProfit = "0.00";
+      this.lastSlProfit = "0.00";
+      this.leverageValue = "1";
+      this.lastLeverageValue = "1";
+
+      document.body.classList.remove("no-scroll");
+    },
+
     resetTpslModalToDefault() {
       this.isTpslModalOpen = false;
+      this.tpslModalPlace = "";
+      this.selectedPositionType = "";
+      this.selectedPositionLeverage = "";
 
       if (this.isTpslModalEditMode) {
         this.takeProfitValue = this.lastTakeProfitValue;
@@ -222,6 +261,12 @@ document.addEventListener("alpine:init", () => {
       const volume = parseFloat(this.orderVolume) || 0;
       const amount = parseFloat(this.orderAmount) || 0;
       const balanceUSDT = parseFloat(this.balanceUSDT) || 0;
+
+      if (!balanceUSDT) {
+        this.orderVolume = this.orderVolume === "" ? "" : "0";
+        this.orderAmount = this.orderVolume === "" ? "" : "0";
+        return;
+      }
 
       if (!price && !volume && !amount) {
         this.orderPrice = "";
@@ -489,6 +534,7 @@ document.addEventListener("alpine:init", () => {
 
       if (!balanceUSDT) {
         this.orderAmount = "";
+        this.orderVolume = "";
         this.rangeSliderTradingBlockValue = "0";
         return;
       }
@@ -500,6 +546,127 @@ document.addEventListener("alpine:init", () => {
         : "";
 
       this.updateFromAmount();
+    },
+
+    handleSetTpslButtonClick() {
+      this.isTpslModalOpen = false;
+      this.isTpslModalEditMode = false;
+      this.tpslModalPlace = "";
+
+      if (parseFloat(this.takeProfitValue)) {
+        this.lastTakeProfitValue = this.takeProfitValue;
+        this.lastTpProfit = this.tpProfit;
+      } else {
+        this.takeProfitValue = "";
+        this.lastTakeProfitValue = "";
+        this.tpProfit = "0.00";
+        this.lastTpProfit = "0.00";
+      }
+
+      if (parseFloat(this.stopLossValue)) {
+        this.lastStopLossValue = this.stopLossValue;
+        this.lastSlProfit = this.slProfit;
+      } else {
+        this.stopLossValue = "";
+        this.lastStopLossValue = "";
+        this.slProfit = "0.00";
+        this.lastSlProfit = "0.00";
+      }
+
+      if (this.takeProfitValue.endsWith(".")) {
+        this.takeProfitValue = this.takeProfitValue.slice(0, -1);
+        this.lastTakeProfitValue = this.takeProfitValue;
+      }
+
+      if (this.stopLossValue.endsWith(".")) {
+        this.stopLossValue = this.stopLossValue.slice(0, -1);
+        this.lastStopLossValue = this.stopLossValue;
+      }
+    },
+
+    updateTpValues() {
+      if (!this.takeProfitValue) {
+        this.isLong = null;
+        this.isShort = null;
+        this.tpProfit = "0.00";
+      }
+
+      const tpValue = parseFloat(this.takeProfitValue);
+      const orderVolume = parseFloat(this.orderVolume) || 0;
+
+      if (!isNaN(tpValue)) {
+        if (this.assetMarketPrice) {
+          if (this.assetMarketPrice > tpValue) {
+            this.isLong = false;
+            this.isShort = true;
+            console.log("here1", tpValue);
+
+            const profit = (this.assetMarketPrice - tpValue) * orderVolume;
+            this.tpProfit = profit.toLocaleString("en-US");
+          } else {
+            this.isLong = true;
+            this.isShort = false;
+
+            const profit = (tpValue - this.assetMarketPrice) * orderVolume;
+            this.tpProfit = profit.toLocaleString("en-US");
+          }
+        }
+      }
+
+      this.updateSlValues();
+    },
+
+    updateSlValues() {
+      if (!this.stopLossValue) {
+        this.slProfit = "0.00";
+        if (!this.takeProfitValue) {
+          this.isLong = null;
+          this.isShort = null;
+        }
+      }
+
+      const slValue = parseFloat(this.stopLossValue);
+      const orderVolume = parseFloat(this.orderVolume) || 0;
+
+      if (!isNaN(slValue)) {
+        if (this.assetMarketPrice) {
+          if (!this.takeProfitValue && this.assetMarketPrice > slValue) {
+            this.isLong = false;
+            this.isShort = true;
+
+            const profit = (slValue - this.assetMarketPrice) * orderVolume;
+            this.slProfit = profit.toLocaleString("en-US");
+          }
+
+          if (!this.takeProfitValue && this.assetMarketPrice < slValue) {
+            this.isLong = true;
+            this.isShort = false;
+
+            const profit = (this.assetMarketPrice - slValue) * orderVolume;
+            this.slProfit = profit.toLocaleString("en-US");
+          }
+
+          if (this.takeProfitValue && this.assetMarketPrice > slValue) {
+            if (this.isLong) {
+              const profit = (slValue - this.assetMarketPrice) * orderVolume;
+              this.slProfit = profit.toLocaleString("en-US");
+            } else {
+              const profit = (this.assetMarketPrice - slValue) * orderVolume;
+              this.slProfit = profit.toLocaleString("en-US");
+            }
+          }
+
+          if (this.takeProfitValue && this.assetMarketPrice < slValue) {
+            if (this.isLong) {
+              const profit = (this.assetMarketPrice - slValue) * orderVolume;
+              this.slProfit = profit.toLocaleString("en-US");
+            } else {
+              const profit = (slValue - this.assetMarketPrice) * orderVolume;
+              this.slProfit = profit.toLocaleString("en-US");
+            }
+          }
+        }
+      }
     }
   });
 });

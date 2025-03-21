@@ -1,19 +1,9 @@
 <div
   x-data="{
     freeMargin: '${freeMargin}',
-    maxTotalAmount: '${maxTotalAmount}',
-
-    resetToDefault() {
-      $store.market.activeTab = 'market';
-      $el.closest('body').classList.remove('no-scroll');
-    },
-
-    setActiveTab(tab) {
-      $store.market.activeTab = tab;
-      $store.market.orderPrice = tab === 'market' ? '${marketPrice}' : ''
-    },
+    maxTotalAmount: '${maxTotalAmount}'
   }"
-  x-init="setActiveTab('market')"
+  x-init="$store.market.setActiveTab('market')"
   class="flex w-full flex-col items-center"
 >
   <!-- open leverage config button -->
@@ -26,7 +16,7 @@
       <span>${leverage}</span>
       <span
         class="font-semibold text-yellow-100"
-        x-text="'x' + $store.market.leverageValue"
+        x-text="$store.market.leverageValue + 'x'"
       ></span>
     </div>
 
@@ -38,7 +28,7 @@
     <button
       class="border-b border-b-transparent px-3 pb-1"
       :class="{ 'text-yellow-100 font-medium border-b-yellow-100': $store.market.activeTab === 'market' }"
-      @click="setActiveTab('market')"
+      @click="$store.market.setActiveTab('market')"
     >
       ${marketTabTitle}
     </button>
@@ -46,7 +36,7 @@
     <button
       class="border-b border-b-transparent px-3 pb-1"
       :class="{ 'text-yellow-100 font-medium border-b-yellow-100': $store.market.activeTab === 'limit' }"
-      @click="setActiveTab('limit')"
+      @click="$store.market.setActiveTab('limit')"
     >
       ${limitTabTitle}
     </button>
@@ -131,7 +121,7 @@
         <input
           type="checkbox"
           class="hidden-checkbox"
-          @click="parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue) ? $store.market.resetTpslModalToDefault () : $store.market.isTpslModalOpen = true"
+          @click="parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue) ? $store.market.resetTpslModalToDefault() : $store.market.isTpslModalOpen = true; $store.market.tpslModalPlace = 'tradingBlock'"
         />
         <span
           class="flex size-6 items-center justify-center rounded-[6px]"
@@ -148,7 +138,7 @@
         type="button"
         class="size-6 text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
         :class="{ 'hidden': !parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue) }"
-        @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true"
+        @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true; $store.market.tpslModalPlace = 'tradingBlock'"
       >
         ${editIcon}
       </button>
@@ -159,7 +149,7 @@
       type="button"
       class="flex h-9 w-full items-center justify-between rounded-lg bg-[#202123] px-[10px] text-xs text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
       :class="{ 'hidden': $store.market.activeTab === 'market' || (!parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue)) }"
-      @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true"
+      @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true; $store.market.tpslModalPlace = 'tradingBlock'"
     >
       <span>Trigger Price</span>
       <span>

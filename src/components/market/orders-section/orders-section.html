@@ -1,6 +1,5 @@
 <section
   x-data="{
-    isTradingModalOpen: false,
     tradingSelectedOption: 'buy',
     ordersTableActiveTab: $el.getAttribute('data-orders-table-active-tab') || '${defaultTabName}',
   initializeOrderSection() {
@@ -40,7 +39,7 @@
       <button
         type="button"
         class="flex h-10 flex-1 items-center justify-center rounded-lg bg-green-400"
-        @click="isTradingModalOpen = true; tradingSelectedOption = 'buy'; 
+        @click="$store.market.isTradingModalOpen = true; tradingSelectedOption = 'buy'; 
         $el.closest('body').classList.add('no-scroll')"
       >
         ${buyButton}
@@ -48,7 +47,7 @@
       <button
         type="button"
         class="flex h-10 flex-1 items-center justify-center rounded-lg bg-red-200"
-        @click="isTradingModalOpen = true; tradingSelectedOption = 'sell'; 
+        @click="$store.market.isTradingModalOpen = true; tradingSelectedOption = 'sell'; 
         $el.closest('body').classList.add('no-scroll')"
       >
         ${sellButton}
@@ -57,7 +56,7 @@
   </div>
 
   <div
-    x-show="isTradingModalOpen"
+    x-show="$store.market.isTradingModalOpen"
     x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0"
     x-transition:enter-end="opacity-100"

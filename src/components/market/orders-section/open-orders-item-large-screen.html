@@ -27,6 +27,7 @@
         class="open-orders-view-button text-sm text-yellow-100 xl:text-base"
         data-id="${id}"
         data-tooltip-text="Click to view TP/SL of your order"
+        @click="$store.market.isTpslModalOpen = true; $store.market.tpslModalPlace = 'openOrders'"
       >
         View
       </button>
