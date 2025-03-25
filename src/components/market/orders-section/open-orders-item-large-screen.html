@@ -30,6 +30,11 @@
         @click="
         $store.market.isTpslModalOpen = true; 
         $store.market.tpslModalPlace = 'openOrders'; 
+        
+        $store.market.selectedItemTakeProfitValue = ${takeProfitValue};
+        $store.market.selectedItemStopLossValue = ${stopLossValue};
+        $store.market.selectedItemVolume = ${volume};
+
         $el.closest('body').classList.add('no-scroll')"
       >
         View

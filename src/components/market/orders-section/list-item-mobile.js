@@ -45,6 +45,9 @@ export default function ListItemMobile(item) {
           .replaceAll(".", ",")
       )
       .replaceAll("${entryPriceNumericValue}", item.entryPrice)
+      .replaceAll("${takeProfitValue}", item.takeProfit)
+      .replaceAll("${stopLossValue}", item.stopLoss)
+      .replaceAll("${volume}", item.size)
       .replaceAll(
         "${markPrice}",
         mockup.market.ordersSection.positionsTitles.markPrice.title
@@ -114,6 +117,9 @@ export default function ListItemMobile(item) {
         mockup.market.ordersSection.openOrdersTitles.type.title
       )
       .replaceAll("${typeValue}", item.type)
+      .replaceAll("${takeProfitValue}", item.takeProfit)
+      .replaceAll("${stopLossValue}", item.stopLoss)
+      .replaceAll("${volume}", item.size)
       .replaceAll(
         "${position}",
         `<div class="flex items-center justify-between">
