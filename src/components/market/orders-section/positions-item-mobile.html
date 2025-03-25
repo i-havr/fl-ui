@@ -73,7 +73,9 @@
           $store.market.isTpslModalOpen = true; 
           $store.market.tpslModalPlace = 'positions'; 
           $store.market.selectedPositionType = '${positionType}';
-          $store.market.selectedPositionLeverage = ${leverage}"
+          $store.market.selectedPositionLeverage = ${leverage};
+          $store.market.selectedPositionEntryPrice = ${entryPriceNumericValue};
+          $el.closest('body').classList.add('no-scroll')"
         >
           View
         </button>

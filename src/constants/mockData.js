@@ -1083,7 +1083,9 @@ export const positionsData = [
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
-    category: "positions"
+    category: "positions",
+    takeProfit: 80000,
+    stopLoss: 79000
   },
   {
     id: "2",
@@ -1098,7 +1100,9 @@ export const positionsData = [
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
-    category: "positions"
+    category: "positions",
+    takeProfit: 80000,
+    stopLoss: 79000
   },
   {
     id: "3",
@@ -1113,7 +1117,9 @@ export const positionsData = [
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
-    category: "positions"
+    category: "positions",
+    takeProfit: 80000,
+    stopLoss: 79000
   },
   {
     id: "4",
@@ -1128,7 +1134,9 @@ export const positionsData = [
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
-    category: "positions"
+    category: "positions",
+    takeProfit: 80000,
+    stopLoss: 79000
   },
   {
     id: "5",
@@ -1143,7 +1151,9 @@ export const positionsData = [
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
-    category: "positions"
+    category: "positions",
+    takeProfit: 80000,
+    stopLoss: 79000
   },
   {
     id: "6",
@@ -1158,7 +1168,9 @@ export const positionsData = [
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
-    category: "positions"
+    category: "positions",
+    takeProfit: 80000,
+    stopLoss: 79000
   }
 ];
 // export const openOrdersData = [];
@@ -1177,7 +1189,9 @@ export const openOrdersData = [
     openingDate: "01 октября 2024",
     openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
-    category: "openOrders"
+    category: "openOrders",
+    takeProfit: 165,
+    stopLoss: 150
   },
   {
     id: "2",
@@ -1193,7 +1207,9 @@ export const openOrdersData = [
     openingDate: "01 октября 2024",
     openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
-    category: "openOrders"
+    category: "openOrders",
+    takeProfit: 165,
+    stopLoss: 150
   },
   {
     id: "3",
@@ -1209,7 +1225,9 @@ export const openOrdersData = [
     openingDate: "01 октября 2024",
     openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
-    category: "openOrders"
+    category: "openOrders",
+    takeProfit: 165,
+    stopLoss: 150
   },
   {
     id: "4",
@@ -1225,7 +1243,9 @@ export const openOrdersData = [
     openingDate: "01 октября 2024",
     openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
-    category: "openOrders"
+    category: "openOrders",
+    takeProfit: 165,
+    stopLoss: 150
   },
   {
     id: "5",
@@ -1241,7 +1261,9 @@ export const openOrdersData = [
     openingDate: "01 октября 2024",
     openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
-    category: "openOrders"
+    category: "openOrders",
+    takeProfit: 165,
+    stopLoss: 150
   },
   {
     id: "6",
@@ -1257,6 +1279,8 @@ export const openOrdersData = [
     openingDate: "01 октября 2024",
     openingDateDigital: "01.10.2024",
     openingTime: "11:28:29",
-    category: "openOrders"
+    category: "openOrders",
+    takeProfit: 165,
+    stopLoss: 150
   }
 ];

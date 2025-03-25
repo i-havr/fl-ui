@@ -44,6 +44,7 @@ export default function ListItemMobile(item) {
           .replaceAll(",", " ")
           .replaceAll(".", ",")
       )
+      .replaceAll("${entryPriceNumericValue}", item.entryPrice)
       .replaceAll(
         "${markPrice}",
         mockup.market.ordersSection.positionsTitles.markPrice.title

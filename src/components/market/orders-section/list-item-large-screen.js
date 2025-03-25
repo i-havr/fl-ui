@@ -23,6 +23,7 @@ export default function ListItemLargeScreen(item) {
         `${formatAmountWithoutSigns(item.size)} ${item.asset}`
       )
       .replaceAll("${entryPrice}", formatAmountWithoutSigns(item.entryPrice))
+      .replaceAll("${entryPriceNumericValue}", item.entryPrice)
       .replaceAll("${markPrice}", formatAmountWithoutSigns(item.markPrice))
       .replaceAll("${liquidPrice}", formatAmountWithoutSigns(item.liquidPrice))
       .replaceAll(

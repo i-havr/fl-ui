@@ -17,7 +17,7 @@
   x-transition:leave-end="translate-y-full md:translate-y-0"
   @click.away="$store.market.resetTpslModalToDefault()"
   @click.stop=""
-  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:max-w-[480px]"
+  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:max-w-[400px]"
 >
   <button
     type="button"
@@ -45,12 +45,23 @@
       ></span>
     </div>
 
-    <div class="flex h-6 items-center justify-between">
+    <div
+      class="flex h-6 items-center justify-between"
+      x-show="$store.market.tpslModalPlace === 'positions'"
+    >
       <span>Entry price</span>
+      <span
+        class="font-semibold text-white-100"
+        x-text="$store.market.formatAmountWithoutCurrency(Number($store.market.selectedPositionEntryPrice)) + ' USDT'"
+      ></span>
     </div>
 
     <div class="flex h-6 items-center justify-between">
       <span>Mark price</span>
+      <span
+        class="font-semibold text-white-100"
+        x-text="$store.market.formatAmountWithoutCurrency(Number($store.market.assetMarketPrice)) + ' USDT'"
+      ></span>
     </div>
   </div>
 
