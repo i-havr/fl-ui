@@ -27,15 +27,13 @@
         class="open-orders-view-button text-sm text-yellow-100 xl:text-base"
         data-id="${id}"
         data-tooltip-text="Click to view TP/SL of your order"
-        @click="
-        $store.market.isTpslModalOpen = true; 
-        $store.market.tpslModalPlace = 'openOrders'; 
+        @click="        
+        $store.market.selectedItemId = '${itemId}';
         
         $store.market.selectedItemTakeProfitValue = ${takeProfitValue};
         $store.market.selectedItemStopLossValue = ${stopLossValue};
-        $store.market.selectedItemVolume = ${volume};
-
-        $el.closest('body').classList.add('no-scroll')"
+        $store.market.selectedItemVolume = Math.abs(parseFloat(${volume}));
+        $store.market.viewTpslButtonClick('openOrders');"
       >
         View
       </button>

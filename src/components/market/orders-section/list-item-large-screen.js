@@ -24,6 +24,7 @@ export default function ListItemLargeScreen(item) {
       )
       .replaceAll("${entryPrice}", formatAmountWithoutSigns(item.entryPrice))
       .replaceAll("${entryPriceNumericValue}", item.entryPrice)
+      .replaceAll("${itemId}", item.id)
       .replaceAll("${takeProfitValue}", item.takeProfit)
       .replaceAll("${stopLossValue}", item.stopLoss)
       .replaceAll("${volume}", item.size)
@@ -56,9 +57,10 @@ export default function ListItemLargeScreen(item) {
       .replaceAll("${leverageTitle}", mockup.market.ordersSection.leverage)
       .replaceAll("${leverage}", item.leverage)
       .replaceAll("${type}", item.type)
+      .replaceAll("${itemId}", item.id)
       .replaceAll("${takeProfitValue}", item.takeProfit)
       .replaceAll("${stopLossValue}", item.stopLoss)
-      .replaceAll("${volume}", item.size)
+      .replaceAll("${volume}", item.amount)
       .replaceAll(
         "${position}",
         `<span class="${item.positionType === "purchase" ? "text-green-100" : "text-red-secondary"}">${item.positionTitle}</span>`

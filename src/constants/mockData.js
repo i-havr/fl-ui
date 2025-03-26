@@ -1077,15 +1077,15 @@ export const positionsData = [
     size: 238.64,
     asset: "USDT",
     leverage: 15, // кредитное плечо
-    entryPrice: 79500.23,
-    markPrice: 79500.23,
-    liquidPrice: 79500.23,
+    entryPrice: 69500.23,
+    markPrice: 69500.23,
+    liquidPrice: 69500.23,
     margin: 159.89,
     pnl: 0.11,
     roi: 0.72,
     category: "positions",
-    takeProfit: 80000,
-    stopLoss: 79000
+    takeProfit: 70000,
+    stopLoss: 69000
   },
   {
     id: "2",
