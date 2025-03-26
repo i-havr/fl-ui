@@ -49,7 +49,13 @@
         <button
           type="button"
           class="text-yellow-100"
-          @click="$store.market.isTpslModalOpen = true; $store.market.tpslModalPlace = 'openOrders'"
+          @click="          
+          $store.market.selectedItemId = ${itemId};
+        
+          $store.market.selectedItemTakeProfitValue = ${takeProfitValue};
+          $store.market.selectedItemStopLossValue = ${stopLossValue};
+          $store.market.selectedItemVolume = Math.abs(parseFloat(${volume}));
+          $store.market.viewTpslButtonClick('openOrders');"
         >
           View
         </button>
