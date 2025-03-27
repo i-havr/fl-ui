@@ -44,6 +44,7 @@
         class="open-orders-cancel-button rounded-[100px] border border-red-200 px-[18px] py-[6px] text-sm text-red-200"
         data-id="${id}"
         data-tooltip-text="Click to cancel your order"
+        @click="console.log('Cancel Open Order button clicked!');"
       >
         ${cancelAll}
       </button>

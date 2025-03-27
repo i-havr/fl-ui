@@ -34,5 +34,6 @@
     x-text="tradingSelectedOption === 'buy' ? '${buyButtonTitle}' : '${sellButtonTitle}'"
     class="mt-10 flex h-10 w-full items-center justify-center rounded-lg text-sm text-white-100"
     :class="{ 'bg-green-400': tradingSelectedOption === 'buy','bg-red-200': tradingSelectedOption === 'sell' }"
+    @click="tradingSelectedOption === 'buy' ? $store.market.buyAsset(): $store.market.sellAsset()"
   ></button>
 </div>

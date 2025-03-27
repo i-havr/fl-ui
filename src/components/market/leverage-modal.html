@@ -2,7 +2,7 @@
   x-data="{
   isInputFocused: false,
   handleSetLeverageButtonClick() {
-      $store.market.isLeverageModalOpen = false;
+      $store.market.closeLeverageModal();
       $store.market.lastLeverageValue = $store.market.leverageValue;
       $store.market.lastNormalizedLeverageValue = $store.market.normalizedLeverageValue;
     },
@@ -28,7 +28,7 @@
   x-transition:leave-end="translate-y-full md:translate-y-0"
   @click.away="$store.market.resetLeverageModalToDefault()"
   @click.stop=""
-  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:max-w-sm md:rounded-b-2xl"
+  class="flex w-full flex-col rounded-t-2xl bg-bg-secondary px-4 pt-4 pb-8 md:h-[400px] md:max-w-[400px] md:rounded-b-2xl"
 >
   <button
     type="button"

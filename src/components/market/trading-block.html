@@ -10,7 +10,8 @@
   <button
     type="button"
     class="mb-[22px] flex h-9 w-full items-center justify-between rounded-lg bg-bg-button-gray px-[10px] text-sm"
-    @click="$store.market.isLeverageModalOpen = true; $store.market.leverageValue != 1 ? $store.market.isLeverageModalEditMode = true : $store.market.isLeverageModalEditMode = false"
+    @click="$store.market.openLeverageModal(); 
+    $store.market.leverageValue != 1 ? $store.market.isLeverageModalEditMode = true : $store.market.isLeverageModalEditMode = false"
   >
     <div class="flex items-center gap-x-1">
       <span>${leverage}</span>
@@ -124,7 +125,7 @@
           type="checkbox"
           class="hidden-checkbox"
           @click="
-          parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue) ? $store.market.resetTpslModalToDefault() : $store.market.isTpslModalOpen = true; 
+          parseFloat($store.market.takeProfitValue) || parseFloat($store.market.stopLossValue) ? $store.market.resetTpslModalToDefault() : $store.market.openTpslModal(); 
           $store.market.tpslModalPlace = 'tradingBlock'"
         />
         <span
@@ -142,7 +143,10 @@
         type="button"
         class="size-6 text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
         :class="{ 'hidden': !parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue) }"
-        @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true; $store.market.tpslModalPlace = 'tradingBlock'"
+        @click="
+        $store.market.openTpslModal(); 
+        $store.market.isTpslModalEditMode = true; 
+        $store.market.tpslModalPlace = 'tradingBlock'"
       >
         ${editIcon}
       </button>
@@ -153,7 +157,10 @@
       type="button"
       class="flex h-9 w-full items-center justify-between rounded-lg bg-[#202123] px-[10px] text-xs text-gray-primary transition-opacity hover:opacity-85 active:opacity-75"
       :class="{ 'hidden': $store.market.activeTab === 'market' || (!parseFloat($store.market.takeProfitValue) && !parseFloat($store.market.stopLossValue)) }"
-      @click="$store.market.isTpslModalOpen = true; $store.market.isTpslModalEditMode = true; $store.market.tpslModalPlace = 'tradingBlock'"
+      @click="
+      $store.market.openTpslModal(); 
+      $store.market.isTpslModalEditMode = true; 
+      $store.market.tpslModalPlace = 'tradingBlock'"
     >
       <span>Trigger Price</span>
       <span>
