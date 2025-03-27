@@ -39,7 +39,7 @@ export default function Market() {
     <div
     class="flex flex-col gap-y-4 md:gap-y-6 mx-auto text-center pt-4 md:pt-[49px] pb-[92px] md:pb-[42px] xl:px-10 xl:max-w-[1440px]">
       <div class="flex flex-col xl:flex-row gap-y-0 xl:gap-y-0 xl:gap-x-4">
-          <div class="xl:flex xl:justify-between w-full mx-auto">
+          <div class="xl:flex xl:justify-center xl:gap-x-6 w-full mx-auto">
             <div>
               ${HeaderSection(selectedAssetData)}
               <div class="hidden xl:block">${ChartSection()}</div>

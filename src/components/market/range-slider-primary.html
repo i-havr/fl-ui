@@ -1,5 +1,5 @@
 <div
-  class="flex h-[55px] w-full flex-col justify-end"
+  class="flex h-[55px] w-full flex-col justify-end md:-mt-3"
   x-init="$watch('${rangeSliderValue}', () => {
     $store.market.setNormalizedValue(`${rangeSliderValue}`, `${normalizedRangeSliderValue}`, ${minValue}, ${maxValue})
   }),    

@@ -53,6 +53,42 @@ export function initMarketState() {
       tpProfitKey: "tpProfit",
       slProfitKey: "slProfit",
 
+      openTpslModal() {
+        this.isTpslModalOpen = true;
+
+        if (window.innerWidth >= 768) {
+          // remove first in case there was a resizing
+          document.body.classList.remove("no-scroll");
+          document.body.classList.add("no-scroll");
+        }
+      },
+
+      closeTpslModal() {
+        this.isTpslModalOpen = false;
+
+        if (window.innerWidth >= 768) {
+          document.body.classList.remove("no-scroll");
+        }
+      },
+
+      openLeverageModal() {
+        this.isLeverageModalOpen = true;
+
+        if (window.innerWidth >= 768) {
+          // remove first in case there was a resizing
+          document.body.classList.remove("no-scroll");
+          document.body.classList.add("no-scroll");
+        }
+      },
+
+      closeLeverageModal() {
+        this.isLeverageModalOpen = false;
+
+        if (window.innerWidth >= 768) {
+          document.body.classList.remove("no-scroll");
+        }
+      },
+
       setActiveTab(tab) {
         this.activeTab = tab;
         this.orderPrice = tab === "market" ? this.assetMarketPrice : "";
@@ -111,7 +147,7 @@ export function initMarketState() {
       },
 
       resetTpslModalToDefault() {
-        this.isTpslModalOpen = false;
+        this.closeTpslModal();
 
         if (this.tpslModalPlace !== "tradingBlock") {
           document.body.classList.remove("no-scroll");
@@ -161,7 +197,7 @@ export function initMarketState() {
       },
 
       resetLeverageModalToDefault() {
-        this.isLeverageModalOpen = false;
+        this.closeLeverageModal();
 
         if (this.isLeverageModalEditMode) {
           this.leverageValue = this.lastLeverageValue;
@@ -617,10 +653,12 @@ export function initMarketState() {
       },
 
       handleSetTpslButtonClick() {
-        this.isTpslModalOpen = false;
+        this.closeTpslModal();
         this.isTpslModalEditMode = false;
+
         if (this.tpslModalPlace === "tradingBlock") {
           if (parseFloat(this.takeProfitValue)) {
+            this.takeProfitValue = parseFloat(this.takeProfitValue).toString();
             this.lastTakeProfitValue = this.takeProfitValue;
             this.lastTpProfit = this.tpProfit;
           } else {
@@ -631,6 +669,7 @@ export function initMarketState() {
           }
 
           if (parseFloat(this.stopLossValue)) {
+            this.stopLossValue = parseFloat(this.stopLossValue).toString();
             this.lastStopLossValue = this.stopLossValue;
             this.lastSlProfit = this.slProfit;
           } else {
@@ -640,20 +679,16 @@ export function initMarketState() {
             this.lastSlProfit = "0.00";
           }
 
-          if (this.takeProfitValue.endsWith(".")) {
-            this.takeProfitValue = this.takeProfitValue.slice(0, -1);
-            this.lastTakeProfitValue = this.takeProfitValue;
-          }
-
-          if (this.stopLossValue.endsWith(".")) {
-            this.stopLossValue = this.stopLossValue.slice(0, -1);
-            this.lastStopLossValue = this.stopLossValue;
-          }
-
           return;
         }
 
         if (this.tpslModalPlace === "positions") {
+          this.selectedItemTakeProfitValue = parseFloat(
+            this.selectedItemTakeProfitValue
+          ).toString();
+          this.selectedItemStopLossValue = parseFloat(
+            this.selectedItemStopLossValue
+          ).toString();
           this.updatePositionTpsl(this.selectedItemId);
           this.resetTpslModalToDefault();
 
@@ -661,6 +696,12 @@ export function initMarketState() {
         }
 
         if (this.tpslModalPlace === "openOrders") {
+          this.selectedItemTakeProfitValue = parseFloat(
+            this.selectedItemTakeProfitValue
+          ).toString();
+          this.selectedItemStopLossValue = parseFloat(
+            this.selectedItemStopLossValue
+          ).toString();
           this.updateOpenOrderTpsl(this.selectedItemId);
           this.resetTpslModalToDefault();
 
@@ -812,6 +853,14 @@ export function initMarketState() {
         this.updateSlValues();
 
         document.body.classList.add("no-scroll");
+      },
+
+      buyAsset() {
+        console.log("Buy button clicked!");
+      },
+
+      sellAsset() {
+        console.log("Sell button clicked!");
       }
     });
   };
