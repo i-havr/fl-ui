@@ -42,7 +42,7 @@ export function Header() {
     </div>
 
     <div class="hidden items-center md:flex md:gap-x-5 lg:gap-x-16">
-    ${finlabLogoIcon}
+    <a href="/">${finlabLogoIcon}</a>
     ${Nav()}
     </div>
 
