@@ -1,3 +1,4 @@
+import { Footer } from "./footer";
 import { Header } from "./header/header";
 
 export default function Layout() {
@@ -8,5 +9,7 @@ export default function Layout() {
     
     <main id="page-content" class="h-full flex-1">
     </main>
+
+    ${Footer()}
   </div>`;
 }
